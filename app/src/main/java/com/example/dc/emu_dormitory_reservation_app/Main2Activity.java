@@ -11,5 +11,6 @@ public class Main2Activity extends AppCompatActivity {
         setContentView(R.layout.activity_main2);
         // activity2
         //another commit comment
+        //added commit to the api_connection_features
     }
 }
