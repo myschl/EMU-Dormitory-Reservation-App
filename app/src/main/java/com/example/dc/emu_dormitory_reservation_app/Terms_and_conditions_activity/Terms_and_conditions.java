@@ -26,7 +26,8 @@ public class Terms_and_conditions extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(Terms_and_conditions.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Terms_and_conditions.this,DebugActivity.class));
+                       // startActivity(new Intent(Terms_and_conditions.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 

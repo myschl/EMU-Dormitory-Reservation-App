@@ -27,7 +27,8 @@ public class Sign_in_with_student_No extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(Sign_in_with_student_No.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Sign_in_with_student_No.this,DebugActivity.class));
+                        //startActivity(new Intent(Sign_in_with_student_No.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 

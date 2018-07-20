@@ -26,7 +26,8 @@ public class Edit_booking extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(Edit_booking.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Edit_booking.this,DebugActivity.class));
+                       // startActivity(new Intent(Edit_booking.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 

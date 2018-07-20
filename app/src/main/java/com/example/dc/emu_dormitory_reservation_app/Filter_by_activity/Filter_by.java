@@ -27,7 +27,8 @@ public class Filter_by extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(Filter_by.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Filter_by.this,DebugActivity.class));
+                     //   startActivity(new Intent(Filter_by.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 

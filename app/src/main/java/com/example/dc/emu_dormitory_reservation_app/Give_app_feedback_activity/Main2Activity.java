@@ -41,7 +41,8 @@ public class Main2Activity extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(Main2Activity.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Main2Activity.this,DebugActivity.class));
+                       // startActivity(new Intent(Main2Activity.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 

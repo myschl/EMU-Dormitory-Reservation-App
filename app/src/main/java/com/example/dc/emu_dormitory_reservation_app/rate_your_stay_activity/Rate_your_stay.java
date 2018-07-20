@@ -40,7 +40,8 @@ public class Rate_your_stay extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(Rate_your_stay.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Rate_your_stay.this,DebugActivity.class));
+                        //startActivity(new Intent(Rate_your_stay.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 

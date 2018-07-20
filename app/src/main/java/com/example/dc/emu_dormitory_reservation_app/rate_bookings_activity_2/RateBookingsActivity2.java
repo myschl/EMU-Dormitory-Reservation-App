@@ -38,7 +38,8 @@ public class RateBookingsActivity2 extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(RateBookingsActivity2.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(RateBookingsActivity2.this,DebugActivity.class));
+                        //startActivity(new Intent(RateBookingsActivity2.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 

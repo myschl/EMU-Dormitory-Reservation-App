@@ -35,7 +35,8 @@ public class Create_Account extends AppCompatActivity {
                     @Override
                     public void onClick(View v) {
                         Toast.makeText(Create_Account.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Create_Account.this,DebugActivity.class));
+                       // startActivity(new Intent(Create_Account.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 
