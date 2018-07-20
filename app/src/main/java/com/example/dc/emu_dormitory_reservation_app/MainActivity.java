@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 //comment
@@ -19,19 +20,18 @@ public class MainActivity extends AppCompatActivity {
         //toolbar.setSubtitle("welcome");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
-        MyFun();
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(MainActivity.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(MainActivity.this,DebugActivity.class));
+                    }
+                }
 
-    }
+        );
+       // MyFun();
 
-    private void MyFun() {
-        next=(Button)findViewById(R.id.next);
-        next.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,Main2Activity.class);
-                startActivity(intent);
-            }
-        });
     }
 
 }

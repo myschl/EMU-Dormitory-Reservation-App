@@ -36,15 +36,17 @@
             android:layout_marginTop="50dp"
             android:text="Sign in with student No."
             android:background="@android:color/white"
+            android:textAllCaps="false"
             android:paddingLeft="10dp"
            android:drawableLeft="@drawable/emu"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="continue with facebook"
+            android:text="Continue with facebook"
             android:background="#283593"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/white"
+            android:textAllCaps="false"
             android:paddingLeft="10dp"
             android:drawableLeft="@drawable/facebook"/>
         <Button
@@ -53,6 +55,7 @@
             android:background="@color/blue"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/white"
+            android:textAllCaps="false"
             android:text="Sign in with Email"/>
         <TextView
             android:layout_width="wrap_content"
@@ -68,20 +71,28 @@
             android:layout_marginTop="15dp"
             android:textColor="@android:color/white"
             android:text="Create your account"
+            android:textAllCaps="false"
             android:paddingLeft="10dp"
             android:drawableLeft="@drawable/ic_create_account"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
-            android:layout_marginTop="30dp"
-            android:text="By creating or logging in to account you're agreeing with "/>
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            android:text="By creating or logging in to account you're agreeing"/>
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="our terms and conditions and privacy statement"
+            android:text="with our terms and conditions and"
             android:textColor="@android:color/white"
-            android:layout_marginLeft="20dp" />
+            android:layout_marginLeft="60dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="privacy statement"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="120dp" />
     </LinearLayout>
 
 </RelativeLayout>

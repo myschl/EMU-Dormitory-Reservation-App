@@ -123,7 +123,8 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:background="@color/blue"
+        android:textAllCaps="false"
         android:textColor="@android:color/white"
-        android:text="send feedback" />
+        android:text="Send Feedback" />
 
 </RelativeLayout>

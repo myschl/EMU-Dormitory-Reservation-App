@@ -24,7 +24,10 @@ public class DebugActivity extends AppCompatActivity {
     "Sign_in",
     "Sign_in_with_email",
     "Sign_in_with_student_no",
-    "Terms_and_conditions"};
+    "Terms_and_conditions",
+    "Filter_by",
+    "Setting",
+    "Rate_your_stay"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -66,6 +69,12 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,Sign_in_with_student_No.class));break;
                     case 8:
                         startActivity(new Intent(DebugActivity.this,Terms_and_conditions.class));break;
+                    case 9:
+                        startActivity(new Intent(DebugActivity.this,Filter_by.class));break;
+                    case 10:
+                        startActivity(new Intent(DebugActivity.this,Setting.class));break;
+                    case 11:
+                        startActivity(new Intent(DebugActivity.this,Rate_your_stay.class));break;
 
                 }
 

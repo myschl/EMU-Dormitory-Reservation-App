@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">emu_dormitory_reservation_app</string>
+    <declare-styleable name="RangeSeekBar">
+        <attr name="absoluteMinValue" format="integer" />
+        <attr name="absoluteMaxValue" format="integer" />
+        <attr name="singleThumb" format="boolean" />
+    </declare-styleable>
 </resources>
+

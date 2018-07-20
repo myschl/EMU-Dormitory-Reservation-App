@@ -1,5 +1,6 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class Main2Activity extends AppCompatActivity {
     TextView rate;
@@ -31,6 +33,16 @@ public class Main2Activity extends AppCompatActivity {
         //toolbar.setSubtitle("welcome");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Main2Activity.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(Main2Activity.this,DebugActivity.class));
+                    }
+                }
+
+        );
         MyFun();
     }
 

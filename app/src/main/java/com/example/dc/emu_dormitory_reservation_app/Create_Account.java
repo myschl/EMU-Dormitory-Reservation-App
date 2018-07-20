@@ -1,5 +1,6 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -7,6 +8,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
+import android.widget.Toast;
 
 public class Create_Account extends AppCompatActivity {
     String[] gender ={"Male","Female"};
@@ -21,10 +23,20 @@ public class Create_Account extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__account);
         Toolbar toolbar = (Toolbar)findViewById(R.id.create_account);
-       // toolbar.setTitle("Give app feedback");
+        toolbar.setTitle("");
         //toolbar.setSubtitle("welcome");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Create_Account.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(Create_Account.this,DebugActivity.class));
+                    }
+                }
+
+        );
 
         MyFun();
     }

@@ -111,6 +111,7 @@
         android:background="@color/blue"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:textAllCaps="false"
         android:text="Save"
         android:textColor="@android:color/white" />
     </RelativeLayout>

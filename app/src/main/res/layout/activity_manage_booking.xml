@@ -111,6 +111,7 @@
             android:background="@color/blue"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
+            android:textAllCaps="false"
             android:text="Save"
             android:textColor="@android:color/white" />
         <android.support.v7.widget.CardView
@@ -142,6 +143,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@color/colorPrimary"
                     android:text="Edit Booking"
+                    android:textAllCaps="false"
                     android:textColor="@android:color/white" />
 
                 <Button
@@ -150,6 +152,7 @@
                     android:layout_marginTop="10dp"
                     android:background="@android:color/holo_red_light"
                     android:text="Cancel Booking"
+                    android:textAllCaps="false"
                     android:textColor="@android:color/white" />
             </LinearLayout>
 
