@@ -35,7 +35,8 @@
         <activity
             android:name=".booking_activity.booking_tabbed_activity"
             android:label="@string/title_activity_booking_tabbed_activity"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
+        <activity android:name=".search_results_activity.search_result_activity"></activity>
     </application>
 
 </manifest>

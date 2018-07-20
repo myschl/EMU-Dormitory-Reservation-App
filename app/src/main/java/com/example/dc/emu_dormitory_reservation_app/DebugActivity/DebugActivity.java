@@ -21,6 +21,7 @@ import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activit
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_1.rate_bookings_activity_1;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsActivity2;
 import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
+import com.example.dc.emu_dormitory_reservation_app.search_results_activity.search_result_activity;
 import com.example.dc.emu_dormitory_reservation_app.settings_activity.Setting;
 import com.example.dc.emu_dormitory_reservation_app.sign_in_with_email_activity.Sign_in_with_Email;
 import com.example.dc.emu_dormitory_reservation_app.sign_in_with_student_no_activity.Sign_in_with_student_No;
@@ -49,6 +50,7 @@ public class DebugActivity extends AppCompatActivity {
     "Rate_bookings_activity_1",
     "Rate_bookings_activity_2_with_images",
             "booking_tabbed_activity",
+            "search_results_activity"
    };
 
     @Override
@@ -103,6 +105,9 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,RateBookingsActivity2.class));break;
                     case 14:
                         startActivity(new Intent(DebugActivity.this,booking_tabbed_activity.class));break;
+                    case 15:
+                        startActivity(new Intent(DebugActivity.this,search_result_activity.class));break;
+
 
 
                 }
