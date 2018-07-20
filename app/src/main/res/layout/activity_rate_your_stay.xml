@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Rate_your_stay">
+    tools:context=".rate_your_stay_activity.Rate_your_stay">
     <include
         android:id="@+id/rate_your_stay"
         layout="@layout/toolbar" />

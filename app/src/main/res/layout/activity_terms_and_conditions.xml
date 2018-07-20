@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Terms_and_conditions">
+    tools:context=".Terms_and_conditions_activity.Terms_and_conditions">
     <include
         android:id="@+id/term_and_condition"
         layout="@layout/toolbar" />

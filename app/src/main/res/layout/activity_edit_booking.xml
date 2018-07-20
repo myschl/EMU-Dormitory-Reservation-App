@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Edit_booking">
+    tools:context=".edit_booking_activity.Edit_booking">
     <include
         android:id="@+id/edit_booking"
         layout="@layout/toolbar" />

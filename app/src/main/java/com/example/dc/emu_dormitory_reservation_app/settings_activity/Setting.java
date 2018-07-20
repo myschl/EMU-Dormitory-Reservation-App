@@ -1,4 +1,4 @@
-package com.example.dc.emu_dormitory_reservation_app;
+package com.example.dc.emu_dormitory_reservation_app.settings_activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +10,9 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.R;
 
 public class Setting extends AppCompatActivity {
     String[] language ={"English","Turkish"};

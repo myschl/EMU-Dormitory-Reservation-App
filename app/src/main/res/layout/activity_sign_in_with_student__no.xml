@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Sign_in_with_student_No">
+    tools:context=".sign_in_with_student_no_activity.Sign_in_with_student_No">
     <include
         android:id="@+id/sign_in_with_student_no"
         layout="@layout/toolbar" />

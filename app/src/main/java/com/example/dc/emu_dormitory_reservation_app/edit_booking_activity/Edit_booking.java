@@ -1,4 +1,4 @@
-package com.example.dc.emu_dormitory_reservation_app;
+package com.example.dc.emu_dormitory_reservation_app.edit_booking_activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,14 +7,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Toast;
 
-public class Terms_and_conditions extends AppCompatActivity {
+import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.R;
+
+public class Edit_booking extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_terms_and_conditions);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.term_and_condition);
-        toolbar.setTitle("Terms and Conditions");
+        setContentView(R.layout.activity_edit_booking);
+        Toolbar toolbar = (Toolbar)findViewById(R.id.edit_booking);
+        toolbar.setTitle("Edit Booking");
         //toolbar.setSubtitle("welcome");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
@@ -22,8 +25,8 @@ public class Terms_and_conditions extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(Terms_and_conditions.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
-                        startActivity(new Intent(Terms_and_conditions.this,DebugActivity.class));
+                        Toast.makeText(Edit_booking.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(Edit_booking.this,DebugActivity.class));
                     }
                 }
 

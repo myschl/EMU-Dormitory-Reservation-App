@@ -1,5 +1,6 @@
 package com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,10 +8,14 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.View;
+import android.widget.Toast;
 
+import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_1.RateBookingsDataModel1;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_1.RateBookingsRecycleViewAdapter1;
+import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
 
 import java.util.ArrayList;
 
@@ -25,9 +30,19 @@ public class RateBookingsActivity2 extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.rate_booking_toolbar2);
         toolbar.setTitle("Rate your stay");
         //toolbar.setSubtitle("welcome");
-        toolbar.setTitleTextColor(Color.WHITE);
+
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(RateBookingsActivity2.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        startActivity(new Intent(RateBookingsActivity2.this,DebugActivity.class));
+                    }
+                }
+
+        );
         initData();
         initRecycleViewCRateBookings1();
     }

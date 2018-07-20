@@ -1,4 +1,4 @@
-package com.example.dc.emu_dormitory_reservation_app;
+package com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +9,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import android.widget.Toast;
+
+import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.R;
 
 public class Rate_your_stay extends AppCompatActivity {
     String[] feedback ={"Comment","Sugestion"};

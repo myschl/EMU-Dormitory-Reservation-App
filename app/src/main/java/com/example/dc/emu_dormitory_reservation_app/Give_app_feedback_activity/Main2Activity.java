@@ -1,4 +1,4 @@
-package com.example.dc.emu_dormitory_reservation_app;
+package com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +11,9 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.R;
 
 public class Main2Activity extends AppCompatActivity {
     TextView rate;

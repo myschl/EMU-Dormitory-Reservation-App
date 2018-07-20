@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Sign_in_with_Email">
+    tools:context=".sign_in_with_email_activity.Sign_in_with_Email">
     <include
         android:id="@+id/sign_in_with_email"
         layout="@layout/toolbar" />

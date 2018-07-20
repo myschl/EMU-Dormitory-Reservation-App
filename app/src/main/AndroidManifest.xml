@@ -9,26 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".Create_Account" />
-        <activity android:name=".Sign_in_with_Email" />
-        <activity android:name=".Sign_in_with_student_No" />
-        <activity android:name=".Sign_in" />
-        <activity android:name=".Terms_and_conditions" />
-        <activity android:name=".Edit_booking" />
-        <activity android:name=".Manage_booking" />
+        <activity android:name=".About_us_activity.MainActivity" />
+        <activity android:name=".Give_app_feedback_activity.Main2Activity" />
+        <activity android:name=".Create_account_activity.Create_Account" />
+        <activity android:name=".sign_in_with_email_activity.Sign_in_with_Email" />
+        <activity android:name=".sign_in_with_student_no_activity.Sign_in_with_student_No" />
+        <activity android:name=".Sign_in_activity.Sign_in" />
+        <activity android:name=".Terms_and_conditions_activity.Terms_and_conditions" />
+        <activity android:name=".edit_booking_activity.Edit_booking" />
+        <activity android:name=".manage_booking_activity.Manage_booking" />
 
-        <activity android:name=".DebugActivity">
+        <activity android:name=".DebugActivity.DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Setting" />
-        <activity android:name=".Filter_by" />
-        <activity android:name=".Rate_your_stay"></activity>
+        <activity android:name=".settings_activity.Setting" />
+        <activity android:name=".Filter_by_activity.Filter_by" />
+        <activity android:name=".rate_your_stay_activity.Rate_your_stay"></activity>
         <activity android:name=".rate_bookings_activity_1.rate_bookings_activity_1" />
         <activity android:name=".rate_bookings_activity_2.RateBookingsActivity2"></activity>
     </application>

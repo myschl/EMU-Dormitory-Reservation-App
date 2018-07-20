@@ -1,13 +1,14 @@
-package com.example.dc.emu_dormitory_reservation_app;
+package com.example.dc.emu_dormitory_reservation_app.Filter_by_activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.R;
 import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
 public class Filter_by extends AppCompatActivity {
