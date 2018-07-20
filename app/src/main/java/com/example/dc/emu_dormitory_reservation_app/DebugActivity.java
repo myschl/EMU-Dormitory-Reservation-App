@@ -31,7 +31,7 @@ public class DebugActivity extends AppCompatActivity {
     "Filter_by",
     "Setting",
     "Rate_your_stay",
-    "Terms_and_conditions",
+
     "Rate_bookings_activity_1",
     "Rate_bookings_activity_2_with_images"};
 
