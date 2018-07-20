@@ -10,6 +10,7 @@ import android.widget.ListView;
 
 import com.example.dc.emu_dormitory_reservation_app.About_us_activity.MainActivity;
 import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Create_Account;
+import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
 import com.example.dc.emu_dormitory_reservation_app.Filter_by_activity.Filter_by;
 import com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity.Main2Activity;
@@ -46,7 +47,9 @@ public class DebugActivity extends AppCompatActivity {
     "Rate_your_stay",
 
     "Rate_bookings_activity_1",
-    "Rate_bookings_activity_2_with_images"};
+    "Rate_bookings_activity_2_with_images",
+            "booking_tabbed_activity",
+   };
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,6 +101,8 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,rate_bookings_activity_1.class));break;
                     case 13:
                         startActivity(new Intent(DebugActivity.this,RateBookingsActivity2.class));break;
+                    case 14:
+                        startActivity(new Intent(DebugActivity.this,booking_tabbed_activity.class));break;
 
 
                 }
