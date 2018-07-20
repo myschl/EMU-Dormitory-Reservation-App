@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dc.emu_dormitory_reservation_app">
+
     <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -18,7 +20,6 @@
         <activity android:name=".Terms_and_conditions_activity.Terms_and_conditions" />
         <activity android:name=".edit_booking_activity.Edit_booking" />
         <activity android:name=".manage_booking_activity.Manage_booking" />
-
         <activity android:name=".DebugActivity.DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,9 +29,13 @@
         </activity>
         <activity android:name=".settings_activity.Setting" />
         <activity android:name=".Filter_by_activity.Filter_by" />
-        <activity android:name=".rate_your_stay_activity.Rate_your_stay"></activity>
+        <activity android:name=".rate_your_stay_activity.Rate_your_stay" />
         <activity android:name=".rate_bookings_activity_1.rate_bookings_activity_1" />
-        <activity android:name=".rate_bookings_activity_2.RateBookingsActivity2"></activity>
+        <activity android:name=".rate_bookings_activity_2.RateBookingsActivity2" />
+        <activity
+            android:name=".booking_activity.booking_tabbed_activity"
+            android:label="@string/title_activity_booking_tabbed_activity"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
