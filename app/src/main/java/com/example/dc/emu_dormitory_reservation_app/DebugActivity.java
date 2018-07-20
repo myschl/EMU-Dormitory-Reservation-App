@@ -8,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_1.rate_bookings_activity_1;
+import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsActivity2;
+
 public class DebugActivity extends AppCompatActivity {
     ListView listViewDebug;
     ArrayAdapter adapter;
@@ -27,7 +30,10 @@ public class DebugActivity extends AppCompatActivity {
     "Terms_and_conditions",
     "Filter_by",
     "Setting",
-    "Rate_your_stay"};
+    "Rate_your_stay",
+    "Terms_and_conditions",
+    "Rate_bookings_activity_1",
+    "Rate_bookings_activity_2_with_images"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +81,11 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,Setting.class));break;
                     case 11:
                         startActivity(new Intent(DebugActivity.this,Rate_your_stay.class));break;
+                    case 12:
+                        startActivity(new Intent(DebugActivity.this,rate_bookings_activity_1.class));break;
+                    case 13:
+                        startActivity(new Intent(DebugActivity.this,RateBookingsActivity2.class));break;
+
 
                 }
 
