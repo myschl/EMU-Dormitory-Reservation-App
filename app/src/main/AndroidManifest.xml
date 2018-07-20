@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.dc.emu_dormitory_reservation_app">
-
+    <uses-permission android:name="android.permission.INTERNET" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -9,28 +9,26 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
         <activity android:name=".Main2Activity" />
-        <activity android:name=".Create_Account"></activity>
+        <activity android:name=".Create_Account" />
         <activity android:name=".Sign_in_with_Email" />
         <activity android:name=".Sign_in_with_student_No" />
-        <activity android:name=".Sign_in">
-
-        </activity>
+        <activity android:name=".Sign_in" />
         <activity android:name=".Terms_and_conditions" />
         <activity android:name=".Edit_booking">
+
+        </activity>
+        <activity android:name=".Manage_booking" />
+        <activity android:name=".DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Manage_booking" />
-        <activity android:name=".DebugActivity">  <intent-filter>
-            <action android:name="android.intent.action.MAIN" />
-
-            <category android:name="android.intent.category.LAUNCHER" />
-        </intent-filter></activity>
+        <activity android:name=".rate_bookings_activity_1.rate_bookings_activity_1" />
+        <activity android:name=".rate_bookings_activity_2.RateBookingsActivity2"></activity>
     </application>
 
 </manifest>
