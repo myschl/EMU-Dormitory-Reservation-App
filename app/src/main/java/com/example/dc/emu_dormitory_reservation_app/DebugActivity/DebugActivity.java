@@ -1,4 +1,4 @@
-package com.example.dc.emu_dormitory_reservation_app;
+package com.example.dc.emu_dormitory_reservation_app.DebugActivity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,8 +8,21 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.example.dc.emu_dormitory_reservation_app.About_us_activity.MainActivity;
+import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Create_Account;
+import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
+import com.example.dc.emu_dormitory_reservation_app.Filter_by_activity.Filter_by;
+import com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity.Main2Activity;
+import com.example.dc.emu_dormitory_reservation_app.manage_booking_activity.Manage_booking;
+import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
+import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_1.rate_bookings_activity_1;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsActivity2;
+import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
+import com.example.dc.emu_dormitory_reservation_app.settings_activity.Setting;
+import com.example.dc.emu_dormitory_reservation_app.sign_in_with_email_activity.Sign_in_with_Email;
+import com.example.dc.emu_dormitory_reservation_app.sign_in_with_student_no_activity.Sign_in_with_student_No;
 
 public class DebugActivity extends AppCompatActivity {
     ListView listViewDebug;
@@ -21,8 +34,8 @@ public class DebugActivity extends AppCompatActivity {
 
     String Activities[] ={"Create_Account Activity",
                             "Edit_booking Activity",
-    "Main2Activity",
-    "MainActivity",
+    "Give_app_feedback",
+    "About us",
     "Manage_booking",
     "Sign_in",
     "Sign_in_with_email",
