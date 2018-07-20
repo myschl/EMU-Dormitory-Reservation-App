@@ -2,6 +2,8 @@ package com.example.dc.emu_dormitory_reservation_app.booking_activity;
 
 import android.support.design.widget.TabLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 
 import android.support.v4.app.Fragment;
@@ -9,6 +11,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -16,11 +19,20 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
+import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsRecycleViewAdapter2;
+
+import java.util.ArrayList;
+
+import static android.support.constraint.Constraints.TAG;
 
 public class booking_tabbed_activity extends AppCompatActivity {
+    private static final String TAG = "booking_tabbed_activity";
 
+    private ArrayList<bookingsDataModel> mBookingsDataModel = new ArrayList<>();
     /**
      * The {@link android.support.v4.view.PagerAdapter} that will provide
      * fragments for each of the sections. We use a
@@ -45,6 +57,15 @@ public class booking_tabbed_activity extends AppCompatActivity {
         toolbar.setTitle("Booking");
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(booking_tabbed_activity.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        // startActivity(new Intent(Edit_booking.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
+                    }
+                });
         // Create the adapter that will return a fragment for each of the three
         // primary sections of the activity.
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
@@ -59,7 +80,8 @@ public class booking_tabbed_activity extends AppCompatActivity {
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
 
-
+        // dataInit();
+        // initRecycleView();
 
     }
 
@@ -98,11 +120,11 @@ public class booking_tabbed_activity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch(position){
                 case 0:
-                    current_tab mCurrent_tab = new current_tab();
-                    return mCurrent_tab;
-                case 1:
                     past_tab mPast_tab = new past_tab();
                     return mPast_tab;
+                case 1:
+                    current_tab mCurrent_tab = new current_tab();
+                    return mCurrent_tab;
                 case 2:
                     upcoming_tab mUpcoming_tab = new upcoming_tab();
                     return mUpcoming_tab;
@@ -118,4 +140,6 @@ public class booking_tabbed_activity extends AppCompatActivity {
             return 3;
         }
     }
+
+
 }
