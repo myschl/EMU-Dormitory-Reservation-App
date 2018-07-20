@@ -27,7 +27,8 @@
         </activity>
         <activity android:name=".Setting" />
         <activity android:name=".Filter_by" />
-        <activity android:name=".Rate_your_stay"></activity>
+        <activity android:name=".Rate_your_stay" />
+        <activity android:name=".Facilities_filters"></activity>
     </application>
 
 </manifest>

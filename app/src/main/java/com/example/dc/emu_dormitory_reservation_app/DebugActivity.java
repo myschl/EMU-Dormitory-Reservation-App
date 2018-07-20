@@ -27,7 +27,8 @@ public class DebugActivity extends AppCompatActivity {
     "Terms_and_conditions",
     "Filter_by",
     "Setting",
-    "Rate_your_stay"};
+    "Rate_your_stay",
+    "Facilities_filters"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +76,8 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,Setting.class));break;
                     case 11:
                         startActivity(new Intent(DebugActivity.this,Rate_your_stay.class));break;
+                    case 12:
+                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
 
                 }
 
