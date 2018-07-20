@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Sign_in">
+    <include
+        android:id="@+id/sign_in"
+        layout="@layout/toolbar" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+        android:layout_below="@id/sign_in"
+        android:orientation="vertical"
+        android:padding="15dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Let's Gate Stated"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="80dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sign in to view yur reservation "
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="73dp"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:text="Sign in with student No."
+            android:background="@android:color/white"
+            android:textAllCaps="false"
+            android:paddingLeft="10dp"
+           android:drawableLeft="@drawable/emu"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Continue with facebook"
+            android:background="#283593"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@drawable/facebook"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/blue"
+            android:layout_marginTop="10dp"
+            android:textColor="@android:color/white"
+            android:textAllCaps="false"
+            android:text="Sign in with Email"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Not a member yet?"
+            android:layout_marginTop="20dp"
+            android:layout_marginLeft="100dp"
+            android:textColor="@android:color/white"/>
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#1565C0"
+            android:layout_marginTop="15dp"
+            android:textColor="@android:color/white"
+            android:text="Create your account"
+            android:textAllCaps="false"
+            android:paddingLeft="10dp"
+            android:drawableLeft="@drawable/ic_create_account"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="10dp"
+            android:text="By creating or logging in to account you're agreeing"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="with our terms and conditions and"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="60dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="privacy statement"
+            android:textColor="@android:color/white"
+            android:layout_marginLeft="120dp" />
+    </LinearLayout>
+
+</RelativeLayout>

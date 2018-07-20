@@ -9,14 +9,25 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity android:name=".Main2Activity" />
+        <activity android:name=".Create_Account" />
+        <activity android:name=".Sign_in_with_Email" />
+        <activity android:name=".Sign_in_with_student_No" />
+        <activity android:name=".Sign_in" />
+        <activity android:name=".Terms_and_conditions" />
+        <activity android:name=".Edit_booking" />
+        <activity android:name=".Manage_booking" />
+        <activity android:name=".DebugActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Main2Activity"></activity>
+        <activity android:name=".Setting" />
+        <activity android:name=".Filter_by" />
+        <activity android:name=".Rate_your_stay"></activity>
     </application>
 
 </manifest>
