@@ -5,7 +5,7 @@
     android:id="@+id/constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".booking_activity.booking_tabbed_activity$PlaceholderFragment">
+    tools:context=".booking_activity.booking_tabbed_activity">
 
     <TextView
         android:id="@+id/section_label"
@@ -20,5 +20,12 @@
         app:layout_constraintTop_toTopOf="@+id/constraintLayout"
         tools:layout_constraintLeft_creator="1"
         tools:layout_constraintTop_creator="1" />
+
+    <android.support.v7.widget.RecyclerView
+        android:layout_marginTop="50dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/colorPrimaryBackground"
+        android:id="@+id/recycleViewPastBookings"></android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
