@@ -52,8 +52,11 @@ public class DebugActivity extends AppCompatActivity {
     "Rate_bookings_activity_2_with_images",
             "booking_tabbed_activity",
             "search_results_activity",
-            "Home Activity"
-   };
+            "Home Activity",
+
+    "Rate_your_stay",
+    "Facilities_filters",
+    "Get_help"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -113,6 +116,10 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,HomeActivity.class));break;
 
 
+                    case 17:
+                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
+                    case 18:
+                        startActivity(new Intent(DebugActivity.this,Get_help.class));break;
 
                 }
 

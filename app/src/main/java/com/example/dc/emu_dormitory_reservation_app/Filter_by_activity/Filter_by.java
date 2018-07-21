@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
@@ -12,6 +14,7 @@ import com.example.dc.emu_dormitory_reservation_app.R;
 import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
 public class Filter_by extends AppCompatActivity {
+    TextView facilities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +41,13 @@ public class Filter_by extends AppCompatActivity {
 
     private void MyFun() {
         //there may be some bugs
+        facilities=(TextView)findViewById(R.id.facilities_filter);
+        facilities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Filter_by.this,Facilities_filters.class));
+            }
+        });
         RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(this);
         seekBar.setRangeValues(0, 5000);
 

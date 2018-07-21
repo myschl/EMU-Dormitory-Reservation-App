@@ -44,6 +44,9 @@
             android:theme="@style/AppTheme" />
         <activity android:name=".search_results_activity.search_result_activity" />
         <activity android:name=".Home_activity.HomeActivity"></activity>
+
+        <activity android:name=".Facilities_filters" />
+        <activity android:name=".Get_help"></activity>
     </application>
 
 </manifest>
