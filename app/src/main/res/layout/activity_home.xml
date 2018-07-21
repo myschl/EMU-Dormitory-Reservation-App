@@ -1,9 +1,147 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/colorPrimaryBackground"
+    android:orientation="vertical"
     tools:context=".Home_activity.HomeActivity">
 
-</android.support.constraint.ConstraintLayout>
+    <include
+        android:id="@+id/home_activity_toolbar"
+        layout="@layout/toolbar" />
+
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorYellowBackground"
+        android:orientation="vertical"
+        android:padding="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Hi, Musa"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Search Dormitory/Room"
+            android:layout_marginBottom="10dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="14dp"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+                    android:background="@drawable/rounded_edittext"
+                    android:editable="false"
+
+                    android:hint="Enter Dormitory name"
+                    android:padding="5dp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:layout_marginBottom="10dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="14dp"
+                    android:src="@drawable/ic_launcher_background" />
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/rounded_edittext"
+                    android:editable="true"
+                    android:hint="Dormitory type"
+                    android:padding="5dp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_marginBottom="10dp">
+
+            <EditText
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@drawable/rounded_edittext"
+                android:duplicateParentState="true"
+                android:editable="false"
+                android:hint="Check in semester"
+                android:padding="5dp" />
+
+            <EditText
+                android:hint="Check out semester"
+                android:padding="5dp"
+                android:layout_marginLeft="10dp"
+                android:background="@drawable/rounded_edittext"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"/>
+        </LinearLayout>
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Search"
+            android:background="@color/colorPrimary"
+            android:textColor="@color/colorWhite"/>
+
+    </LinearLayout>
+
+    <android.support.v7.widget.RecyclerView
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryBackground"
+        android:id="@+id/recycleViewPopularDormitories"></android.support.v7.widget.RecyclerView>
+
+
+
+    <android.support.v7.widget.RecyclerView
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimaryBackground"
+        android:id="@+id/recycleViewHigestRatedDormitories"></android.support.v7.widget.RecyclerView>
+
+
+</LinearLayout>

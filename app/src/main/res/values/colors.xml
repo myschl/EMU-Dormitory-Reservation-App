@@ -9,5 +9,6 @@
     <color name="Black">#000000</color>
     <color name="blue">#039BE5</color>
     <color name="colorPrimaryBackground">#EEEEEE</color>
+    <color name="colorYellowBackground">#febb00</color>
 
 </resources>

@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+
+    android:layout_marginBottom="2dp"
+    android:background="@color/colorWhite"
+    android:id="@+id/ralativeLayoutHomeActivityRecycleView">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal"
+        android:layout_alignParentLeft="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="2dp"
+            android:orientation="vertical"
+            android:layout_marginRight="10dp"
+            android:padding="10dp">
+
+            <RelativeLayout
+                android:layout_width="150dp"
+                android:layout_height="120dp">
+
+                <ImageView
+                    android:id="@+id/imageViewDormitoryImage"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+
+
+                    android:src="@drawable/ic_launcher_background" />
+
+                <TextView
+                    android:layout_width="50dp"
+                    android:layout_height="25dp"
+                    android:padding="2dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginTop="14dp"
+                    android:background="@color/colorAlert"
+                    android:text="Deals start at $2"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="8sp"
+                    android:id="@+id/textViewdeals_text"/>
+
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDormitoryName"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:layout_marginBottom="2dp"
+
+                    android:text="Alfam Dormitories"
+                    android:textColor="#000000" />
+
+
+
+
+
+
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
