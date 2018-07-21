@@ -10,6 +10,8 @@ import android.widget.ListView;
 
 import com.example.dc.emu_dormitory_reservation_app.About_us_activity.MainActivity;
 import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Create_Account;
+import com.example.dc.emu_dormitory_reservation_app.Facilities_filters;
+import com.example.dc.emu_dormitory_reservation_app.Get_help;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
@@ -54,7 +56,7 @@ public class DebugActivity extends AppCompatActivity {
             "search_results_activity",
             "Home Activity",
 
-    "Rate_your_stay",
+
     "Facilities_filters",
     "Get_help"};
 

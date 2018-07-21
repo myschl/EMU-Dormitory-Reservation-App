@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Facilities_filters;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
