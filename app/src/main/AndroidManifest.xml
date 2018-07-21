@@ -28,7 +28,8 @@
         <activity android:name=".Setting" />
         <activity android:name=".Filter_by" />
         <activity android:name=".Rate_your_stay" />
-        <activity android:name=".Facilities_filters"></activity>
+        <activity android:name=".Facilities_filters" />
+        <activity android:name=".Get_help"></activity>
     </application>
 
 </manifest>

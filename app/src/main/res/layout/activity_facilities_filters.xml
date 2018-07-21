@@ -81,14 +81,15 @@
         </LinearLayout>
         </ScrollView>
     </android.support.v7.widget.CardView>
+
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="280dp"
+        android:layout_marginTop="20dp"
         android:background="@color/blue"
         android:text="Done"
         android:textAllCaps="false"
-        android:layout_marginLeft="282dp"
-        android:layout_marginTop="20dp"
-        android:textColor="@android:color/white"/>
+        android:textColor="@android:color/white" />
 
 </LinearLayout>
