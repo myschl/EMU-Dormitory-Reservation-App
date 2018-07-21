@@ -6,7 +6,6 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -17,6 +16,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBLcII2lrXK6o9fDCWBbwgf9OmbU5GxDJE" />
+
         <activity android:name=".About_us_activity.MainActivity" />
         <activity android:name=".Give_app_feedback_activity.Main2Activity" />
         <activity android:name=".Create_account_activity.Create_Account" />
@@ -38,12 +38,12 @@
         <activity android:name=".rate_your_stay_activity.Rate_your_stay" />
         <activity android:name=".rate_bookings_activity_1.rate_bookings_activity_1" />
         <activity android:name=".rate_bookings_activity_2.RateBookingsActivity2" />
-
         <activity
             android:name=".booking_activity.booking_tabbed_activity"
             android:label="@string/title_activity_booking_tabbed_activity"
             android:theme="@style/AppTheme" />
-        <activity android:name=".search_results_activity.search_result_activity"></activity>
+        <activity android:name=".search_results_activity.search_result_activity" />
+        <activity android:name=".Home_activity.HomeActivity"></activity>
     </application>
 
 </manifest>
