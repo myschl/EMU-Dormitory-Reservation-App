@@ -1,1 +1,1 @@
-# EMU-Dormitory-Reservation-App
+# EMU Dormitory Reservation App
