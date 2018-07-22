@@ -28,6 +28,7 @@ import com.example.dc.emu_dormitory_reservation_app.search_results_activity.sear
 import com.example.dc.emu_dormitory_reservation_app.settings_activity.Setting;
 import com.example.dc.emu_dormitory_reservation_app.sign_in_with_email_activity.Sign_in_with_Email;
 import com.example.dc.emu_dormitory_reservation_app.sign_in_with_student_no_activity.Sign_in_with_student_No;
+import com.example.dc.emu_dormitory_reservation_app.Navigational_drawer.navigational_drawer;
 
 public class DebugActivity extends AppCompatActivity {
     ListView listViewDebug;
@@ -58,7 +59,8 @@ public class DebugActivity extends AppCompatActivity {
 
 
     "Facilities_filters",
-    "Get_help"};
+    "Get_help",
+    "navigational_drawer"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -122,6 +124,8 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
                     case 18:
                         startActivity(new Intent(DebugActivity.this,Get_help.class));break;
+                    case 19:
+                        startActivity(new Intent(DebugActivity.this,navigational_drawer.class));break;
 
                 }
 
