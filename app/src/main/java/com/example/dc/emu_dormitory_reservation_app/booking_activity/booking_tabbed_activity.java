@@ -23,13 +23,18 @@ import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
+
+import com.example.dc.emu_dormitory_reservation_app.Navigational_drawer.navigational_drawer;
+import android.view.LayoutInflater;
+import android.content.Context;
+import android.view.View;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsRecycleViewAdapter2;
 
 import java.util.ArrayList;
 
 import static android.support.constraint.Constraints.TAG;
 
-public class booking_tabbed_activity extends AppCompatActivity {
+public class booking_tabbed_activity extends navigational_drawer {
     private static final String TAG = "booking_tabbed_activity";
 
     private ArrayList<bookingsDataModel> mBookingsDataModel = new ArrayList<>();
@@ -51,13 +56,18 @@ public class booking_tabbed_activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_booking_tabbed_activity);
+       // setContentView(R.layout.activity_booking_tabbed_activity);
 
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Booking");
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.nav_back);
-        toolbar.setNavigationOnClickListener(
+    LayoutInflater inflater = (LayoutInflater) this
+            .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    View contentView = inflater.inflate(R.layout.activity_booking_tabbed_activity, null, false);
+
+
+
+        mToolbar.setTitle("Booking");
+        setSupportActionBar(mToolbar);
+        mToolbar.setNavigationIcon(R.drawable.nav_back);
+        mToolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -71,15 +81,15 @@ public class booking_tabbed_activity extends AppCompatActivity {
         mSectionsPagerAdapter = new SectionsPagerAdapter(getSupportFragmentManager());
 
         // Set up the ViewPager with the sections adapter.
-        mViewPager = (ViewPager) findViewById(R.id.container);
+        mViewPager = (ViewPager) contentView.findViewById(R.id.container);
         mViewPager.setAdapter(mSectionsPagerAdapter);
 
-        TabLayout tabLayout = (TabLayout) findViewById(R.id.tabs);
+        TabLayout tabLayout = (TabLayout) contentView.findViewById(R.id.tabs);
 
 
         mViewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         tabLayout.addOnTabSelectedListener(new TabLayout.ViewPagerOnTabSelectedListener(mViewPager));
-
+ mDrawer.addView(contentView, 0);
         // dataInit();
         // initRecycleView();
 
