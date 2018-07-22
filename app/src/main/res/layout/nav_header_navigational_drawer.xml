@@ -6,12 +6,12 @@
 
     android:gravity="center"
     android:orientation="horizontal"
-    android:layout_marginTop="40dp"
-    android:paddingBottom="6dp"
+    android:paddingTop="40dp"
+
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="6dp"
 
+android:background="@drawable/ic_launcher_background"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
 
