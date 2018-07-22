@@ -8,14 +8,18 @@ import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import com.example.dc.emu_dormitory_reservation_app.Navigational_drawer.navigational_drawer;
 
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsRecycleViewAdapter2;
+import android.view.LayoutInflater;
+import android.content.Context;
+import android.view.View;
 
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity  extends navigational_drawer{
     private static final String TAG = "HomeActivity";
 
     private ArrayList<HomeActivityDataModel> mHomeActivityDataModelsPopularDorms = new ArrayList<>();
@@ -24,13 +28,17 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_home);
-        Toolbar toolbar = (Toolbar)findViewById(R.id.home_activity_toolbar);
-        toolbar.setTitle("Home");
+      //  setContentView(R.layout.activity_home);
+         android.view.LayoutInflater inflater = (android.view.LayoutInflater) this
+            .getSystemService(android.content.Context.LAYOUT_INFLATER_SERVICE);
+    View contentView = inflater.inflate(R.layout.activity_home, null, false);
+
+    //    Toolbar toolbar = (Toolbar)findViewById(R.id.home_activity_toolbar);
+      //  mToolbar.setTitle("Home");
         //toolbar.setSubtitle("welcome");
-        setSupportActionBar(toolbar);
-        toolbar.setNavigationIcon(R.drawable.ic_menu_light);
-        toolbar.setNavigationOnClickListener(
+     //   setSupportActionBar(mToolbar);
+       // mToolbar.setNavigationIcon(R.drawable.ic_menu_light);
+     /*   mToolbar.setNavigationOnClickListener(
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -41,11 +49,13 @@ public class HomeActivity extends AppCompatActivity {
                     }
                 }
 
-        );
+        );*/
 
         initData();
-        initRecycleViewHigestRatedDorms();
-        initRecycleViewPopularDorms();
+        initRecycleViewHigestRatedDorms(contentView);
+        initRecycleViewPopularDorms(contentView);
+
+         mDrawer.addView(contentView, 0);
     }
 
     private void initData(){
@@ -117,18 +127,18 @@ mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(
 
 
 
-    private void initRecycleViewPopularDorms(){
+    private void initRecycleViewPopularDorms(View view){
         Log.d(TAG, "initRecyclerView: called");
         LinearLayoutManager layoutManager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.recycleViewPopularDormitories);
+        RecyclerView recyclerView = view.findViewById(R.id.recycleViewPopularDormitories);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new HomeActivityRecycleViewAdapter(this, mHomeActivityDataModelsPopularDorms));
     }
 
-    private void initRecycleViewHigestRatedDorms(){
+    private void initRecycleViewHigestRatedDorms(View view){
         Log.d(TAG, "initRecyclerView: called");
         LinearLayoutManager layoutManager= new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false);
-        RecyclerView recyclerView = findViewById(R.id.recycleViewHigestRatedDormitories);
+        RecyclerView recyclerView = view.findViewById(R.id.recycleViewHigestRatedDormitories);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new HomeActivityRecycleViewAdapter(this, mHomeActivityDataModelsHighestRatedDorms));
     }

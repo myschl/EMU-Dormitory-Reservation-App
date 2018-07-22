@@ -6,9 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".About_us_activity.MainActivity">
 
-    <include
-        android:id="@+id/about_us"
-        layout="@layout/toolbar" />
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"

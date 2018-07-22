@@ -43,10 +43,13 @@
             android:label="@string/title_activity_booking_tabbed_activity"
             android:theme="@style/AppTheme" />
         <activity android:name=".search_results_activity.search_result_activity" />
-        <activity android:name=".Home_activity.HomeActivity"></activity>
-
+        <activity android:name=".Home_activity.HomeActivity" />
         <activity android:name=".Facilities_filters" />
-        <activity android:name=".Get_help"></activity>
+        <activity android:name=".Get_help" />
+        <activity
+            android:name=".Navigational_drawer.navigational_drawer"
+            android:label="@string/title_activity_navigational_drawer"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>
