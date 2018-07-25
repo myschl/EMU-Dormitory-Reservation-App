@@ -29,7 +29,10 @@ public class DebugActivity extends AppCompatActivity {
     "Setting",
     "Rate_your_stay",
     "Facilities_filters",
-    "Get_help"};
+    "Get_help",
+    "Payment_confirmation",
+    "Splash_screen",
+    "Room_detail"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +84,12 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
                     case 13:
                         startActivity(new Intent(DebugActivity.this,Get_help.class));break;
+                    case 14:
+                        startActivity(new Intent(DebugActivity.this,Payment_confirmation.class));break;
+                    case 15:
+                        startActivity(new Intent(DebugActivity.this,Splash_screen.class));break;
+                    case 16:
+                        startActivity(new Intent(DebugActivity.this,Room_detail.class));break;
 
                 }
 
