@@ -33,7 +33,8 @@
         <activity android:name=".Facilities_filters" />
         <activity android:name=".Get_help" />
         <activity android:name=".DebugActivity" />
-        <activity android:name=".Room_detail"></activity>
+        <activity android:name=".Room_detail" />
+        <activity android:name=".Dormitory_detail"></activity>
     </application>
 
 </manifest>

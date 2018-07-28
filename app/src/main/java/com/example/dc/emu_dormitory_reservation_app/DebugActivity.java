@@ -32,7 +32,8 @@ public class DebugActivity extends AppCompatActivity {
     "Get_help",
     "Payment_confirmation",
     "Splash_screen",
-    "Room_detail"};
+    "Room_detail",
+    "Dormitory_detail"};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -90,6 +91,8 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,Splash_screen.class));break;
                     case 16:
                         startActivity(new Intent(DebugActivity.this,Room_detail.class));break;
+                    case 17:
+                        startActivity(new Intent(DebugActivity.this,Dormitory_detail.class));break;
 
                 }
 
