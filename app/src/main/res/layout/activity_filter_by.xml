@@ -34,6 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Price range"
+                        android:textStyle="bold"
                         android:textColor="@color/Black"
                         android:textSize="20dp" />
 
@@ -106,6 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Star rating"
+                        android:textStyle="bold"
                         android:textColor="@color/Black"
                         android:textSize="20dp" />
 
@@ -157,6 +159,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="property type"
+                        android:textStyle="bold"
                         android:textColor="@color/Black"
                         android:textSize="20dp" />
 
@@ -196,6 +199,7 @@
                         android:id="@+id/facilities_filter"
                         android:drawableRight="@drawable/ic_move_left"
                         android:text="Facilities"
+                        android:textStyle="bold"
                         android:textColor="@color/Black"
                         android:textSize="20dp" />
 
@@ -217,6 +221,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Check in semester"
+                        android:textStyle="bold"
                         android:textColor="@color/Black"
                         android:textSize="20dp" />
 
