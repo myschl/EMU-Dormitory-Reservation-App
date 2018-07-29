@@ -43,11 +43,9 @@ public class DebugActivity extends AppCompatActivity {
     // Write the name of the new activity  in this array
     //////////////////////
 
-    String Activities[] ={"Create_Account Activity",
-                            "Edit_booking Activity",
-
-            "Main2Activity",
-            "MainActivity",
+    String Activities[] ={
+    "Create_Account Activity",
+    "Edit_booking Activity",
     "Give_app_feedback",
     "About us",
     "Manage_booking",
@@ -58,14 +56,11 @@ public class DebugActivity extends AppCompatActivity {
     "Filter_by",
     "Setting",
     "Rate_your_stay",
-
     "Rate_bookings_activity_1",
     "Rate_bookings_activity_2_with_images",
-            "booking_tabbed_activity",
-            "search_results_activity",
-            "Home Activity",
-
-
+    "booking_tabbed_activity",
+    "search_results_activity",
+    "Home Activity",
     "Facilities_filters",
     "Get_help",
     "Payment_confirmation",
@@ -73,7 +68,6 @@ public class DebugActivity extends AppCompatActivity {
     "Room_detail",
     "Dormitory_detail",
     "Choose_room",
-    "Get_help",
     "navigational_drawer"};
 
     @Override
@@ -122,38 +116,40 @@ public class DebugActivity extends AppCompatActivity {
                         startActivity(new Intent(DebugActivity.this,Setting.class));break;
                     case 11:
                         startActivity(new Intent(DebugActivity.this,Rate_your_stay.class));break;
+
+
                     case 12:
-                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
+                        startActivity(new Intent(DebugActivity.this,rate_bookings_activity_1.class));break;
 
                     case 13:
-                        startActivity(new Intent(DebugActivity.this,rate_bookings_activity_1.class));break;
-                    case 14:
                         startActivity(new Intent(DebugActivity.this,RateBookingsActivity2.class));break;
-                    case 15:
+                    case 14:
                         startActivity(new Intent(DebugActivity.this,booking_tabbed_activity.class));break;
-                    case 16:
+                    case 15:
                         startActivity(new Intent(DebugActivity.this,search_result_activity.class));break;
-                     case 17:
+                    case 16:
                         startActivity(new Intent(DebugActivity.this,HomeActivity.class));break;
+                     case 17:
+                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
 
 
                     case 18:
-                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
-                    case 19:
                         startActivity(new Intent(DebugActivity.this,Get_help.class));break;
+                    case 19:
+                        startActivity(new Intent(DebugActivity.this,Payment_confirmation.class));break;
                     case 20:
-                        startActivity(new Intent(DebugActivity.this,navigational_drawer.class));break;
+                        startActivity(new Intent(DebugActivity.this,Splash_screen.class));break;
 
                     case 21:
-                        startActivity(new Intent(DebugActivity.this,Payment_confirmation.class));break;
-                    case 22:
-                        startActivity(new Intent(DebugActivity.this,Splash_screen.class));break;
-                    case 23:
+
                         startActivity(new Intent(DebugActivity.this,Room_detail.class));break;
-                    case 24:
+                    case 22:
                         startActivity(new Intent(DebugActivity.this,Dormitory_detail.class));break;
-                    case 25:
+                    case 23:
                         startActivity(new Intent(DebugActivity.this,Choose_room.class));break;
+                    case 24:
+                        startActivity(new Intent(DebugActivity.this,navigational_drawer.class));break;
+
                 }
 
             }

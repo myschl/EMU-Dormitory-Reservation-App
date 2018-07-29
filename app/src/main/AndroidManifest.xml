@@ -28,16 +28,11 @@
         <activity android:name=".Terms_and_conditions_activity.Terms_and_conditions" />
         <activity android:name=".edit_booking_activity.Edit_booking" />
         <activity android:name=".manage_booking_activity.Manage_booking" />
-        <activity android:name=".DebugActivity.DebugActivity">
-        <activity android:name=".MainActivity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".Create_Account" />
-        <activity android:name=".Sign_in_with_Email" />
-        <activity android:name=".Sign_in_with_student_No" />
-        <activity android:name=".Sign_in" />
-        <activity android:name=".Terms_and_conditions" />
-        <activity android:name=".Edit_booking" />
-        <activity android:name=".Manage_booking" />
+        <activity android:name=".DebugActivity.DebugActivity"/>
+        <activity android:name=".Payment_confirmation"/>
+
+
+
         <activity android:name=".Splash_screen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -58,7 +53,7 @@
         <activity android:name=".Home_activity.HomeActivity" />
         <activity android:name=".Facilities_filters" />
         <activity android:name=".Get_help" />
-        <activity android:name=".DebugActivity" />
+
         <activity android:name=".Room_detail" />
         <activity android:name=".Dormitory_detail" />
         <activity android:name=".Choose_room"></activity>

@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ImageView;
 
+import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.koushikdutta.ion.Ion;
 
 public class Splash_screen extends AppCompatActivity {
