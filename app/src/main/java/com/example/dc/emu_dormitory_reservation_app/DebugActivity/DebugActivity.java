@@ -9,10 +9,15 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.example.dc.emu_dormitory_reservation_app.About_us_activity.MainActivity;
+import com.example.dc.emu_dormitory_reservation_app.Choose_room;
 import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Create_Account;
+import com.example.dc.emu_dormitory_reservation_app.Dormitory_detail;
 import com.example.dc.emu_dormitory_reservation_app.Facilities_filters;
 import com.example.dc.emu_dormitory_reservation_app.Get_help;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
+import com.example.dc.emu_dormitory_reservation_app.Payment_confirmation;
+import com.example.dc.emu_dormitory_reservation_app.Room_detail;
+import com.example.dc.emu_dormitory_reservation_app.Splash_screen;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
 import com.example.dc.emu_dormitory_reservation_app.Filter_by_activity.Filter_by;
@@ -40,6 +45,9 @@ public class DebugActivity extends AppCompatActivity {
 
     String Activities[] ={"Create_Account Activity",
                             "Edit_booking Activity",
+
+            "Main2Activity",
+            "MainActivity",
     "Give_app_feedback",
     "About us",
     "Manage_booking",
@@ -59,6 +67,12 @@ public class DebugActivity extends AppCompatActivity {
 
 
     "Facilities_filters",
+    "Get_help",
+    "Payment_confirmation",
+    "Splash_screen",
+    "Room_detail",
+    "Dormitory_detail",
+    "Choose_room",
     "Get_help",
     "navigational_drawer"};
 
@@ -109,24 +123,37 @@ public class DebugActivity extends AppCompatActivity {
                     case 11:
                         startActivity(new Intent(DebugActivity.this,Rate_your_stay.class));break;
                     case 12:
-                        startActivity(new Intent(DebugActivity.this,rate_bookings_activity_1.class));break;
+                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
+
                     case 13:
-                        startActivity(new Intent(DebugActivity.this,RateBookingsActivity2.class));break;
+                        startActivity(new Intent(DebugActivity.this,rate_bookings_activity_1.class));break;
                     case 14:
-                        startActivity(new Intent(DebugActivity.this,booking_tabbed_activity.class));break;
+                        startActivity(new Intent(DebugActivity.this,RateBookingsActivity2.class));break;
                     case 15:
+                        startActivity(new Intent(DebugActivity.this,booking_tabbed_activity.class));break;
+                    case 16:
                         startActivity(new Intent(DebugActivity.this,search_result_activity.class));break;
-                     case 16:
+                     case 17:
                         startActivity(new Intent(DebugActivity.this,HomeActivity.class));break;
 
 
-                    case 17:
-                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
                     case 18:
-                        startActivity(new Intent(DebugActivity.this,Get_help.class));break;
+                        startActivity(new Intent(DebugActivity.this,Facilities_filters.class));break;
                     case 19:
+                        startActivity(new Intent(DebugActivity.this,Get_help.class));break;
+                    case 20:
                         startActivity(new Intent(DebugActivity.this,navigational_drawer.class));break;
 
+                    case 21:
+                        startActivity(new Intent(DebugActivity.this,Payment_confirmation.class));break;
+                    case 22:
+                        startActivity(new Intent(DebugActivity.this,Splash_screen.class));break;
+                    case 23:
+                        startActivity(new Intent(DebugActivity.this,Room_detail.class));break;
+                    case 24:
+                        startActivity(new Intent(DebugActivity.this,Dormitory_detail.class));break;
+                    case 25:
+                        startActivity(new Intent(DebugActivity.this,Choose_room.class));break;
                 }
 
             }
