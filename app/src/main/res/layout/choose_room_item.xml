@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/parentt_layout">
+
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@android:color/white">
+            <ImageView
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:id="@+id/image"
+                android:src="@mipmap/ic_launcher"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:id="@+id/room_name"
+                android:text="Room Name"
+                android:layout_toRightOf="@id/image"
+                android:layout_marginLeft="5dp"
+                android:textStyle="bold"
+                android:textColor="@color/blue" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/bed"
+                android:text="Bed: "
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/image"
+                android:layout_below="@id/room_name"/>
+            <TextView
+                android:id="@+id/Bed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/room_name"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/bed"
+                android:text=" 2 single bed " />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/room_size"
+                android:text="Room size:  "
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/image"
+                android:layout_below="@id/bed"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Room_size"
+                android:text="25m "
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/room_size"
+                android:layout_below="@id/Bed" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/room_left"
+                android:textColor="@color/colorAccent"
+                android:text="100 rooms left "
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/image"
+                android:layout_below="@id/Room_size"/>
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/image"
+                android:layout_centerInParent="true"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/blue"
+                android:text="Select"
+                android:textAllCaps="false"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/price"
+                android:text="Price:"
+                android:layout_marginLeft="260dp"
+                android:layout_below="@id/room_left"
+                android:layout_marginTop="5dp"
+              android:textStyle="normal"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/Price"
+                android:textColor="@color/green"
+                android:text="$100"
+                android:layout_toRightOf="@id/price"
+                android:layout_below="@id/room_left"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:textStyle="bold"/>
+        </RelativeLayout>
+
+
+</RelativeLayout>
