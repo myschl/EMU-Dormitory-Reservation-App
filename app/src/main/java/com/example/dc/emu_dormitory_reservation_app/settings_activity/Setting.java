@@ -7,14 +7,18 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
+import com.google.firebase.auth.FirebaseAuth;
 
-public class Setting extends AppCompatActivity {
+public class Setting extends AppCompatActivity implements View.OnClickListener {
     String[] language ={"English","Turkish"};
     Spinner lspinner;
     ArrayAdapter gspinnerAdapter;
@@ -23,11 +27,19 @@ public class Setting extends AppCompatActivity {
     String[] Informations = {"Terms and conditions","Send us your feedback","Rate us in the App store","About us"};
     ListView Linformation;
     ArrayAdapter spinnerAdapter,listadapter;
+    private TextView msign_out;
+
+    private FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        msign_out = (TextView)findViewById(R.id.isign_out);
+
+        firebaseAuth = FirebaseAuth.getInstance();
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.setting);
         toolbar.setTitle("Setting");
         //toolbar.setSubtitle("welcome");
@@ -45,6 +57,9 @@ public class Setting extends AppCompatActivity {
 
         );
         Myfun();
+
+        msign_out.setOnClickListener(this);
+
     }
 
     private void Myfun() {
@@ -88,5 +103,16 @@ public class Setting extends AppCompatActivity {
         Linformation.setAdapter(listadapter);
 
 
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == msign_out){
+            // log out the user
+            firebaseAuth.signOut();
+            finish();
+            startActivity(new Intent(this, Sign_in.class));
+
+        }
     }
 }

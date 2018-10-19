@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.yahoo.mobile.client.android.util.rangeseekbar.RangeSeekBar;
 
 public class Filter_by extends AppCompatActivity {
     TextView facilities;
+    Button showResult;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,10 +45,18 @@ public class Filter_by extends AppCompatActivity {
     private void MyFun() {
         //there may be some bugs
         facilities=(TextView)findViewById(R.id.facilities_filter);
+        showResult = (Button)findViewById(R.id.show_result);
         facilities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(Filter_by.this,Facilities_filters.class));
+            }
+        });
+
+        showResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               // startActivity(new Intent(Filter_by.this,search_result.class));
             }
         });
         RangeSeekBar<Integer> seekBar = new RangeSeekBar<Integer>(this);
@@ -73,5 +83,8 @@ public class Filter_by extends AppCompatActivity {
 // Get noticed while dragging
         seekBar.setNotifyWhileDragging(true);
        // ((LinearLayout) findViewById(R.id.seekbarLayout)).addView(seekBar);
+
+
+
     }
 }

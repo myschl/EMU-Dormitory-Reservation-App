@@ -7,16 +7,20 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Facilities_filters;
+import com.example.dc.emu_dormitory_reservation_app.Filter_by_activity.Filter_by;
 import com.example.dc.emu_dormitory_reservation_app.R;
 
 public class Main2Activity extends AppCompatActivity {
     TextView rate;
+    Button SendFeedback;
     ImageView Awful,Poor,Average,Good,Great;
     String[] information ={"comment","Suggestion"};
     Spinner spinner;
@@ -59,6 +63,7 @@ public class Main2Activity extends AppCompatActivity {
         Good=(ImageView)findViewById(R.id.gone);
         Great=(ImageView)findViewById(R.id.great);
         spinner=(Spinner)findViewById(R.id.spinner);
+        SendFeedback=(Button)findViewById(R.id.sendfeedback);
 
         spinnerAdapter=new ArrayAdapter(this,android.R.layout.simple_spinner_item,information);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -110,6 +115,14 @@ public class Main2Activity extends AppCompatActivity {
                 rate.setText("Great");
             }
         });*/
+
+        SendFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                        //startActivity(new Intent(Main2Activity.this,.class));
+            }
+        });
     }
 
 }

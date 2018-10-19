@@ -6,12 +6,16 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Dormitory_detail">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:background="@color/colorAccent"
+        android:layout_height="wrap_content">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:background="@color/colorAccent"
         app:subtitleTextColor="@android:color/white"
         app:titleTextColor="@android:color/white"
         android:id="@+id/dormitory_detail"
@@ -20,8 +24,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="100dp"
-        android:orientation="vertical"
-        android:background="@color/colorAccent">
+        android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -38,6 +41,7 @@
             android:textStyle="bold"
             android:textAlignment="center"/>
 
+    </LinearLayout>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,13 +77,14 @@ Located within the EMU Campus, Alfam Dormitories is the nearest dormitory to the
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="1dp">
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:drawableRight="@drawable/ic_move_left"
                     android:padding="5dp"
                     android:text="Facilities"
-                    android:textStyle="bold"
-                    android:drawableRight="@drawable/ic_move_left"/>
+                    android:textStyle="bold" />
             </LinearLayout>
         </android.support.v7.widget.CardView>
         <android.support.v7.widget.CardView

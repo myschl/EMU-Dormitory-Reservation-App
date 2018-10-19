@@ -33,6 +33,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/istudrnt_no"
             android:layout_marginTop="50dp"
             android:text="Sign in with student No."
             android:background="@android:color/white"
@@ -42,6 +43,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ifacebook"
             android:text="Continue with facebook"
             android:background="#283593"
             android:layout_marginTop="10dp"
@@ -52,6 +54,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/iemail"
             android:background="@color/blue"
             android:layout_marginTop="10dp"
             android:textColor="@android:color/white"
@@ -62,11 +65,12 @@
             android:layout_height="wrap_content"
             android:text="Not a member yet?"
             android:layout_marginTop="20dp"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="105dp"
             android:textColor="@android:color/white"/>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/icreate_new_account"
             android:background="#1565C0"
             android:layout_marginTop="15dp"
             android:textColor="@android:color/white"

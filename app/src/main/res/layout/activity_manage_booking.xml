@@ -105,6 +105,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/save"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="16dp"
@@ -140,6 +141,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/editbooking"
                     android:layout_marginTop="10dp"
                     android:background="@color/colorPrimary"
                     android:text="Edit Booking"
@@ -149,6 +151,7 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/cancelbooking"
                     android:layout_marginTop="10dp"
                     android:background="@android:color/holo_red_light"
                     android:text="Cancel Booking"

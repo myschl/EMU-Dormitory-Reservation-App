@@ -5,12 +5,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
 
 public class Manage_booking extends AppCompatActivity {
+    Button Save,EditBooking,CancelBooking;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,5 +34,13 @@ public class Manage_booking extends AppCompatActivity {
                 }
 
         );
+
+        MyFun();
+    }
+
+    private void MyFun() {
+        Save=(Button)findViewById(R.id.save);
+        EditBooking=(Button)findViewById(R.id.editbooking);
+        CancelBooking=(Button)findViewById(R.id.cancelbooking);
     }
 }

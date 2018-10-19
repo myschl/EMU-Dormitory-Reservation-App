@@ -56,7 +56,7 @@
 
         <activity android:name=".Room_detail" />
         <activity android:name=".Dormitory_detail" />
-        <activity android:name=".Choose_room"></activity>
+        <activity android:name=".Choose_room"/>
 
         <activity
             android:name=".Navigational_drawer.navigational_drawer"
