@@ -1,6 +1,11 @@
 package com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,7 +23,7 @@ import com.example.dc.emu_dormitory_reservation_app.Facilities_filters;
 import com.example.dc.emu_dormitory_reservation_app.Filter_by_activity.Filter_by;
 import com.example.dc.emu_dormitory_reservation_app.R;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity implements View.OnClickListener {
     TextView rate;
     Button SendFeedback;
     ImageView Awful,Poor,Average,Good,Great;
@@ -56,12 +61,12 @@ public class Main2Activity extends AppCompatActivity {
 
     private void MyFun() {
 
-        rate=(TextView)findViewById(R.id.rating_result);
-        Awful=(ImageView)findViewById(R.id.awful);
-        Poor=(ImageView)findViewById(R.id.poor);
-        Average=(ImageView)findViewById(R.id.average);
-        Good=(ImageView)findViewById(R.id.gone);
-        Great=(ImageView)findViewById(R.id.great);
+        rate=(TextView)findViewById(R.id.irating_result);
+        Awful=(ImageView)findViewById(R.id.iawful);
+        Poor=(ImageView)findViewById(R.id.ipoor);
+        Average=(ImageView)findViewById(R.id.iaverage);
+        Good=(ImageView)findViewById(R.id.igood);
+        Great=(ImageView)findViewById(R.id.igreat);
         spinner=(Spinner)findViewById(R.id.spinner);
         SendFeedback=(Button)findViewById(R.id.sendfeedback);
 
@@ -80,6 +85,14 @@ public class Main2Activity extends AppCompatActivity {
 
             }
         });
+
+
+        Awful.setOnClickListener(this);
+        Poor.setOnClickListener(this);
+        Average.setOnClickListener(this);
+        Good.setOnClickListener(this);
+        Great.setOnClickListener(this);
+        SendFeedback.setOnClickListener(this);
 
         /*Awful.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -116,13 +129,51 @@ public class Main2Activity extends AppCompatActivity {
             }
         });*/
 
-        SendFeedback.setOnClickListener(new View.OnClickListener() {
+       /* SendFeedback.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                         //startActivity(new Intent(Main2Activity.this,.class));
             }
-        });
+        });*/
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v == Awful){
+            rate.setText("Awful");
+            rate.setTextColor(Color.RED);
+            Awful.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorAlert));
+            //DrawableCompat.setTint(Awful.getDrawable(), ContextCompat.getColor(getApplicationContext(), R.color.blue));
+
+        }
+        if (v == Poor){
+            rate.setText("Poor");
+            rate.setTextColor(Color.YELLOW);
+            Poor.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorYellowBackground));
+
+        }
+        if (v == Good){
+            rate.setText("Good");
+            rate.setTextColor(Color.CYAN);
+            Good.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.colorAccent));
+
+        }
+        if (v == Average){
+            rate.setText("Average");
+            rate.setTextColor(Color.BLUE);
+            Average.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.blue));
+
+        }
+        if (v == Great){
+            rate.setText("Great");
+            rate.setTextColor(Color.GREEN);
+            Great.setColorFilter(ContextCompat.getColor(getApplicationContext(), R.color.green));
+
+        }
+        if (v == SendFeedback){
+            // send feedbact when click
+
+        }
+    }
 }

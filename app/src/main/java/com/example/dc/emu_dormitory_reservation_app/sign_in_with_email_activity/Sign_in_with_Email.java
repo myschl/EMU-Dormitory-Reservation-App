@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Create_Account;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
@@ -70,6 +71,10 @@ public class Sign_in_with_Email extends AppCompatActivity implements View.OnClic
         if (TextUtils.isEmpty(password)){
             // give a toes message that user must enter password
             Toast.makeText(Sign_in_with_Email.this, "Please Enter password", Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+            // give a toes message that user must enter email and password
+            Toast.makeText(Sign_in_with_Email.this, "please Enter  email and password", Toast.LENGTH_SHORT).show();
         }
 
         // validated

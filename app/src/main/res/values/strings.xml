@@ -18,5 +18,9 @@
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
+
+    <string name="facebook_app_id">291410658137914</string>
+    <string name="fb_login_protocol_scheme">fb291410658137914</string>
+
 </resources>
 

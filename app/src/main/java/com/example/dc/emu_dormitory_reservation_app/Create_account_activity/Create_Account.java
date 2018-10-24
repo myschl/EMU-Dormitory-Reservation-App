@@ -80,7 +80,11 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
         }
         if (TextUtils.isEmpty(password)){
             // give a toes message that user must enter password
-            Toast.makeText(Create_Account.this, "please Enter  email", Toast.LENGTH_SHORT).show();
+            Toast.makeText(Create_Account.this, "please Enter  password", Toast.LENGTH_SHORT).show();
+        }
+        if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+            // give a toes message that user must enter email and password
+            Toast.makeText(Create_Account.this, "please Enter  email and password", Toast.LENGTH_SHORT).show();
         }
 
         // if validated

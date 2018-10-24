@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bumptech.glide.Glide;
 import com.example.dc.emu_dormitory_reservation_app.Navigational_drawer.navigational_drawer;
 
 import com.example.dc.emu_dormitory_reservation_app.R;
@@ -26,8 +28,8 @@ import java.util.ArrayList;
 public class HomeActivity  extends navigational_drawer {
     private static final String TAG = "HomeActivity";
 
-    /*private TextView mwelcom;
-    private FirebaseAuth firebaseAuth;*/
+    private TextView mwelcom;
+    private FirebaseAuth firebaseAuth;
 
     private ArrayList<HomeActivityDataModel> mHomeActivityDataModelsPopularDorms = new ArrayList<>();
     private ArrayList<HomeActivityDataModel> mHomeActivityDataModelsHighestRatedDorms = new ArrayList<>();
@@ -35,9 +37,24 @@ public class HomeActivity  extends navigational_drawer {
     public HomeActivity() {
     }
 
+   /* @Override
+    protected void onStart() {
+        super.onStart();
+        if (firebaseAuth.getCurrentUser() != null){
+              firebaseAuth = FirebaseAuth.getInstance();
+              FirebaseUser user = firebaseAuth.getCurrentUser();
+
+               //Glide.with(this)
+               mwelcom = (TextView)findViewById(R.id.iwelcome);
+               mwelcom.setText("Hi "+user.getEmail());
+        }
+    }*/
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
 
        /* firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
@@ -76,6 +93,7 @@ public class HomeActivity  extends navigational_drawer {
 
          mDrawer.addView(contentView, 0);
     }
+
 
     private void initData(){
 mHomeActivityDataModelsHighestRatedDorms.add(new HomeActivityDataModel(
