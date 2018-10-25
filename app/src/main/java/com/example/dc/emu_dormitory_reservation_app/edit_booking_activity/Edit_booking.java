@@ -35,11 +35,12 @@ public class Edit_booking extends AppCompatActivity {
                 }
 
         );
-        Save = (Button)findViewById(R.id.save);
+        Save = (Button)findViewById(R.id.isave);
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-               // startActivity(new Intent(Edit_booking.this,));
+                //startActivity(new Intent(Edit_booking.this,));
+                finish();
             }
         });
     }

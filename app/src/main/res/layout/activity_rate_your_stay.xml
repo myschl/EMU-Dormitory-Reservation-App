@@ -121,7 +121,7 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="22dp"
+                        android:layout_marginLeft="23dp"
                         android:layout_marginRight="8dp"
                         android:src="@drawable/ic_awful"/>
                     <ImageView
@@ -188,11 +188,11 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Environment"/>
+                        android:text="Compound"/>
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="0dp"
+                        android:layout_marginLeft="9dp"
                         android:layout_marginRight="8dp"
                         android:src="@drawable/ic_awful"/>
                     <ImageView
@@ -220,6 +220,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/isendfeedback"
             android:layout_marginTop="38dp"
             android:text="Send Feedback"
             android:textColor="@android:color/white"

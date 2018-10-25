@@ -81,6 +81,7 @@ Located within the EMU Campus, Alfam Dormitories is the nearest dormitory to the
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/ifacilities"
                     android:drawableRight="@drawable/ic_move_left"
                     android:padding="5dp"
                     android:text="Facilities"
@@ -98,6 +99,7 @@ Located within the EMU Campus, Alfam Dormitories is the nearest dormitory to the
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/idomitorypolicies"
                     android:padding="5dp"
                     android:text="Dormitory Policies"
                     android:textStyle="bold"
@@ -107,6 +109,7 @@ Located within the EMU Campus, Alfam Dormitories is the nearest dormitory to the
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/ichooseroom"
             android:layout_marginTop="35dp"
             android:text="Choose your Room"
             android:background="@color/blue"

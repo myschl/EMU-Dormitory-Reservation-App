@@ -44,7 +44,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="88dp"
+        android:textAlignment="center"
         android:textSize="17dp"
         android:text="Suggested FAQ Topics"/>
     <LinearLayout
@@ -121,6 +121,7 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/iviewallquestions"
             android:layout_marginTop="10dp"
             android:background="#283593"
             android:textColor="@android:color/white"
@@ -136,14 +137,15 @@
                 android:layout_marginTop="10dp"
                 android:orientation="vertical">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/Black"
-                    android:layout_marginLeft="132dp"
+                    android:textAlignment="center"
                     android:text="Still need help?"/>
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/ihavequestion"
                     android:layout_marginTop="15dp"
                     android:background="@color/blue"
                     android:text="Have a question? Email us"

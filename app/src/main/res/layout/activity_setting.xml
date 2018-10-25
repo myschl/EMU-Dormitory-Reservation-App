@@ -63,7 +63,7 @@
             <ListView
                 android:layout_width="match_parent"
                 android:layout_height="250dp"
-                android:padding="15dp"
+                android:padding="10dp"
                 android:id="@+id/information">
             </ListView>
         </android.support.v7.widget.CardView>

@@ -261,7 +261,7 @@
                     <Button
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:id="@+id/show_result"
+                        android:id="@+id/ishow_result"
                         android:background="@color/blue"
                         android:text="Show results"
                         android:textAllCaps="false"

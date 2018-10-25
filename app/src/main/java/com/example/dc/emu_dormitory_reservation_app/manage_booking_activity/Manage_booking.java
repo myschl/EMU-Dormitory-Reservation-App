@@ -9,9 +9,10 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
 
-public class Manage_booking extends AppCompatActivity {
+public class Manage_booking extends AppCompatActivity implements View.OnClickListener {
     Button Save,EditBooking,CancelBooking;
 
     @Override
@@ -39,8 +40,39 @@ public class Manage_booking extends AppCompatActivity {
     }
 
     private void MyFun() {
-        Save=(Button)findViewById(R.id.save);
-        EditBooking=(Button)findViewById(R.id.editbooking);
-        CancelBooking=(Button)findViewById(R.id.cancelbooking);
+        Save=(Button)findViewById(R.id.isave);
+        EditBooking=(Button)findViewById(R.id.ieditbooking);
+        CancelBooking=(Button)findViewById(R.id.icancelbooking);
+    }
+
+    @Override
+    public void onClick(View v) {
+        if (v == Save){
+            //save operation
+            SaveBooking();
+        }
+        if (v == EditBooking){
+            // edit booking operations
+            Editbooking();
+        }
+        if (v == CancelBooking){
+            // cancel booking operations
+            Cancelbooking();
+        }
+    }
+
+    private void Cancelbooking() {
+        // cancel booking here
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+    private void Editbooking() {
+        // Edit booking here
+        startActivity(new Intent(this, HomeActivity.class));
+    }
+
+    private void SaveBooking() {
+        // save booking here
+        startActivity(new Intent(this, HomeActivity.class));
     }
 }

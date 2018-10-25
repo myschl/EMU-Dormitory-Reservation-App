@@ -46,7 +46,8 @@
                     android:text="Deals start at $2"
                     android:textColor="@color/colorWhite"
                     android:textSize="8sp"
-                    android:id="@+id/textViewdeals_text"/>
+                    android:id="@+id/textViewdeals_text"
+                    android:layout_alignParentRight="true" />
 
 
             </RelativeLayout>

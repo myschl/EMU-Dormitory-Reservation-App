@@ -1,15 +1,24 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
 
 import java.util.ArrayList;
 
 public class Dormitory_detail extends AppCompatActivity {
     private ArrayList<String>mImageUrl = new ArrayList<>();
+    private Button mchooseroom;
+    private TextView mdormitorypolicies, mfacilities;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,10 +31,57 @@ public class Dormitory_detail extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setNavigationIcon(R.drawable.nav_back);
 
+        mchooseroom = findViewById(R.id.ichooseroom);
+        mdormitorypolicies = findViewById(R.id.idomitorypolicies);
+        mfacilities = findViewById(R.id.ifacilities);
+
+        toolbar.setNavigationOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Toast.makeText(Dormitory_detail.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        // startActivity(new Intent(Terms_and_conditions.this,DebugActivity.class));
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
+                    }
+                }
+
+        );
+        mchooseroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dormitory_detail.this, Choose_room.class));
+            }
+        });
+        mfacilities.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Dormitory_detail.this, Facilities_filters.class));
+            }
+        });
+        mdormitorypolicies.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //startActivity(new Intent(Dormitory_detail.this, Choose_room.class));
+                Toast.makeText(Dormitory_detail.this, "Up comming feature", Toast.LENGTH_SHORT).show();
+            }
+        });
+
         initImageBitmaps();
     }
 
     private void initImageBitmaps() {
+        mImageUrl.add("http://ww1.emu.edu.tr/emu_v1/media/posts_media/media_1706_en_1200.jpg");
+        mImageUrl.add("http://en.alfamcyprus.com/thumbnail.php?file=images/2.jpg&pwidth=1903&pheight=850&pw=475.7500&ph=212.5000&px=0.0000&py=0.0000&pscale=0.2500&pangle=0.0000&force=y");
+        mImageUrl.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
+        mImageUrl.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
+        mImageUrl.add("https://en.kibrisyurtlar.com/thumbnail.php?file=images/odalar/oda1.jpg");
+        mImageUrl.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
+        mImageUrl.add("http://ww1.emu.edu.tr/emu_v1/media/posts_media/media_1706_en_1200.jpg");
+        mImageUrl.add("http://en.alfamcyprus.com/thumbnail.php?file=images/2.jpg&pwidth=1903&pheight=850&pw=475.7500&ph=212.5000&px=0.0000&py=0.0000&pscale=0.2500&pangle=0.0000&force=y");
+        mImageUrl.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
+        mImageUrl.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
+        mImageUrl.add("https://en.kibrisyurtlar.com/thumbnail.php?file=images/odalar/oda1.jpg");
+        mImageUrl.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
         mImageUrl.add("http://ww1.emu.edu.tr/emu_v1/media/posts_media/media_1706_en_1200.jpg");
         mImageUrl.add("http://en.alfamcyprus.com/thumbnail.php?file=images/2.jpg&pwidth=1903&pheight=850&pw=475.7500&ph=212.5000&px=0.0000&py=0.0000&pscale=0.2500&pangle=0.0000&force=y");
         mImageUrl.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
@@ -43,4 +99,19 @@ public class Dormitory_detail extends AppCompatActivity {
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(Dormitory_detail.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManagaer);
     }
+
+   /* @Override
+    public void onClick(View v) {
+        if (v == mchooseroom){
+            // goto choose room
+            startActivity(new Intent(this, Choose_room.class));
+        }
+        if (v == mfacilities){
+            // dormitory facilities
+            startActivity(new Intent(this, Facilities_filters.class));
+        }
+        if (v == mdormitorypolicies){
+            //dissplay the dormitory policies
+        }
+    }*/
 }

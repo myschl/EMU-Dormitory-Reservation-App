@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -56,7 +57,7 @@ public class Choose_room_Adapter extends RecyclerView.Adapter<Choose_room_Adapte
     public class ViewHolder extends RecyclerView.ViewHolder{
         ImageView mroom_image;
         TextView mroom_name,mbed_type,mroom_size,mroom_left,mroom_price;
-        RelativeLayout parentlayout;
+        LinearLayout parentlayout;
 
         public ViewHolder(View itemView) {
             super(itemView);

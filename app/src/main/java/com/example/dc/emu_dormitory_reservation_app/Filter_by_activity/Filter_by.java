@@ -45,7 +45,7 @@ public class Filter_by extends AppCompatActivity {
     private void MyFun() {
         //there may be some bugs
         facilities=(TextView)findViewById(R.id.facilities_filter);
-        showResult = (Button)findViewById(R.id.show_result);
+        showResult = (Button)findViewById(R.id.ishow_result);
         facilities.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -68,7 +68,7 @@ public class Filter_by extends AppCompatActivity {
             @Override
             public void onRangeSeekBarValuesChanged(RangeSeekBar bar, Object minValue, Object maxValue) {
 
-                Toast.makeText(getApplicationContext(), "Min Value- " + minValue + " & " + "Max Value- " + maxValue, Toast.LENGTH_SHORT).show();
+                //Toast.makeText(getApplicationContext(), "Min Value- " + minValue + " & " + "Max Value- " + maxValue, Toast.LENGTH_SHORT).show();
             }
         });
 

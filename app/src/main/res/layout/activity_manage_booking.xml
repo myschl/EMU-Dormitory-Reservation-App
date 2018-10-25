@@ -33,6 +33,7 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:hint="dd/mm/yy"
                     android:layout_marginLeft="50dp"/>
             </LinearLayout>
             <LinearLayout
@@ -48,6 +49,7 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:hint="12:15pm"
                     android:layout_marginLeft="50dp"/>
             </LinearLayout>
             <LinearLayout
@@ -63,6 +65,7 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:hint="dd/mm/yy"
                     android:layout_marginLeft="75dp"/>
             </LinearLayout>
             <LinearLayout
@@ -78,6 +81,7 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:hint="Fall"
                     android:layout_marginLeft="30dp"/>
             </LinearLayout>
             <LinearLayout
@@ -93,6 +97,7 @@
                 <EditText
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:hint="13:15"
                     android:layout_marginLeft="60dp"/>
             </LinearLayout>
         </LinearLayout>
@@ -105,10 +110,10 @@
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/save"
+            android:id="@+id/isave"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="12dp"
             android:background="@color/blue"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
@@ -118,9 +123,12 @@
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:layout_alignParentBottom="true"
-            android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="0dp"
+            android:layout_marginLeft="0dp"
+            android:layout_marginBottom="0dp"
             android:padding="15dp">
 
             <LinearLayout
@@ -130,28 +138,28 @@
                 android:padding="15dp">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="120dp"
-                    android:text="Need more options?"
-                    android:textColor="@color/Black"
-                    android:textSize="17dp"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-
-                <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/editbooking"
-                    android:layout_marginTop="10dp"
+                    android:text="Need more options?"
+                    android:textAlignment="center"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                    android:textColor="@color/Black"
+                    android:textSize="17dp" />
+
+                <Button
+                    android:id="@+id/ieditbooking"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
                     android:background="@color/colorPrimary"
                     android:text="Edit Booking"
                     android:textAllCaps="false"
                     android:textColor="@android:color/white" />
 
                 <Button
+                    android:id="@+id/icancelbooking"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/cancelbooking"
                     android:layout_marginTop="10dp"
                     android:background="@android:color/holo_red_light"
                     android:text="Cancel Booking"

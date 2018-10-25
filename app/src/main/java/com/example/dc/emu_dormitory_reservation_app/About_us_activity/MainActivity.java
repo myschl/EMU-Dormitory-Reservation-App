@@ -11,6 +11,7 @@ import android.widget.Toast;
 import android.support.v7.app.ActionBarDrawerToggle;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.Navigational_drawer.navigational_drawer;
 import android.view.LayoutInflater;
@@ -41,7 +42,7 @@ public class MainActivity extends navigational_drawer {
                     public void onClick(View v) {
                         Toast.makeText(MainActivity.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
                        // startActivity(new Intent(MainActivity.this,DebugActivity.class));
-                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
+                        finish(); //this destroys current activity since startActivity starts an activity finish finishes an activit
                     }
                 } );
 

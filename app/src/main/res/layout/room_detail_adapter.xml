@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/room_detail_parent">
+    <android.support.v7.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_margin="0dp"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_margin="0dp"
+            android:layout_height="match_parent">
+            <ImageView
+                android:layout_width="70dp"
+                android:layout_height="66dp"
+                android:src="@mipmap/ic_launcher"
+                android:id="@+id/image"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="wifi"
+                android:id="@+id/facility_name"
+                android:layout_below="@+id/image"
+                android:layout_marginTop="-7dp"
+            android:layout_centerInParent="true"/>
+        </RelativeLayout>
+    </android.support.v7.widget.CardView>
+</RelativeLayout>

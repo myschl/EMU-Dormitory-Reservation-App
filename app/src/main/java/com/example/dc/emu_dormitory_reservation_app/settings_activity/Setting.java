@@ -13,9 +13,12 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dc.emu_dormitory_reservation_app.About_us_activity.MainActivity;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity.Main2Activity;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
+import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
 import com.google.firebase.auth.FirebaseAuth;
 
 public class Setting extends AppCompatActivity implements View.OnClickListener {
@@ -67,6 +70,7 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
         cspinner=(Spinner)findViewById(R.id.currency_spinner);
         Linformation=(ListView)findViewById(R.id.information);
 
+
         spinnerAdapter=new ArrayAdapter(this,android.R.layout.simple_spinner_item,language);
         spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         lspinner.setAdapter(spinnerAdapter);
@@ -101,6 +105,30 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
 
         listadapter=new ArrayAdapter(this,android.R.layout.simple_list_item_1,Informations);
         Linformation.setAdapter(listadapter);
+        Linformation.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        //terms and conditions
+                        startActivity(new Intent(Setting.this, Terms_and_conditions.class));
+                        break;
+                    case 1:
+                        //send us your feedback
+                        startActivity(new Intent(Setting.this, Main2Activity.class));
+                        break;
+                    case 2:
+                        // rate us in the app store
+                        Toast.makeText(Setting.this, "up comming feature", Toast.LENGTH_SHORT).show();
+                        break;
+
+                    case 3:
+                        // about us
+                        startActivity(new Intent(Setting.this, MainActivity.class));
+                        break;
+                }
+            }
+        });
 
 
     }
