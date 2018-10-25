@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "980254597176",
+    "firebase_url": "https://emu-dormitory-reservation-app.firebaseio.com",
+    "project_id": "emu-dormitory-reservation-app",
+    "storage_bucket": "emu-dormitory-reservation-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980254597176:android:d580ad870bda1ca0",
+        "android_client_info": {
+          "package_name": "com.example.dc.emu_dormitory_reservation_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980254597176-cg52dajurtogfh84eda8jmg962mr52dg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.dc.emu_dormitory_reservation_app",
+            "certificate_hash": "246a25560144c0998bb133b5fa5640a4d80f109c"
+          }
+        },
+        {
+          "client_id": "980254597176-8k457nia873uumkm25fiij3ccktm1lrv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA9r242bqEn3UHZnldPaPGDvl8EFUScj88"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980254597176-8k457nia873uumkm25fiij3ccktm1lrv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
