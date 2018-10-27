@@ -12,139 +12,156 @@
         android:id="@+id/home_activity_toolbar"
         layout="@layout/toolbar" />
 
-    <LinearLayout
-
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/colorYellowBackground"
-        android:orientation="vertical"
-        android:padding="10dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/iwelcome"
-            android:text="Hi, Musa"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:layout_marginBottom="10dp"/>
+        >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Search Dormitory/Room"
-            android:layout_marginBottom="10dp"/>
+
+
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            >
-            <RelativeLayout
+            android:orientation="vertical">
+            <LinearLayout
+
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp">
+                android:layout_height="wrap_content"
+                android:background="@color/colorYellowBackground"
+                android:orientation="vertical"
+                android:padding="10dp">
 
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="14dp"
-                    android:src="@drawable/ic_launcher_background"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="14dp" />
+                <TextView
+                    android:id="@+id/iwelcome"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Hi, Musa"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-                <EditText
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:text="Search Dormitory/Room" />
+
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="wrap_content">
 
-                    android:background="@drawable/rounded_edittext"
-                    android:editable="false"
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp">
 
-                    android:hint="Enter Dormitory name"
-                    android:padding="5dp" />
-            </RelativeLayout>
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:layout_marginRight="14dp"
+                            android:src="@drawable/ic_launcher_background" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/rounded_edittext"
+                            android:editable="false"
+
+                            android:hint="Enter Dormitory name"
+                            android:padding="5dp" />
+                    </RelativeLayout>
 
 
-        </LinearLayout>
+                </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            >
-            <RelativeLayout
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginBottom="10dp">
+
+                        <ImageView
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_alignParentEnd="true"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginEnd="14dp"
+                            android:layout_marginRight="14dp"
+                            android:src="@drawable/ic_launcher_background" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/rounded_edittext"
+                            android:editable="true"
+                            android:hint="Dormitory type"
+                            android:padding="5dp" />
+                    </RelativeLayout>
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginBottom="10dp">
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_edittext"
+                        android:duplicateParentState="true"
+                        android:editable="false"
+                        android:hint="Check in semester"
+                        android:padding="5dp" />
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="10dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/rounded_edittext"
+                        android:hint="Check out semester"
+                        android:padding="5dp" />
+                </LinearLayout>
+
+                <Button
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/colorPrimary"
+                    android:text="Search"
+                    android:textColor="@color/colorWhite" />
+
+            </LinearLayout>
+            <android.support.v7.widget.RecyclerView
+                android:orientation="horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:layout_marginBottom="10dp">
-
-                <ImageView
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:layout_alignParentEnd="true"
-                    android:layout_centerVertical="true"
-                    android:layout_marginEnd="14dp"
-                    android:src="@drawable/ic_launcher_background"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginRight="14dp" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/rounded_edittext"
-                    android:editable="true"
-                    android:hint="Dormitory type"
-                    android:padding="5dp" />
-            </RelativeLayout>
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryBackground"
+                android:id="@+id/recycleViewPopularDormitories"></android.support.v7.widget.RecyclerView>
+            <android.support.v7.widget.RecyclerView
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/colorPrimaryBackground"
+                android:id="@+id/recycleViewHigestRatedDormitories"></android.support.v7.widget.RecyclerView>
 
 
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginBottom="10dp">
-
-            <EditText
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="@drawable/rounded_edittext"
-                android:duplicateParentState="true"
-                android:editable="false"
-                android:hint="Check in semester"
-                android:padding="5dp" />
-
-            <EditText
-                android:hint="Check out semester"
-                android:padding="5dp"
-                android:layout_marginLeft="10dp"
-                android:background="@drawable/rounded_edittext"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"/>
-        </LinearLayout>
-
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Search"
-            android:background="@color/colorPrimary"
-            android:textColor="@color/colorWhite"/>
-
-    </LinearLayout>
-
-    <android.support.v7.widget.RecyclerView
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryBackground"
-        android:id="@+id/recycleViewPopularDormitories"></android.support.v7.widget.RecyclerView>
+    </ScrollView>
 
 
 
-    <android.support.v7.widget.RecyclerView
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/colorPrimaryBackground"
-        android:id="@+id/recycleViewHigestRatedDormitories"></android.support.v7.widget.RecyclerView>
 
 </LinearLayout>

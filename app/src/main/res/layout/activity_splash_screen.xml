@@ -6,34 +6,24 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".Splash_screen">
-    <include
-        android:id="@+id/splash_screen"
-        layout="@layout/toolbar" />
+
     <LinearLayout
+
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:background="@color/colorPrimary">
         <ImageView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:src="@drawable/emu_logo"
-            android:textAlignment="center"
-            android:layout_marginTop="100dp"/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="EMU Dormitory Reservation App"
-            android:textColor="@android:color/white"
-            android:textSize="16dp"
-            android:textAlignment="center"/>
 
-        <pl.droidsonroids.gif.GifImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_height="200dp"
+            android:src="@drawable/logoemunew"
+
             android:textAlignment="center"
-            android:src="@drawable/loading"/>
+            android:layout_marginTop="200dp"/>
+
+
+
 
     </LinearLayout>
 

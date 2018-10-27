@@ -20,15 +20,16 @@
         android:layout_height="70dp"
         android:scaleType="centerCrop"
         android:layout_centerHorizontal="true"
-        android:id="@+id/image"
+        android:id="@+id/nav_image"
         android:layout_marginRight="5dp"
+
         android:src="@mipmap/ic_launcher_round"
         />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-
+android:id="@+id/nav_username"
         android:text="Musa Jahun"
         android:textColor="#000000"
         />

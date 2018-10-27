@@ -9,19 +9,19 @@
     </item>
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_camera"
+            android:id="@+id/nav_bookings"
             android:icon="@drawable/ic_menu_camera"
             android:title="Bookings" />
         <item
-            android:id="@+id/nav_gallery"
+            android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Notifications" />
-        <item
-            android:id="@+id/nav_slideshow"
+       <!-- <item
+            android:id="@+id/nav_saved_items"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Saved items" />
         <item
-            android:id="@+id/nav_manage"
+            android:id="@+id/nav_deals"
             android:icon="@drawable/ic_menu_manage"
             android:title="Deals" />
         <item
@@ -31,7 +31,11 @@
         <item
             android:id="@+id/nav_recently_viewd"
             android:icon="@drawable/ic_menu_manage"
-            android:title="Recently viewed" />
+            android:title="Recently viewed" />-->
+        <item
+            android:id="@+id/nav_debug"
+            android:icon="@drawable/ic_menu_manage"
+            android:title="Debug" />
     </group>
 
     <item android:title="">
@@ -49,7 +53,7 @@
 
                 android:title="Share" />
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_Appfeedback"
 
                 android:title="Give app feedback" />
         </menu>

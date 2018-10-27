@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.widget.ImageView;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
+import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
 import com.koushikdutta.ion.Ion;
 
 public class Splash_screen extends AppCompatActivity {
@@ -23,7 +25,7 @@ public class Splash_screen extends AppCompatActivity {
         int secondsDelayed = 1;
         new Handler().postDelayed(new Runnable() {
             public void run() {
-                startActivity(new Intent(Splash_screen.this, DebugActivity.class));
+                startActivity(new Intent(Splash_screen.this, Sign_in.class));
                 finish();
             }
         }, secondsDelayed * 6000);
