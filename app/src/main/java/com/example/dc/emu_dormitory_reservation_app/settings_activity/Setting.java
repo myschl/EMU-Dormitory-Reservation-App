@@ -25,7 +25,7 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
     String[] language ={"English","Turkish"};
     Spinner lspinner;
     ArrayAdapter gspinnerAdapter;
-    String[] currency ={"Dollas","TRY","Naira"};
+    String[] currency ={"Dollas","TRY"};
     Spinner cspinner;
     String[] Informations = {"Terms and conditions","Send us your feedback","Rate us in the App store","About us"};
     ListView Linformation;

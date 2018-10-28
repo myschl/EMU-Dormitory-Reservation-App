@@ -18,20 +18,20 @@
        android:padding="15dp"
        android:background="@color/blue">
        <TextView
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textColor="@android:color/white"
            android:text="Hello!"
            android:textSize="15dp"
            android:layout_marginTop="10dp"
-           android:layout_marginLeft="150dp"/>
+           android:textAlignment="center"/>
        <TextView
-           android:layout_width="wrap_content"
+           android:layout_width="match_parent"
            android:layout_height="wrap_content"
            android:textSize="20dp"
            android:textColor="@android:color/white"
            android:text="Let us help you"
-           android:layout_marginLeft="103dp" />
+           android:textAlignment="center" />
    </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -71,12 +71,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="10dp"
+                android:padding="5dp"
                 android:text="Got payment releted queries                                 "
                 android:textColor="@color/blue"
                 android:drawableRight="@drawable/ic_expand_more"/>
@@ -100,19 +101,20 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="170dp"
+                android:layout_marginLeft="175dp"
                 android:text="see all"/>
         </LinearLayout>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginLeft="10dp"
+                    android:padding="5dp"
                     android:text="Can I cancel my booking                                         "
                     android:textColor="@color/blue"
                     android:drawableRight="@drawable/ic_expand_more"/>

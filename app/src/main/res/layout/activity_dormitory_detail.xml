@@ -51,70 +51,80 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp">
-        <android.support.v7.widget.RecyclerView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:id="@+id/recycler_view">
-
-        </android.support.v7.widget.RecyclerView>
-
-        <TextView
+            android:layout_height="match_parent">
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:text="
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <android.support.v7.widget.RecyclerView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:id="@+id/recycler_view">
+
+            </android.support.v7.widget.RecyclerView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:text="
 Located within the EMU Campus, Alfam Dormitories is the nearest dormitory to the Departments. Spread over 35 acres of land Alfam provides a service based on the needs of the Students. Our Dormitory is protected by CCTV in all its buildings and corridors as well as 24 hour attendance of Secuirty members. All our rooms are cleaned by our cleaning staff twice a week, the common areas daily and the bed linen changed every week."/>
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="READ MORE"
-            android:textColor="@color/green"
-            android:textAlignment="center"/>
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_marginTop="5dp"
-            android:layout_height="wrap_content">
-            <LinearLayout
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="1dp">
-
-                <TextView
+                android:text="READ MORE"
+                android:textColor="@color/green"
+                android:textAlignment="center"/>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:id="@+id/ifacilities"
-                    android:drawableRight="@drawable/ic_move_left"
-                    android:padding="5dp"
-                    android:text="Facilities"
-                    android:textStyle="bold" />
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <android.support.v7.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_marginTop="1dp"
-            android:layout_height="wrap_content">
-            <LinearLayout
+                    android:padding="1dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ifacilities"
+                        android:drawableRight="@drawable/ic_expand_more"
+                        android:padding="5dp"
+                        android:text="Facilities"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_marginTop="1dp"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="1dp">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/idomitorypolicies"
+                        android:layout_marginTop="10dp"
+                        android:padding="5dp"
+                        android:text="Dormitory Policies"
+                        android:textStyle="bold"
+                        android:drawableRight="@drawable/ic_expand_more"/>
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+            <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:padding="1dp">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/idomitorypolicies"
-                    android:padding="5dp"
-                    android:text="Dormitory Policies"
-                    android:textStyle="bold"
-                    android:drawableRight="@drawable/ic_move_left"/>
-            </LinearLayout>
-        </android.support.v7.widget.CardView>
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/ichooseroom"
-            android:layout_marginTop="35dp"
-            android:text="Choose your Room"
-            android:background="@color/blue"
-            android:textColor="@android:color/white"
-            android:textAllCaps="false"/>
-    </LinearLayout>
+                android:id="@+id/ichooseroom"
+                android:layout_marginTop="100dp"
+                android:text="Choose your Room"
+                android:background="@color/blue"
+                android:textColor="@android:color/white"
+                android:textAllCaps="false"/>
+        </LinearLayout>
+        </ScrollView>
 
+</LinearLayout>
 </LinearLayout>

@@ -143,12 +143,24 @@
                     android:textColor="@color/colorWhite" />
 
             </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorAlert"
+                android:text="Highest rated dormitories"/>
             <android.support.v7.widget.RecyclerView
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryBackground"
                 android:id="@+id/recycleViewPopularDormitories"></android.support.v7.widget.RecyclerView>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textColor="@color/colorAlert"
+                android:text="most popular dormitories"/>
             <android.support.v7.widget.RecyclerView
                 android:orientation="horizontal"
                 android:layout_width="match_parent"

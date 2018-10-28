@@ -9,12 +9,20 @@
     <include
         android:id="@+id/edit_booking"
         layout="@layout/toolbar" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:text="Booking Informations"/>
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="@color/colorWhite"
-            android:layout_margin="15dp">
+            android:layout_margin="10dp">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -23,12 +31,12 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Date of Booking"
-                android:textColor="@color/Black"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
                 <EditText
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="20 jan, 2018"
+                    android:editable="false"
                     android:layout_marginLeft="50dp"/>
             </LinearLayout>
             <LinearLayout
@@ -39,64 +47,70 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Time of Booking"
-                    android:textColor="@color/Black"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
                 <EditText
-                    android:layout_width="150dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="10:30am"
-                    android:layout_marginLeft="50dp"/>
+                    android:editable="false"
+                    android:layout_marginLeft="45dp"/>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Check in Date"
-                    android:textColor="@color/Black"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-                <EditText
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:hint="20 feb, 2018"
 
-                    android:layout_marginLeft="75dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Check in semester"
-                    android:textColor="@color/Black"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-                <EditText
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:hint="Spring"
-                    android:layout_marginLeft="30dp"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Check in period"
-                    android:textColor="@color/Black"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-                <EditText
-                    android:layout_width="150dp"
-                    android:layout_height="wrap_content"
-                    android:hint="spring"
-                    android:layout_marginLeft="60dp"/>
-            </LinearLayout>
+
         </LinearLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
+        android:textColor="@color/blue"
+        android:textStyle="bold"
+        android:text="Edit your booking"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/colorWhite"
+        android:layout_margin="10dp">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check in Date"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/icheckindate"
+                android:hint="mm/dd/yyy"
+                android:editable="false"
+                android:drawableRight="@drawable/ic_datepicker"
+                android:layout_marginLeft="70dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Check in semester"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
+            <Spinner
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/checkinsemesterspinner"
+                android:layout_marginLeft="25dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
