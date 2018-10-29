@@ -1,11 +1,13 @@
 package com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Build;
 import android.support.annotation.RequiresApi;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -22,6 +24,8 @@ import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Facilities_filters;
 import com.example.dc.emu_dormitory_reservation_app.Filter_by_activity.Filter_by;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.Room_detail;
+import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 
 public class Main2Activity extends AppCompatActivity implements View.OnClickListener {
     TextView rate;
@@ -173,7 +177,29 @@ public class Main2Activity extends AppCompatActivity implements View.OnClickList
         }
         if (v == SendFeedback){
             // send feedbact when click
+            Sendfeedback();
 
         }
+    }
+
+    private void Sendfeedback() {
+        SendFeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Main2Activity.this);
+                builder.setMessage("Your feedback will be used to increase our services")
+                        .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // handle the user after clicking on yes button
+                                Toast.makeText(Main2Activity.this, "Your feedback is successful send", Toast.LENGTH_SHORT).show();
+                                //startActivity(new Intent(Main2Activity.this, booking_tabbed_activity.class));
+                            }
+                        }).setNegativeButton("Cancel", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+            }
+        });
     }
 }

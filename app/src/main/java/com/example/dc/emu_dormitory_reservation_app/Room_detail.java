@@ -1,21 +1,27 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
+import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 
 import java.util.ArrayList;
 
 public class Room_detail extends AppCompatActivity {
     private ArrayList fimage = new ArrayList();
     private ArrayList fname = new ArrayList();
+    private Button mbookroom;
     ViewPager viewPager;
     int images[] = {R.drawable.akdeniz_1, R.drawable.akdeniz_2, R.drawable.akdeniz_3, R.drawable.akdeniz_2};
     MyCustomPagerAdapter myCustomPagerAdapter;
@@ -24,6 +30,7 @@ public class Room_detail extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_detail);
+        mbookroom = findViewById(R.id.ibookroom);
         Toolbar toolbar = (Toolbar)findViewById(R.id.room_detail);
         toolbar.setTitle("Room");
         //toolbar.setSubtitle("welcome");
@@ -40,6 +47,27 @@ public class Room_detail extends AppCompatActivity {
                 }
 
         );
+
+        // booking dialog
+        mbookroom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Room_detail.this);
+                builder.setMessage("Are you sure you want to book this room")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // handle the user after clicking on yes button
+                        Toast.makeText(Room_detail.this, "Your booking is successful", Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(Room_detail.this, booking_tabbed_activity.class));
+                    }
+                }).setNegativeButton("No", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+            }
+        });
+
         Myfun();
         fRecycler();
     }

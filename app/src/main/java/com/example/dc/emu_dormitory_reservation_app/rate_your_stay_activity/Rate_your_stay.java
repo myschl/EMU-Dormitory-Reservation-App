@@ -1,6 +1,8 @@
 package com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -14,8 +16,10 @@ import android.widget.Toast;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.Room_detail;
+import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 
-public class Rate_your_stay extends AppCompatActivity implements View.OnClickListener {
+public class Rate_your_stay extends AppCompatActivity {
     String[] feedback ={"Comment","Sugestion"};
     Spinner spinner;
     ArrayAdapter spinnerAdapter;
@@ -67,13 +71,52 @@ public class Rate_your_stay extends AppCompatActivity implements View.OnClickLis
         });
 
         mfeedback = findViewById(R.id.isendfeedback);
+        mfeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Rate_your_stay.this);
+                builder.setMessage("we will use your feedback to increase our dormitory services")
+                        .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // handle the user after clicking on yes button
+                                Toast.makeText(Rate_your_stay.this, "Your feedback is successful send", Toast.LENGTH_SHORT).show();
+                                //startActivity(new Intent(Rate_your_stay.this, booking_tabbed_activity.class));
+                            }
+                        }).setNegativeButton("Cancel", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+            }
+        });
     }
 
-    @Override
+   /* @Override
     public void onClick(View v) {
         if (v == mfeedback){
             // save the feedback
-            startActivity(new Intent(this, HomeActivity.class));
+            Feedback();
         }
     }
+
+    private void Feedback() {
+        mfeedback.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Rate_your_stay.this);
+                builder.setMessage("we will use your feedback to increase our dormitory services")
+                        .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // handle the user after clicking on yes button
+                                Toast.makeText(Rate_your_stay.this, "Your feedback is successful send", Toast.LENGTH_SHORT).show();
+                                //startActivity(new Intent(Rate_your_stay.this, booking_tabbed_activity.class));
+                            }
+                        }).setNegativeButton("Cancel", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
+            }
+        });
+    }*/
 }

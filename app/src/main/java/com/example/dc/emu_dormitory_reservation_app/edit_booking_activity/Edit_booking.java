@@ -1,9 +1,11 @@
 package com.example.dc.emu_dormitory_reservation_app.edit_booking_activity;
 
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -18,6 +20,8 @@ import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.Room_detail;
+import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsActivity2;
 
 import java.util.Calendar;
@@ -55,8 +59,19 @@ public class Edit_booking extends AppCompatActivity {
         Save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //startActivity(new Intent(Edit_booking.this,));
-                finish();
+                AlertDialog.Builder builder = new AlertDialog.Builder(Edit_booking.this);
+                builder.setMessage("by clicking on continue yor booking will be edited ")
+                        .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // handle the user after clicking on yes button
+                                Toast.makeText(Edit_booking.this, "Your booking is successful edited", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Edit_booking.this, booking_tabbed_activity.class));
+                            }
+                        }).setNegativeButton("Cancel", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+
             }
         });
 

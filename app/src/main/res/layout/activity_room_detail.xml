@@ -82,6 +82,7 @@
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:id="@+id/ibookroom"
         android:background="@color/blue"
        android:layout_marginVertical="@dimen/activity_vertical_margin"
         android:text="Book room"
