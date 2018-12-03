@@ -1,6 +1,8 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
-public class Choose_room_class {
+import java.io.Serializable;
+
+public class Choose_room_class implements Serializable {
     private String room_image;
     private String room_name;
     private String bedType;

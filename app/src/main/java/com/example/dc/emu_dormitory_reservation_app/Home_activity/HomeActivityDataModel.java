@@ -17,7 +17,6 @@ public class HomeActivityDataModel {
         DormitoryImageUrl = dormitoryImageUrl;
     }
 
-
     public String getDormitoryName() {
         return DormitoryName;
     }

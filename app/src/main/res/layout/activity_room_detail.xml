@@ -9,18 +9,21 @@
     <include
         android:id="@+id/room_detail"
         layout="@layout/toolbar" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:layout_marginLeft="15dp"
-    android:layout_marginRight="15dp"
-    android:layout_marginBottom="15dp"
-    android:layout_marginTop="2dp">
-    <android.support.v4.view.ViewPager
+    android:layout_margin="5dp">
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
-        android:layout_height="180dp"
-        android:id="@+id/viewPager" />
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="2dp"
+        android:id="@+id/iroomdetailimagerecycler"/>
+
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -45,6 +48,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/iqota"
                 android:text="100 "
                 android:textColor="@color/green"
                 />
@@ -58,6 +62,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:id="@+id/iprice"
                 android:text="2000$"
                 android:textColor="@color/green"
                 />
@@ -66,12 +71,11 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textStyle="bold"
         android:textColor="@color/blue"
         android:layout_marginBottom="1dp"
         android:layout_marginTop="10dp"
         android:textSize="17dp"
-        android:text="Facilities"/>
+        android:text="Room Facilities"/>
     <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -90,5 +94,6 @@
         android:textAllCaps="false"/>
 
 </LinearLayout>
+    </ScrollView>
 
 </LinearLayout>

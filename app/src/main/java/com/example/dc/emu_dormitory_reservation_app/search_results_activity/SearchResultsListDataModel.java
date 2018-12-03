@@ -1,6 +1,8 @@
 package com.example.dc.emu_dormitory_reservation_app.search_results_activity;
 
-public class SearchResultsListDataModel {
+import java.io.Serializable;
+
+public class SearchResultsListDataModel implements Serializable {
     private String dormitoryName;
     private String dormitoryShortDescription; //
     private String dormitoryRating; // 4.5

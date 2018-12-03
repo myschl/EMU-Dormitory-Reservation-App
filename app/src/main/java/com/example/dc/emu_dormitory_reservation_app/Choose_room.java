@@ -38,7 +38,12 @@ public class Choose_room extends AppCompatActivity {
 
         );
 
+
+        Bundle bundleobje= getIntent().getExtras();
+        recycle_items=(ArrayList<Choose_room_class>) bundleobje.getSerializable("allrooms");
+
         MyFun();
+
     }
 
     private void MyFun() {
@@ -47,7 +52,7 @@ public class Choose_room extends AppCompatActivity {
         //recyclerView.setHasFixedSize(true);
 
 
-        recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1277.jpg?RenditionID=7", "Akdeniz Single Room","1 single bed", "55m", "100 rooms left","$4500"));
+      /*  recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1277.jpg?RenditionID=7", "Akdeniz Single Room","1 single bed", "55m", "100 rooms left","$4500"));
         recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1268.jpg?RenditionID=7", "Akdeniz Double Room","2 single bed", "35m", "200 rooms left","$4000"));
         recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1281.jpg?RenditionID=7", "Akdeniz Room","2 single bed", "25m", "0 rooms left","$6000"));
         recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1250.jpg?RenditionID=7", "Akdeniz Single Room","2 single bed", "45m", "300 rooms left","$5000"));
@@ -57,7 +62,7 @@ public class Choose_room extends AppCompatActivity {
         recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1277.jpg?RenditionID=7", "Akdeniz Single Room","1 single bed", "55m", "100 rooms left","$4500"));
         recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1268.jpg?RenditionID=7", "Akdeniz Double Room","2 single bed", "35m", "200 rooms left","$4000"));
         recycle_items.add(new Choose_room_class("https://dormitories.emu.edu.tr/PhotoGalleries/dormitories/2016/akdeniz/img_1281.jpg?RenditionID=7", "Akdeniz Room","2 single bed", "25m", "0 rooms left","$6000"));
-
+*/
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 

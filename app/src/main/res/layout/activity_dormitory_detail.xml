@@ -28,6 +28,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/idormname"
             android:text="Alfam Dormitories"
             android:textColor="@android:color/white"
             android:textSize="25dp"
@@ -36,6 +37,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/idormshortdescription"
             android:text="Home of over 800 student "
             android:textColor="@android:color/white"
             android:textStyle="bold"
@@ -65,54 +67,115 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-                android:text="
-Located within the EMU Campus, Alfam Dormitories is the nearest dormitory to the Departments. Spread over 35 acres of land Alfam provides a service based on the needs of the Students. Our Dormitory is protected by CCTV in all its buildings and corridors as well as 24 hour attendance of Secuirty members. All our rooms are cleaned by our cleaning staff twice a week, the common areas daily and the bed linen changed every week."/>
-            <TextView
+             <!--sample xml-->
+            <com.ms.square.android.expandabletextview.ExpandableTextView
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
+                android:id="@+id/expand_text_view"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="READ MORE"
-                android:textColor="@color/green"
-                android:textAlignment="center"/>
+                expandableTextView:maxCollapsedLines="4"
+                expandableTextView:animDuration="200">
+                <TextView
+                    android:id="@id/expandable_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:textSize="16sp"
+                    android:textColor="#666666" />
+                <ImageButton
+                    android:id="@id/expand_collapse"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp"
+                    android:layout_gravity="center|bottom"
+                    android:background="@android:color/transparent"/>
+            </com.ms.square.android.expandabletextview.ExpandableTextView>
+
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
                 android:layout_height="wrap_content">
-                <LinearLayout
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="1dp">
+                    android:layout_height="wrap_content">
 
                     <TextView
+                        android:id="@+id/expandableButton2"
+                        android:layout_width="fill_parent"
+                        android:layout_height="45dp"
+                        android:drawableRight="@android:drawable/arrow_down_float"
+                        android:onClick="DormitoryFacilities"
+                        android:text="Dormitory Facilities"
+                        android:paddingTop="10dp"
+                        android:textAllCaps="false"
+                        android:layout_marginLeft="0dp"
+                        android:paddingLeft="5dp"
+                        android:background="@color/colorWhite" />
+
+                    <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                        android:id="@+id/idormfacilities"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/ifacilities"
-                        android:drawableRight="@drawable/ic_expand_more"
-                        android:padding="5dp"
-                        android:text="Facilities"
-                        android:textStyle="bold" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/expandableButton2"
+                        android:padding="16dp"
+                        app:ael_duration="400"
+                        app:ael_expanded="false"
+                        app:ael_orientation="vertical">
+
+                        <android.support.v7.widget.RecyclerView
+                            android:layout_width="match_parent"
+                            android:layout_height="300dp"
+                            android:id="@+id/idormfacilitiesrecycleview">
+
+                        </android.support.v7.widget.RecyclerView>
+
+                        </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+                </RelativeLayout>
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginTop="1dp"
+                android:layout_marginTop="0dp"
                 android:layout_height="wrap_content">
-                <LinearLayout
+
+                <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="1dp">
+                    android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/expandableButton1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:drawableRight="@android:drawable/arrow_down_float"
+                    android:onClick="DormitoryPolicies"
+                    android:text="Dormitory policies"
+                    android:paddingTop="10dp"
+                    android:textAllCaps="false"
+                    android:layout_marginLeft="0dp"
+                    android:paddingLeft="5dp"
+                    android:background="@color/colorWhite" />
+
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:id="@+id/expandableLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/expandableButton1"
+                    android:padding="16dp"
+                    app:ael_duration="400"
+                    app:ael_expanded="false"
+
+                    app:ael_orientation="vertical">
+
                     <TextView
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/idomitorypolicies"
-                        android:layout_marginTop="10dp"
-                        android:padding="5dp"
-                        android:text="Dormitory Policies"
-                        android:textStyle="bold"
-                        android:drawableRight="@drawable/ic_expand_more"/>
-                </LinearLayout>
+                        android:id="@+id/idormpoliciestext"
+                        android:text="Expandable Layout provides an easy way to create a view called header with an expandable view. Views are external layout to allow a maximum of customization." />
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+           </RelativeLayout>
             </android.support.v7.widget.CardView>
             <Button
                 android:layout_width="match_parent"
@@ -120,6 +183,7 @@ Located within the EMU Campus, Alfam Dormitories is the nearest dormitory to the
                 android:id="@+id/ichooseroom"
                 android:layout_marginTop="100dp"
                 android:text="Choose your Room"
+                android:onClick="ChooseYourRoom"
                 android:background="@color/blue"
                 android:textColor="@android:color/white"
                 android:textAllCaps="false"/>

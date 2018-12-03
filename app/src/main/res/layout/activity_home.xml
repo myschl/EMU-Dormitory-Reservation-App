@@ -68,10 +68,9 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-
+                            android:id="@+id/idormname"
+                            android:editable="true"
                             android:background="@drawable/rounded_edittext"
-                            android:editable="false"
-
                             android:hint="Enter Dormitory name"
                             android:padding="5dp" />
                     </RelativeLayout>
@@ -101,8 +100,9 @@
                         <EditText
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
-                            android:background="@drawable/rounded_edittext"
+                            android:id="@+id/idormtype"
                             android:editable="true"
+                            android:background="@drawable/rounded_edittext"
                             android:hint="Dormitory type"
                             android:padding="5dp" />
                     </RelativeLayout>
@@ -121,7 +121,7 @@
                         android:layout_weight="1"
                         android:background="@drawable/rounded_edittext"
                         android:duplicateParentState="true"
-                        android:editable="false"
+                        android:editable="true"
                         android:hint="Check in semester"
                         android:padding="5dp" />
 
@@ -129,6 +129,7 @@
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
                         android:layout_marginLeft="10dp"
+                        android:editable="true"
                         android:layout_weight="1"
                         android:background="@drawable/rounded_edittext"
                         android:hint="Check out semester"
@@ -138,8 +139,10 @@
                 <Button
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/BtnSearch"
                     android:background="@color/colorPrimary"
                     android:text="Search"
+                    android:textAllCaps="false"
                     android:textColor="@color/colorWhite" />
 
             </LinearLayout>

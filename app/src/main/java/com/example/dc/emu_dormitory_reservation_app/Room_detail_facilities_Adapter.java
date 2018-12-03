@@ -16,15 +16,20 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 public class Room_detail_facilities_Adapter extends RecyclerView.Adapter<Room_detail_facilities_Adapter.ViewHolder>{
-    private ArrayList<String> mImages = new ArrayList<>();
-    private ArrayList<String> mName = new ArrayList<>();
+   /* private ArrayList<String> mImages = new ArrayList<>();
+    private ArrayList<String> mName = new ArrayList<>();*/
+    private  ArrayList<RoomDetailModel1> facilities = new ArrayList<>();
     private Context mContext;
 
-    public Room_detail_facilities_Adapter(Context mContext, ArrayList<String> mImages, ArrayList<String> mName) {
-        this.mImages = mImages;
-        this.mName = mName;
+    public Room_detail_facilities_Adapter(Context mContext, ArrayList<RoomDetailModel1> facilities) {
+        this.facilities = facilities;
         this.mContext = mContext;
     }
+
+    /* public Room_detail_facilities_Adapter(Context mContext, ArrayList<RoomDetailModel1> facilities) {
+        this.mImages = mImages;
+        this.mContext = mContext;
+    }*/
 
     @NonNull
     @Override
@@ -38,15 +43,15 @@ public class Room_detail_facilities_Adapter extends RecyclerView.Adapter<Room_de
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Glide.with(mContext)
                 .asBitmap()
-                .load(mImages.get(position))
+                .load(facilities.get(position).getImageUrl())
                 .into(holder.image);
-        holder.name.setText(mName.get(position));
+        holder.name.setText(facilities.get(position).getImageName());
 
     }
 
     @Override
     public int getItemCount() {
-        return mImages.size();
+        return facilities.size();
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{

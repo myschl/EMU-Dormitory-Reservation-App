@@ -19,6 +19,18 @@
         android:layout_margin="10dp"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/blue"
+            android:textSize="17dp"
+            android:text="Confirm your payment"/>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Yor booking informations"
+            android:textStyle="bold"/>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
@@ -27,18 +39,6 @@
                 android:layout_height="match_parent"
                 android:padding="10dp"
                 android:orientation="vertical">
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/blue"
-                    android:textSize="17dp"
-                    android:text="Confirm your payment"/>
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:text="Yor booking informations"
-                    android:textStyle="bold"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -53,7 +53,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/ibookingnumber"
-                        android:layout_marginLeft="141dp"
+                        android:layout_marginLeft="91dp"
                         android:hint="12f55255" />
                 </LinearLayout>
                 <LinearLayout
@@ -69,7 +69,7 @@
                         android:id="@+id/iroombooked"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="160dp"
+                        android:layout_marginLeft="110dp"
                         android:hint="single room" />
                 </LinearLayout>
                 <LinearLayout
@@ -85,7 +85,7 @@
                         android:id="@+id/idormitoryname"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:layout_marginLeft="146dp"
+                        android:layout_marginLeft="96dp"
                         android:hint="Akdeniz" />
                 </LinearLayout>
                 <LinearLayout
@@ -101,13 +101,12 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/ibookingdate"
-                        android:layout_marginLeft="166dp"
+                        android:layout_marginLeft="116dp"
                         android:hint="2/12/2018" />
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginBottom="10dp"
                     android:orientation="horizontal">
                     <TextView
                         android:layout_width="wrap_content"
@@ -118,9 +117,27 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:id="@+id/icomfirmationexperydate"
-                        android:layout_marginLeft="88dp"
+                        android:layout_marginLeft="38dp"
                         android:textColor="@color/colorAlert"
                         android:hint="12/1/2019" />
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Booking Status"/>
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ibookingstatus"
+                        android:layout_marginLeft="108dp"
+                        android:textColor="@color/colorAlert"
+                        android:hint="Confirm" />
                 </LinearLayout>
 
             </LinearLayout>
