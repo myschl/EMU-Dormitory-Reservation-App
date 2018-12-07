@@ -33,6 +33,10 @@
            android:text="Let us help you"
            android:textAlignment="center" />
    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -59,30 +63,56 @@
             android:layout_marginTop="10dp"
             android:textColor="@color/blue"
             android:drawableLeft="@drawable/ic_credit_card"/>
-        <TextView
+      <!--  <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@color/blue"
             android:layout_marginTop="10dp"
             android:layout_marginLeft="190dp"
-            android:text="see all"/>
+            android:text="see all"/>-->
     </LinearLayout>
-    <android.support.v7.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <LinearLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-            <TextView
+            android:layout_marginTop="1dp"
+            android:layout_height="wrap_content">
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginLeft="10dp"
-                android:padding="5dp"
-                android:text="Got payment releted queries                                 "
-                android:textColor="@color/blue"
-                android:drawableRight="@drawable/ic_expand_more"/>
-        </LinearLayout>
-    </android.support.v7.widget.CardView>
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/expandableButton1"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:drawableRight="@drawable/ic_expand_more"
+                    android:onClick="payment"
+                    android:text="How to make payment"
+                    android:paddingTop="10dp"
+                    android:textAllCaps="false"
+                    android:layout_marginLeft="0dp"
+                    android:paddingLeft="5dp"
+                    android:background="@color/colorWhite" />
+
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:id="@+id/expandableLayout1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/expandableButton1"
+                    android:padding="16dp"
+                    app:ael_duration="400"
+                    app:ael_expanded="false"
+
+                    app:ael_orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/ipaymenttext"
+                        android:text="Expandable Layout provides an easy way to create a view called header with an expandable view. Views are external layout to allow a maximum of customization." />
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+            </RelativeLayout>
+        </android.support.v7.widget.CardView>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -96,35 +126,61 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/blue"
                 android:drawableLeft="@drawable/ic_cancel"/>
-            <TextView
+            <!--<TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="@color/blue"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="175dp"
-                android:text="see all"/>
+                android:text="see all"/>-->
         </LinearLayout>
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
+            android:layout_marginTop="1dp"
             android:layout_height="wrap_content">
-            <LinearLayout
+
+            <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:app="http://schemas.android.com/apk/res-auto"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
+
                 <TextView
+                    android:id="@+id/expandableButton2"
+                    android:layout_width="fill_parent"
+                    android:layout_height="45dp"
+                    android:drawableRight="@drawable/ic_expand_more"
+                    android:onClick="cancelation"
+                    android:text="Can I cancel my booking"
+                    android:paddingTop="10dp"
+                    android:textAllCaps="false"
+                    android:layout_marginLeft="0dp"
+                    android:paddingLeft="5dp"
+                    android:background="@color/colorWhite" />
+
+                <com.github.aakira.expandablelayout.ExpandableRelativeLayout
+                    android:id="@+id/expandableLayout2"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:padding="5dp"
-                    android:text="Can I cancel my booking                                         "
-                    android:textColor="@color/blue"
-                    android:drawableRight="@drawable/ic_expand_more"/>
-            </LinearLayout>
+                    android:layout_below="@+id/expandableButton2"
+                    android:padding="16dp"
+                    app:ael_duration="400"
+                    app:ael_expanded="false"
+
+                    app:ael_orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/icanceltext"
+                        android:text="Expandable Layout provides an easy way to create a view called header with an expandable view. Views are external layout to allow a maximum of customization." />
+                </com.github.aakira.expandablelayout.ExpandableRelativeLayout>
+            </RelativeLayout>
         </android.support.v7.widget.CardView>
         <Button
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/iviewallquestions"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
             android:background="#283593"
             android:textColor="@android:color/white"
             android:text="view all Frequently ask questions"
@@ -149,6 +205,7 @@
                     android:layout_height="wrap_content"
                     android:id="@+id/ihavequestion"
                     android:layout_marginTop="15dp"
+                    android:layout_marginBottom="25dp"
                     android:background="@color/blue"
                     android:text="Have a question? Email us"
                     android:textColor="@android:color/white"
@@ -157,5 +214,7 @@
         </android.support.v7.widget.CardView>
 
     </LinearLayout>
+
+    </ScrollView>
 
 </LinearLayout>

@@ -8,17 +8,36 @@ import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.dc.emu_dormitory_reservation_app.Choose_room_class;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Dormitory_detail;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
+import com.example.dc.emu_dormitory_reservation_app.ManageBookingModel;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.Room_detail;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
 
-public class Manage_booking extends AppCompatActivity implements View.OnClickListener {
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+public class Manage_booking extends AppCompatActivity {
+    private RequestQueue mQueue;
     Button Save,EditBooking,CancelBooking;
+    private TextView mdateofbooking, mtimeofbooking, mcheckindate, mcheckinsemester;
+    private ArrayList<ManageBookingModel> bookinginfor = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,31 +61,71 @@ public class Manage_booking extends AppCompatActivity implements View.OnClickLis
         );
 
         MyFun();
+        BookingInformationAPI();
+    }
+
+    private void BookingInformationAPI() {
+        String url = "http://35.204.232.129/api/GetBooking/34";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject JO = response.getJSONObject("Body");
+
+                            // for Rooms
+
+                                String Dateofbooking = JO.getString("DateOfBooking");
+                                String Timeofbooking = JO.getString("TimeOfBooking");
+                                String checkindate = JO.getString("CheckInDate");
+                                String checkinsemester = JO.getString("CheckInSemester");
+
+                                 mdateofbooking.setText(Dateofbooking);
+                                 mtimeofbooking.setText(Timeofbooking);
+                                 mcheckindate.setText(checkindate);
+                                 mcheckinsemester.setText(checkinsemester);
+
+                                bookinginfor.add(new ManageBookingModel(Dateofbooking, Timeofbooking, checkindate, checkinsemester));
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mQueue = Volley.newRequestQueue(Manage_booking.this);
+        mQueue.add(request);
     }
 
     private void MyFun() {
         //Save=(Button)findViewById(R.id.isave);
         EditBooking=(Button)findViewById(R.id.ieditbooking);
         CancelBooking=(Button)findViewById(R.id.icancelbooking);
-    }
+        mdateofbooking = findViewById(R.id.idateofbooking);
+        mtimeofbooking = findViewById(R.id.itimeofbooking);
+        mcheckindate = findViewById(R.id.icheckindate);
+        mcheckinsemester = findViewById(R.id.icheckinsemester);
 
-    @Override
-    public void onClick(View v) {
-        /*if (v == Save){
-            //save operation
-            SaveBooking();
-        }*/
-        if (v == EditBooking){
-            // edit booking operations
-            Editbooking();
-        }
-        if (v == CancelBooking){
-            // cancel booking operations
-            Cancelbooking();
-        }
-    }
+        EditBooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Edit booking here
+                Intent i=new Intent(Manage_booking.this,Edit_booking.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("bookinginfo", bookinginfor);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });
 
-    private void Cancelbooking() {
+
         // cancel booking here
         //Toast.makeText(this, "up comming feature", Toast.LENGTH_SHORT).show();
         CancelBooking.setOnClickListener(new View.OnClickListener() {
@@ -89,13 +148,4 @@ public class Manage_booking extends AppCompatActivity implements View.OnClickLis
         });
     }
 
-    private void Editbooking() {
-        // Edit booking here
-        startActivity(new Intent(this, Edit_booking.class));
-    }
-
-  /*  private void SaveBooking() {
-        // save booking here
-        startActivity(new Intent(this, HomeActivity.class));
-    }*/
 }

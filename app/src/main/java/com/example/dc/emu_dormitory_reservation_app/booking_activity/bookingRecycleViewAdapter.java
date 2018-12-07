@@ -11,16 +11,18 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.dc.emu_dormitory_reservation_app.BookingbyCustomerId;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.search_results_activity.SearchResultsListDataModel;
 
 import java.util.ArrayList;
 
 public class bookingRecycleViewAdapter extends RecyclerView.Adapter<bookingRecycleViewAdapter.ViewHolder> {
     private static final String TAG = "bookingRecycleViewAdapt";
     private Context mContext;
-    private ArrayList<bookingsDataModel> mBookingsDataModel = new ArrayList<>();
+    private ArrayList<BookingbyCustomerId> mBookingsDataModel = new ArrayList<>();
 
-    public bookingRecycleViewAdapter(Context mContext, ArrayList<bookingsDataModel> mBookingsDataModel) {
+    public bookingRecycleViewAdapter(Context mContext, ArrayList<BookingbyCustomerId> mBookingsDataModel) {
         this.mContext = mContext;
         this.mBookingsDataModel = mBookingsDataModel;
     }
@@ -41,6 +43,9 @@ public class bookingRecycleViewAdapter extends RecyclerView.Adapter<bookingRecyc
         holder.textViewDateOfBooking.setText("Booking date: "+mBookingsDataModel.get(position).getDateOfBooking());
         holder.textViewCheckInDate.setText("Check-in date: "+mBookingsDataModel.get(position).getCheckInDate());
         holder.textViewBookingStatus.setText("Booking status: "+mBookingsDataModel.get(position).getBookingStatus());
+        holder.textViewRatingValue.setText(mBookingsDataModel.get(position).getRatingNumber());
+        holder.textViewRatingStatus.setText(mBookingsDataModel.get(position).getRatingText());
+
     }
 
     @Override
@@ -57,6 +62,9 @@ public class bookingRecycleViewAdapter extends RecyclerView.Adapter<bookingRecyc
       TextView  textViewDateOfBooking;
       TextView textViewCheckInDate;
       TextView textViewBookingStatus;
+      TextView textViewRatingValue;
+      TextView textViewRatingStatus;
+
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -68,6 +76,8 @@ public class bookingRecycleViewAdapter extends RecyclerView.Adapter<bookingRecyc
             textViewDateOfBooking = itemView.findViewById(R.id.textViewDateOfBooking);
             textViewCheckInDate = itemView.findViewById(R.id.textViewCheckInDate);
             textViewBookingStatus = itemView.findViewById(R.id.textViewBookingStatus);
+            textViewRatingValue = itemView.findViewById(R.id.textViewRatingValue);
+            textViewRatingStatus = itemView.findViewById(R.id.textViewRatingStatus);
 
         }
     }

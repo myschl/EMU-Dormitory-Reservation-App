@@ -40,6 +40,7 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/idateofbooking"
                     android:hint="dd/mm/yy"
                     android:layout_marginLeft="51dp"/>
             </LinearLayout>
@@ -55,6 +56,7 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/itimeofbooking"
                     android:hint="12:15pm"
                     android:layout_marginLeft="50dp"/>
             </LinearLayout>
@@ -70,6 +72,7 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/icheckindate"
                     android:hint="dd/mm/yy"
                     android:layout_marginLeft="75dp"/>
             </LinearLayout>
@@ -85,6 +88,7 @@
                 <TextView
                     android:layout_width="150dp"
                     android:layout_height="wrap_content"
+                    android:id="@+id/icheckinsemester"
                     android:hint="Fall"
                     android:layout_marginLeft="31dp"/>
             </LinearLayout>

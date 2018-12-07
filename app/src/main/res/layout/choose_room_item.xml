@@ -35,7 +35,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/bed"
-                android:text="Bed: "
+                android:text="Bed Type: "
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/image"
                 android:layout_below="@id/room_name"/>
@@ -51,7 +51,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/room_size"
-                android:text="Room size:  "
+                android:text="Room Size:  "
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/image"
                 android:layout_below="@id/bed"/>
@@ -66,15 +66,25 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/room_left"
+                android:id="@+id/room_leftt"
                 android:textColor="@color/colorAccent"
-                android:text="100 rooms left "
+                android:text="Rooms Left: "
                 android:layout_marginLeft="5dp"
                 android:layout_toRightOf="@id/image"
+                android:layout_below="@id/Room_size"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/room_left"
+                android:textColor="@color/colorAccent"
+                android:text="100"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@id/room_leftt"
                 android:layout_below="@id/Room_size"/>
             <Button
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:id="@+id/choose_room_select"
                 android:layout_below="@id/image"
                 android:layout_centerInParent="true"
                 android:layout_marginTop="20dp"

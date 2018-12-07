@@ -1,11 +1,13 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
@@ -15,7 +17,9 @@ import java.util.ArrayList;
 public class Choose_room extends AppCompatActivity {
     RecyclerView recyclerView;
     Choose_room_Adapter choose_room_adapter;
-    ArrayList<Choose_room_class> recycle_items;
+    ArrayList<Choose_room_class> recycle_items = new ArrayList<>();
+    ArrayList<Choose_room_class> RoomDetailList = new ArrayList<>();
+    private Button mselectRoom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +42,32 @@ public class Choose_room extends AppCompatActivity {
 
         );
 
+     /*   mselectRoom = findViewById(R.id.choose_room_select);
+        mselectRoom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Choose_room.this,Room_detail.class);
+             *//*   Bundle bundle=new Bundle();
+                bundle.putSerializable("allrooms",RoomDetailList);
+                i.putExtras(bundle);*//*
+                startActivity(i);
+            }
+        });*/
 
-        Bundle bundleobje= getIntent().getExtras();
+
+        Bundle bundleobje = getIntent().getExtras();
         recycle_items=(ArrayList<Choose_room_class>) bundleobje.getSerializable("allrooms");
 
         MyFun();
+        //RoomDetailAPI();
 
     }
 
+   /* private void RoomDetailAPI() {
+
+    }*/
+
     private void MyFun() {
-        recycle_items = new ArrayList<>();
         recyclerView = (RecyclerView)findViewById(R.id.choose_room_recycleview);
         //recyclerView.setHasFixedSize(true);
 

@@ -13,15 +13,27 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.About_us_activity.MainActivity;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity.Main2Activity;
+import com.example.dc.emu_dormitory_reservation_app.ManageBookingModel;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
+import com.example.dc.emu_dormitory_reservation_app.manage_booking_activity.Manage_booking;
 import com.google.firebase.auth.FirebaseAuth;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class Setting extends AppCompatActivity implements View.OnClickListener {
+    private RequestQueue mQueue;
     String[] language ={"English","Turkish"};
     Spinner lspinner;
     ArrayAdapter gspinnerAdapter;
@@ -59,10 +71,45 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
                 }
 
         );
+        CurrencyAPI();
         Myfun();
 
         msign_out.setOnClickListener(this);
 
+    }
+
+    private void CurrencyAPI() {
+
+        String url = "http://35.204.232.129/api/GetCurrency/5";
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject JO = response.getJSONObject("Body");
+
+                            // for currency
+
+                            String CurrencyName = JO.getString("CurrencyName");
+                            String CurrencyId = JO.getString("CurrencyId");
+                            String CurrencyRate = JO.getString("CurrencyRate");
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mQueue = Volley.newRequestQueue(Setting.this);
+        mQueue.add(request);
     }
 
     private void Myfun() {
@@ -94,6 +141,12 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
         cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (position){
+                    case 0:
+                        break;
+                    case 1:
+
+                }
 
             }
 

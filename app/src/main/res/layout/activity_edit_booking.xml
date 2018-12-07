@@ -32,9 +32,10 @@
                     android:layout_height="wrap_content"
                     android:text="Date of Booking"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/idateofbooking"
                     android:hint="20 jan, 2018"
                     android:editable="false"
                     android:layout_marginLeft="50dp"/>
@@ -48,9 +49,10 @@
                     android:layout_height="wrap_content"
                     android:text="Time of Booking"
                     android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-                <EditText
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:id="@+id/itimeofbooking"
                     android:hint="10:30am"
                     android:editable="false"
                     android:layout_marginLeft="45dp"/>
@@ -83,7 +85,7 @@
                 android:layout_height="wrap_content"
                 android:text="Check in Date"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"/>
-            <EditText
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/icheckindate"

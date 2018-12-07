@@ -1,11 +1,14 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Handler;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -18,6 +21,7 @@ import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivityDataModel;
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
+import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -27,6 +31,7 @@ public class Payment_confirmation extends AppCompatActivity {
 
     private RequestQueue mQueue;
     private TextView mbookingNo, mroombook, mdormitoryname, mconfexpdate, mbookingDate, mbookingStatus;
+    private Button muploadpayment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +60,30 @@ public class Payment_confirmation extends AppCompatActivity {
         mdormitoryname = findViewById(R.id.idormitoryname);
         mroombook = findViewById(R.id.iroombooked);
         mbookingStatus = findViewById(R.id.ibookingstatus);
+        muploadpayment = findViewById(R.id.iuploadpayment);
+
+        muploadpayment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(Payment_confirmation.this);
+                builder.setMessage("by clicking on continue your booking payment receipt will be process")
+                        .setPositiveButton("Continue", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                // handle the user after clicking on yes button
+                                Toast.makeText(Payment_confirmation.this, "Your booking receipt is successful send", Toast.LENGTH_SHORT).show();
+                                startActivity(new Intent(Payment_confirmation.this, booking_tabbed_activity.class));
+                            }
+                        }).setNegativeButton("Cancel", null);
+                AlertDialog alertDialog = builder.create();
+                alertDialog.show();
+            }
+        });
 
         //API call function
         MyBooking();
+
+
     }
 
     private void MyBooking() {

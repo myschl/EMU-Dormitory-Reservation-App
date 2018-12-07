@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.dc.emu_dormitory_reservation_app.BookingbyCustomerId;
 import com.example.dc.emu_dormitory_reservation_app.R;
 
 import java.util.ArrayList;
@@ -19,7 +20,7 @@ import static android.support.constraint.Constraints.TAG;
 public class past_tab extends Fragment {
     private Context mContext;
 
-    private ArrayList<bookingsDataModel> mBookingsDataModel = new ArrayList<>();
+    private ArrayList<BookingbyCustomerId> mBookingsDataModel = new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -34,7 +35,7 @@ public class past_tab extends Fragment {
 
 
     private void dataInit(){
-        Log.d(TAG, "dataInit: ");
+        /*Log.d(TAG, "dataInit: ");
         mBookingsDataModel.add(new bookingsDataModel(
                 "Alfam dormitories",
                 "Alfam dormitories has four bloc...",
@@ -72,7 +73,7 @@ public class past_tab extends Fragment {
                 "27 August 2019",
                 "19 August 2018",
                 "Pending",
-                "https://dormitories.emu.edu.tr/PublishingImages/Dormitories/alfam/6.jpg"));
+                "https://dormitories.emu.edu.tr/PublishingImages/Dormitories/alfam/6.jpg"));*/
 
 
     }

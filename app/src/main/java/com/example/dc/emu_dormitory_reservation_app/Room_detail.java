@@ -92,13 +92,13 @@ public class Room_detail extends AppCompatActivity {
             }
         });
 
+        RoomDetailsAPI();
         Myfun();
         fRecycler();
+
     }
 
-    private void fRecycler() {
-
-
+    private void RoomDetailsAPI() {
 
         String url = "http://35.204.232.129/api/GetRoomById/5";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -110,6 +110,7 @@ public class Room_detail extends AppCompatActivity {
                         //Room id, qota and price
                         try {
                             JSONObject JO = response.getJSONObject("Body");
+
 
                             String RoomId = JO.getString("roomId");
                             String RoomQota = JO.getString("roomQuota");
@@ -148,44 +149,6 @@ public class Room_detail extends AppCompatActivity {
 
                             }
 
-                       /* } catch (JSONException e) {
-                            e.printStackTrace();
-                        }*/
-
-                      /*  try {
-                            JSONObject JO = response.getJSONObject("Body");
-
-*/
-                            /*// for images
-                            JSONArray JAI = JO.getJSONArray("pictureUrl");
-
-                            for (int i=0; i<JAI.length(); i++){
-                                String image = JAI.getString(i);
-                                images.add(new RoomDetailImageModel(image));
-
-                                //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
-
-                            }*/
-
-
-/*
-                            //for facilities images and names
-                            JSONArray JA = JO.getJSONArray("facilitiesList");
-
-                            for (int i=0; i<JA.length(); i++){
-                                JSONObject room = JA.getJSONObject(i);
-                                String picture = room.getString("pictureUrl");
-                                String name = room.getString("facilityname");
-                                String facilityId = room.getString("facilityId");
-
-
-                                facilities.add(new RoomDetailModel1(picture, name, facilityId));
-
-                                //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
-
-
-                            }*/
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -199,7 +162,9 @@ public class Room_detail extends AppCompatActivity {
         });
         mQueue = Volley.newRequestQueue(Room_detail.this);
         mQueue.add(request);
+    }
 
+    private void fRecycler() {
 
 
         /*facilities.add(new RoomDetailModel1("ww1.emu.edu.tr/emu_v1/media/posts_media/media_1706_en_1200.jpg", "wif" ));
@@ -220,7 +185,7 @@ public class Room_detail extends AppCompatActivity {
         fimage.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
         fname.add("TV");*/
 
-        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.room_detail_recycleview);
+        RecyclerView recyclerView = findViewById(R.id.room_detail_recycleview);
         Room_detail_facilities_Adapter adapter = new Room_detail_facilities_Adapter(this, facilities);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(Room_detail.this, LinearLayoutManager.HORIZONTAL, false);

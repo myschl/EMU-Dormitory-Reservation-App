@@ -75,7 +75,11 @@ public class Dormitory_detail extends AppCompatActivity {
         mchooseroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(Dormitory_detail.this, Choose_room.class));
+                Intent i=new Intent(Dormitory_detail.this,Choose_room.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("allrooms",DormitoryRooms);
+                i.putExtras(bundle);
+                startActivity(i);
             }
         });
 
@@ -92,6 +96,7 @@ public class Dormitory_detail extends AppCompatActivity {
                 Toast.makeText(Dormitory_detail.this, "Up comming feature", Toast.LENGTH_SHORT).show();
             }
         });*/
+
 
 
 
@@ -311,13 +316,13 @@ public class Dormitory_detail extends AppCompatActivity {
         startActivity(i);
     }*/
 
-    public void ChooseYourRoom(View view) {
+  /*  public void ChooseYourRoom(View view) {
         Intent i=new Intent(Dormitory_detail.this,Choose_room.class);
         Bundle bundle=new Bundle();
         bundle.putSerializable("allrooms",DormitoryRooms);
         i.putExtras(bundle);
         startActivity(i);
-    }
+    }*/
 
    /* @Override
     public void onClick(View v) {

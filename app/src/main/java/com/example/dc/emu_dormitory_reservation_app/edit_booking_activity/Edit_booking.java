@@ -16,21 +16,27 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.ManageBookingModel;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.Room_detail;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsActivity2;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Edit_booking extends AppCompatActivity {
     Button Save;
     private String[] semesterlist = {"Spring", "Fall", "Summer"};
     private Spinner msemesterlist;
-    private EditText mcheckindate;
+    private TextView mcheckindate, mdateofbooking, mtimeofbooking;
+    private ManageBookingModel bookinginfoo = new ManageBookingModel();
+
+    private ArrayList<ManageBookingModel> bookingInfo = new ArrayList<>();
     private DatePickerDialog.OnDateSetListener mDateSetListener;
 
     @Override
@@ -53,8 +59,24 @@ public class Edit_booking extends AppCompatActivity {
                 }
 
         );
+
+        // getting Arraylist of booking info
+        Bundle bundleobje = getIntent().getExtras();
+        bookingInfo=(ArrayList<ManageBookingModel>) bundleobje.getSerializable("bookinginfo");
+
+
+
+        mdateofbooking = findViewById(R.id.idateofbooking);
+        mtimeofbooking = findViewById(R.id.itimeofbooking);
         mcheckindate = findViewById(R.id.icheckindate);
         msemesterlist = findViewById(R.id.checkinsemesterspinner);
+
+
+        // setting date and time of booking
+        mdateofbooking.setText(bookingInfo.get(0).getCheckindate());
+        mtimeofbooking.setText(bookingInfo.get(0).getTimeofbooking());
+
+
         Save = (Button)findViewById(R.id.isave);
         Save.setOnClickListener(new View.OnClickListener() {
             @Override

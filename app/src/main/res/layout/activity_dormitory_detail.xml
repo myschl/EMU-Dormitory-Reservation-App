@@ -9,7 +9,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:background="@color/colorAccent"
+        android:background="@color/blue"
         android:layout_height="wrap_content">
 
     <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
@@ -49,7 +49,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="5dp"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="5dp">
@@ -62,12 +61,12 @@
             android:orientation="vertical">
             <android.support.v7.widget.RecyclerView
                 android:layout_width="match_parent"
-                android:layout_height="100dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/recycler_view">
 
             </android.support.v7.widget.RecyclerView>
 
-             <!--sample xml-->
+
             <com.ms.square.android.expandabletextview.ExpandableTextView
                 xmlns:android="http://schemas.android.com/apk/res/android"
                 xmlns:expandableTextView="http://schemas.android.com/apk/res-auto"
@@ -106,7 +105,7 @@
                         android:id="@+id/expandableButton2"
                         android:layout_width="fill_parent"
                         android:layout_height="45dp"
-                        android:drawableRight="@android:drawable/arrow_down_float"
+                        android:drawableRight="@drawable/ic_expand_more"
                         android:onClick="DormitoryFacilities"
                         android:text="Dormitory Facilities"
                         android:paddingTop="10dp"
@@ -137,7 +136,7 @@
             </android.support.v7.widget.CardView>
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginTop="0dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="wrap_content">
 
                 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -149,7 +148,7 @@
                     android:id="@+id/expandableButton1"
                     android:layout_width="fill_parent"
                     android:layout_height="45dp"
-                    android:drawableRight="@android:drawable/arrow_down_float"
+                    android:drawableRight="@drawable/ic_expand_more"
                     android:onClick="DormitoryPolicies"
                     android:text="Dormitory policies"
                     android:paddingTop="10dp"
@@ -183,7 +182,7 @@
                 android:id="@+id/ichooseroom"
                 android:layout_marginTop="100dp"
                 android:text="Choose your Room"
-                android:onClick="ChooseYourRoom"
+
                 android:background="@color/blue"
                 android:textColor="@android:color/white"
                 android:textAllCaps="false"/>

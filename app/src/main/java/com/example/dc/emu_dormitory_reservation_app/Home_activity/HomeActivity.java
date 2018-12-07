@@ -134,6 +134,7 @@ public class HomeActivity  extends navigational_drawer {
         PopulaDorms();
         AllDormitoriesSearchAPI();
 
+
          mDrawer.addView(contentView, 0);
     }
 
