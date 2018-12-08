@@ -143,6 +143,12 @@
             </LinearLayout>
 
         </android.support.v7.widget.CardView>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="NOTE: Make Sure You Snap the Photo Clearly"
+            android:layout_marginTop="10dp"
+            android:textColor="#FF0000"/>
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_marginTop="10dp"
@@ -155,6 +161,7 @@
             <ImageView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
+                android:id="@+id/iuploadpaymentphoto"
                 android:textAlignment="center"
                 android:src="@drawable/ic_insert_photo"/>
 
@@ -178,6 +185,7 @@
             android:text="Upload payment confirmation"
             android:textAllCaps="false"
             android:textColor="@android:color/white"
+            android:layout_marginBottom="25dp"
             android:layout_marginTop="50dp"/>
     </LinearLayout>
     </ScrollView>

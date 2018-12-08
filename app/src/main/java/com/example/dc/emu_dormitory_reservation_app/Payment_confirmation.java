@@ -1,14 +1,24 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
+import android.Manifest;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,11 +37,20 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+import static android.os.Environment.getExternalStoragePublicDirectory;
+
 public class Payment_confirmation extends AppCompatActivity {
 
     private RequestQueue mQueue;
     private TextView mbookingNo, mroombook, mdormitoryname, mconfexpdate, mbookingDate, mbookingStatus;
     private Button muploadpayment;
+    private ImageView muploadpaymentphoto;
+    String pathToFile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +73,7 @@ public class Payment_confirmation extends AppCompatActivity {
 
         );
 
+        muploadpaymentphoto = findViewById(R.id.iuploadpaymentphoto);
         mbookingDate = findViewById(R.id.ibookingdate);
         mbookingNo = findViewById(R.id.ibookingnumber);
         mconfexpdate = findViewById(R.id.icomfirmationexperydate);
@@ -61,6 +81,18 @@ public class Payment_confirmation extends AppCompatActivity {
         mroombook = findViewById(R.id.iroombooked);
         mbookingStatus = findViewById(R.id.ibookingstatus);
         muploadpayment = findViewById(R.id.iuploadpayment);
+
+
+        if (Build.VERSION.SDK_INT >= 23){
+            requestPermissions(new String[]{android.Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE}, 2);
+        }
+
+        muploadpaymentphoto.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dispatchpictureTakerAction();
+            }
+        });
 
         muploadpayment.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,6 +117,47 @@ public class Payment_confirmation extends AppCompatActivity {
 
 
     }
+
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK){
+            Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
+            muploadpaymentphoto.setImageBitmap(bitmap);
+        }
+    }
+
+    private void dispatchpictureTakerAction() {
+        Intent takePict = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        if (takePict.resolveActivity(getPackageManager()) != null){
+            File photoFile =null;
+            photoFile = createPhotoFile();
+
+            if (photoFile != null){
+                pathToFile = photoFile.getAbsolutePath();
+                Uri photoURI = FileProvider.getUriForFile(Payment_confirmation.this, "com.examples.android.fileprovider", photoFile);
+                takePict.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePict, 1);
+            }
+        }
+    }
+
+    private File createPhotoFile() {
+        String name = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        File storageDir = getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File image = null;
+        try{
+            image = File.createTempFile(name, ".jpg", storageDir);
+        }catch (IOException e){
+            Log.d("mylog", "Excep :" + e.toString());
+        }
+        return image;
+    }
+
+
+
 
     private void MyBooking() {
         String url = "http://35.204.232.129/api/BookingByBookingId/5";
