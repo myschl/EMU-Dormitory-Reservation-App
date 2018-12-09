@@ -16,11 +16,11 @@
             android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Notifications" />
-       <!-- <item
-            android:id="@+id/nav_saved_items"
+       <item
+            android:id="@+id/nav_sign_in"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Saved items" />
-        <item
+            android:title="Sign in" />
+        <!-- <item
             android:id="@+id/nav_deals"
             android:icon="@drawable/ic_menu_manage"
             android:title="Deals" />
@@ -52,6 +52,9 @@
                 android:id="@+id/nav_share"
 
                 android:title="Share" />
+            <item
+                android:id="@+id/nav_RateApp"
+                android:title="Rate App"/>
             <item
                 android:id="@+id/nav_Appfeedback"
 

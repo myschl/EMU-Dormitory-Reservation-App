@@ -2,6 +2,7 @@ package com.example.dc.emu_dormitory_reservation_app;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -62,6 +63,16 @@ public class Get_help extends AppCompatActivity {
                                 // handle the user after clicking on yes button
                                 Toast.makeText(Get_help.this, "Your successfully redirected to our page", Toast.LENGTH_SHORT).show();
                                 //startActivity(new Intent(Room_detail.this, booking_tabbed_activity.class));
+
+                                SendMail();
+
+                                /*Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("http://www.gmail.com"));
+                                Intent chooser = Intent.createChooser(intent, "Open Website Using...");
+                                if (intent.resolveActivity(getPackageManager()) != null){
+                                    startActivity(chooser);
+                                }*/
+
                             }
                         }).setNegativeButton("Cancel", null);
                 AlertDialog alertDialog = builder.create();
@@ -81,6 +92,13 @@ public class Get_help extends AppCompatActivity {
                                 // handle the user after clicking on yes button
                                 Toast.makeText(Get_help.this, "Your successfully redirected to our page", Toast.LENGTH_SHORT).show();
                                 //startActivity(new Intent(Room_detail.this, booking_tabbed_activity.class));
+
+                                Intent intent = new Intent(Intent.ACTION_VIEW);
+                                intent.setData(Uri.parse("http://35.204.232.129/debug/SearchDormMobileApp#"));
+                                Intent chooser = Intent.createChooser(intent, "Open Website Using...");
+                                if (intent.resolveActivity(getPackageManager()) != null){
+                                    startActivity(chooser);
+                                }
                             }
                         }).setNegativeButton("Cancel", null);
                 AlertDialog alertDialog = builder.create();
@@ -88,6 +106,15 @@ public class Get_help extends AppCompatActivity {
 
             }
         });
+    }
+
+    private void SendMail() {
+        String reciepientt = "abdullahiismail33@gmail.com";
+        String[] receipient = reciepientt.split(",");
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.putExtra(Intent.EXTRA_EMAIL, receipient);
+        intent.setType("message/rfc822");
+        startActivity(Intent.createChooser(intent, "Choose an Email Client"));
     }
 
     public void payment(View view) {

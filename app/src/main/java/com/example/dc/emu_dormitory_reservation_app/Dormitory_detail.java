@@ -37,6 +37,7 @@ public class Dormitory_detail extends AppCompatActivity {
     private String FullDescription;
     private ArrayList<DormitoryDetailFacilitiesModel> dormfacilities = new ArrayList<>();
     private ArrayList<Choose_room_class> DormitoryRooms = new ArrayList<>();
+    //private String DormId = "null";
 
 
     @Override
@@ -72,14 +73,27 @@ public class Dormitory_detail extends AppCompatActivity {
                 }
 
         );
+
+        String DormId=null;
+
+        Bundle bundle = getIntent().getExtras();
+        DormId = bundle .getString("DormId");
+
+
+
         mchooseroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent i=new Intent(Dormitory_detail.this,Choose_room.class);
                 Bundle bundle=new Bundle();
-                bundle.putSerializable("allrooms",DormitoryRooms);
+                bundle.putSerializable("DormId", DormitoryRooms);
                 i.putExtras(bundle);
                 startActivity(i);
+
+                /*Intent in = new Intent(Dormitory_detail.this,Choose_room.class);
+                in.putExtra("DormId", DormId);
+                startActivity(in);*/
+
             }
         });
 
@@ -101,12 +115,12 @@ public class Dormitory_detail extends AppCompatActivity {
 
 
         //initImageBitmaps();
-        DormitoryDetailsApi();
-        DormitoryRoomss();
+        DormitoryDetailsApi(DormId);
+        DormitoryRoomss(DormId);
     }
 
-    private void DormitoryRoomss() {
-        String url = "http://35.204.232.129/api/GetRoomByDormitoryId/5";
+    private void DormitoryRoomss(String dormId) {
+        String url = "http://35.204.232.129/api/GetRoomByDormitoryId/"+dormId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -129,7 +143,9 @@ public class Dormitory_detail extends AppCompatActivity {
                                 String roomPrice = rooms.getString("RoomPrice");
                                 String roomid = rooms.getString("RoomId");
                                 String dormid = rooms.getString("DormitoryId");
-                                DormitoryRooms.add(new Choose_room_class(image, name, bedtype, roomsize, roomqota, roomPrice));
+
+                                    DormitoryRooms.add(new Choose_room_class(image, name, bedtype, roomsize, roomqota, roomPrice));
+
                             }
 
                         } catch (JSONException e) {
@@ -147,9 +163,9 @@ public class Dormitory_detail extends AppCompatActivity {
         mQueue.add(request);
     }
 
-    private void DormitoryDetailsApi() {
+    private void DormitoryDetailsApi(String dormId) {
 
-        String url = "https://api.myjson.com/bins/8r2gy";
+        String url = "http://35.204.232.129/api/GetDormitoryDetailById/"+dormId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override

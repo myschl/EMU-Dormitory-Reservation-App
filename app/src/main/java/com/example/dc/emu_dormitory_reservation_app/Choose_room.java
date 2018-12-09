@@ -10,16 +10,28 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
 public class Choose_room extends AppCompatActivity {
+    private RequestQueue mQueue;
     RecyclerView recyclerView;
     Choose_room_Adapter choose_room_adapter;
     ArrayList<Choose_room_class> recycle_items = new ArrayList<>();
     ArrayList<Choose_room_class> RoomDetailList = new ArrayList<>();
     private Button mselectRoom;
+    private String DormId = "null";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +67,63 @@ public class Choose_room extends AppCompatActivity {
         });*/
 
 
-        Bundle bundleobje = getIntent().getExtras();
-        recycle_items=(ArrayList<Choose_room_class>) bundleobje.getSerializable("allrooms");
+        /*Bundle bundle = getIntent().getExtras();
+        DormId = bundle .getString("DormId");*/
 
+        Bundle bundleobje=getIntent().getExtras();
+        recycle_items=(ArrayList<Choose_room_class>) bundleobje.getSerializable("DormId");
+
+
+        //DormitoryRoomss();
         MyFun();
         //RoomDetailAPI();
 
     }
+
+
+    /*private void DormitoryRoomss() {
+        String url = "http://35.204.232.129/api/GetRoomByDormitoryId/"+DormId;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject JO = response.getJSONObject("Body");
+
+
+                            // for Rooms
+                            JSONArray JAI = JO.getJSONArray("Rooms");
+
+                            for (int i=0; i<JAI.length(); i++) {
+                                JSONObject rooms = JAI.getJSONObject(i);
+                                String image = rooms.getString("pictureUrl");
+                                String name = rooms.getString("dormitoryName");
+                                String bedtype = rooms.getString("bedType");
+                                String roomsize = rooms.getString("roomSize");
+                                String roomqota = rooms.getString("roomQuotaRemaining");
+                                String roomPrice = rooms.getString("RoomPrice");
+                                String roomid = rooms.getString("RoomId");
+                                String dormid = rooms.getString("DormitoryId");
+
+                                recycle_items.add(new Choose_room_class(image, name, bedtype, roomsize, roomqota, roomPrice));
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mQueue = Volley.newRequestQueue(Choose_room.this);
+        mQueue.add(request);
+    }*/
 
    /* private void RoomDetailAPI() {
 

@@ -1,6 +1,7 @@
 package com.example.dc.emu_dormitory_reservation_app.search_results_activity;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.example.dc.emu_dormitory_reservation_app.Dormitory_detail;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsDataModel2;
 
@@ -32,7 +34,7 @@ public class SearchResultsListRecycleViewAdapter extends RecyclerView.Adapter<Se
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Log.d(TAG, "onCreateViewHolder: ");
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycleview_search_results_list, parent, false);
-        ViewHolder holder = new ViewHolder(view);
+        ViewHolder holder = new ViewHolder(view, mContext, mSearchResultsListDataModel);
 
         return holder;
     }
@@ -71,7 +73,7 @@ public class SearchResultsListRecycleViewAdapter extends RecyclerView.Adapter<Se
         return mSearchResultsListDataModel.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         ImageView imageViewDormitoryImage;
         TextView textViewDormitoryName;
@@ -81,8 +83,17 @@ public class SearchResultsListRecycleViewAdapter extends RecyclerView.Adapter<Se
         TextView textViewRatingStatus;
         RelativeLayout ralativeLayoutRateBookings2;
 
-        public ViewHolder(View itemView) {
+
+        ArrayList<SearchResultsListDataModel> DormId = new ArrayList<SearchResultsListDataModel>();
+        Context ctx;
+
+        public ViewHolder(View itemView, Context ctx, ArrayList<SearchResultsListDataModel> DormId) {
             super(itemView);
+
+            this.DormId = DormId;
+            this.ctx = ctx;
+            itemView.setOnClickListener(this);
+
             imageViewDormitoryImage = (ImageView) itemView.findViewById(R.id.imageViewDormitoryImage);
             textViewDormitoryName =  itemView.findViewById(R.id.textViewDormitoryName);
             textViewDormitoryDescription = itemView.findViewById(R.id.textViewDormitoryDescription);
@@ -90,6 +101,17 @@ public class SearchResultsListRecycleViewAdapter extends RecyclerView.Adapter<Se
             textViewRatingValue = itemView.findViewById(R.id.textViewRatingValue);
             textViewRatingStatus = itemView.findViewById(R.id.textViewRatingStatus);
             ralativeLayoutRateBookings2 = itemView.findViewById(R.id.ralativeLayoutRateBookings2);
+        }
+
+        @Override
+        public void onClick(View v) {
+
+            int position = getAdapterPosition();
+            SearchResultsListDataModel dormId = this.DormId.get(position);
+            Intent intent = new Intent(this.ctx, Dormitory_detail.class);
+            intent.putExtra("DormId", dormId.getDormitoryId());
+            this.ctx.startActivity(intent);
+
         }
     }
 }

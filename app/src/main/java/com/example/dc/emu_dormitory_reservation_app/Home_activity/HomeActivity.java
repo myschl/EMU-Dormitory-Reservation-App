@@ -166,9 +166,9 @@ public class HomeActivity  extends navigational_drawer {
                                 String dormdescription = dormitories.getString("DormitoryDescription");
                                 String ratingnumber = dormitories.getString("RatingNumber");
                                 String ratingtext = dormitories.getString("RatingText");
-                                String DormitoriTd = dormitories.getString("DormitoryId");
+                                String DormitoryId = dormitories.getString("DormitoryId");
 
-                                SearchAllDorms.add(new SearchResultsListDataModel(DormitoryName, dormdescription, ratingnumber, ratingtext, picture,DormitoriTd));
+                                SearchAllDorms.add(new SearchResultsListDataModel(DormitoryName, dormdescription, ratingnumber, ratingtext, picture,DormitoryId));
                                 Log.d(TAG, "onResponse: Add to the SearchAllDorm array");
                             }
 
@@ -225,7 +225,7 @@ public class HomeActivity  extends navigational_drawer {
                                 String Deals = booking.getString("DealsText");
                                 String DormitoriTd = booking.getString("DormitoryId");
 
-                                mHomeActivityDataModelsHighestRatedDorms.add(new HomeActivityDataModel(DormitoryName, Deals, 3, "$", true, picture));
+                                mHomeActivityDataModelsHighestRatedDorms.add(new HomeActivityDataModel(DormitoryName, Deals, 3, "$", true, picture, DormitoriTd));
                                // mHomeActivityDataModelsHighestRatedDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
                             }
 
@@ -263,7 +263,7 @@ public class HomeActivity  extends navigational_drawer {
                                 String Deals = booking.getString("DealsText");
                                 String DormitoriTd = booking.getString("DormitoryId");
 
-                                mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, 3, "$", true, picture));
+                                mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, 3, "$", true, picture, DormitoriTd));
 
                                 //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
 

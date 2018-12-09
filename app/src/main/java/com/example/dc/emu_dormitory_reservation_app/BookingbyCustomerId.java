@@ -11,8 +11,9 @@ public class BookingbyCustomerId implements Serializable {
     private String DormitoryImageUrl;
     private String RatingNumber;
     private String RatingText;
+    private String DormitoryId;
 
-    public BookingbyCustomerId(String dormitoryName, String dormitoryDescription, String dateOfBooking, String checkInDate, String bookingStatus, String dormitoryImageUrl, String ratingNumber, String ratingText) {
+   /* public BookingbyCustomerId(String dormitoryName, String dormitoryDescription, String dateOfBooking, String checkInDate, String bookingStatus, String dormitoryImageUrl, String ratingNumber, String ratingText) {
         DormitoryName = dormitoryName;
         DormitoryDescription = dormitoryDescription;
         DateOfBooking = dateOfBooking;
@@ -21,6 +22,18 @@ public class BookingbyCustomerId implements Serializable {
         DormitoryImageUrl = dormitoryImageUrl;
         RatingNumber = ratingNumber;
         RatingText = ratingText;
+    }*/
+
+    public BookingbyCustomerId(String dormitoryName, String dormitoryDescription, String dateOfBooking, String checkInDate, String bookingStatus, String dormitoryImageUrl, String ratingNumber, String ratingText, String dormitoryId) {
+        DormitoryName = dormitoryName;
+        DormitoryDescription = dormitoryDescription;
+        DateOfBooking = dateOfBooking;
+        CheckInDate = checkInDate;
+        BookingStatus = bookingStatus;
+        DormitoryImageUrl = dormitoryImageUrl;
+        RatingNumber = ratingNumber;
+        RatingText = ratingText;
+        DormitoryId = dormitoryId;
     }
 
     public String getDormitoryName() {
@@ -85,5 +98,13 @@ public class BookingbyCustomerId implements Serializable {
 
     public void setRatingText(String ratingText) {
         RatingText = ratingText;
+    }
+
+    public String getDormitoryId() {
+        return DormitoryId;
+    }
+
+    public void setDormitoryId(String dormitoryId) {
+        DormitoryId = dormitoryId;
     }
 }

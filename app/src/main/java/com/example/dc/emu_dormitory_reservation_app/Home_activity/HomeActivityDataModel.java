@@ -7,14 +7,25 @@ public class HomeActivityDataModel {
     private String DiscountCurrency;
     private Boolean DealExists;
     private String DormitoryImageUrl;
+    private String DormitoryId;
 
-    public HomeActivityDataModel(String dormitoryName, String dormitoryDiscountsStartsAt, int discountAmountStratsAt, String discountCurrency, Boolean dealExists, String dormitoryImageUrl) {
+   /* public HomeActivityDataModel(String dormitoryName, String dormitoryDiscountsStartsAt, int discountAmountStratsAt, String discountCurrency, Boolean dealExists, String dormitoryImageUrl) {
         DormitoryName = dormitoryName;
         DormitoryDiscountsStartsAt = dormitoryDiscountsStartsAt;
         DiscountAmountStratsAt = discountAmountStratsAt;
         DiscountCurrency = discountCurrency;
         DealExists = dealExists;
         DormitoryImageUrl = dormitoryImageUrl;
+    }*/
+
+    public HomeActivityDataModel(String dormitoryName, String dormitoryDiscountsStartsAt, int discountAmountStratsAt, String discountCurrency, Boolean dealExists, String dormitoryImageUrl, String dormitoryId) {
+        DormitoryName = dormitoryName;
+        DormitoryDiscountsStartsAt = dormitoryDiscountsStartsAt;
+        DiscountAmountStratsAt = discountAmountStratsAt;
+        DiscountCurrency = discountCurrency;
+        DealExists = dealExists;
+        DormitoryImageUrl = dormitoryImageUrl;
+        DormitoryId = dormitoryId;
     }
 
     public String getDormitoryName() {
@@ -63,5 +74,13 @@ public class HomeActivityDataModel {
 
     public void setDormitoryImageUrl(String dormitoryImageUrl) {
         DormitoryImageUrl = dormitoryImageUrl;
+    }
+
+    public String getDormitoryId() {
+        return DormitoryId;
+    }
+
+    public void setDormitoryId(String dormitoryId) {
+        DormitoryId = dormitoryId;
     }
 }

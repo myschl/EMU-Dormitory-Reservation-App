@@ -1,6 +1,8 @@
 package com.example.dc.emu_dormitory_reservation_app.Navigational_drawer;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -31,6 +33,7 @@ import com.example.dc.emu_dormitory_reservation_app.Get_help;
 import com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity.Main2Activity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.bookingsDataModel;
 import com.example.dc.emu_dormitory_reservation_app.search_results_activity.SearchResultsListDataModel;
@@ -113,7 +116,7 @@ textView_nav_username = findViewById(R.id.nav_username);
                                 String CheckInDate = booking.getString("CheckInDate");
                                 String BookingStatus = booking.getString("BookingStatus");
 
-                                alldorms.add(new BookingbyCustomerId(Dormitoryname, DormitoryDescription, BookingDate, CheckInDate, BookingStatus,PictureUrl,RatingNumber,RatingText));
+                                alldorms.add(new BookingbyCustomerId(Dormitoryname, DormitoryDescription, BookingDate, CheckInDate, BookingStatus,PictureUrl,RatingNumber,RatingText, DormitoryId));
                             }
 
                         } catch (JSONException e) {
@@ -180,11 +183,20 @@ textView_nav_username = findViewById(R.id.nav_username);
         } else if (id == R.id.nav_notifications) {
             //startActivity(new Intent(navigational_drawer.this, booking_tabbed_activity.class));
             Toast.makeText(navigational_drawer.this, "Up comming feature", Toast.LENGTH_SHORT).show();
-        } /*else if (id == R.id.nav_saved_items) {
-            startActivity(new Intent(navigational_drawer.this, booking_tabbed_activity.class));
-        } else if (id == R.id.nav_deals) {
-            startActivity(new Intent(navigational_drawer.this, booking_tabbed_activity.class));
-        } else if (id == R.id.nav_coupons) {
+        } else if (id == R.id.nav_RateApp) {
+            try {
+                Uri uri = Uri.parse("market://details?id="+getPackageName());
+                Intent gotoAppstore = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(gotoAppstore);
+
+            }catch (ActivityNotFoundException e){
+                Uri uri = Uri.parse("http://play.google.com/store/apps/details?id="+getPackageName());
+                Intent gotoAppstore = new Intent(Intent.ACTION_VIEW, uri);
+                startActivity(gotoAppstore);
+            }
+        } else if (id == R.id.nav_sign_in) {
+            startActivity(new Intent(navigational_drawer.this, Sign_in.class));
+        } /*else if (id == R.id.nav_coupons) {
             startActivity(new Intent(navigational_drawer.this, booking_tabbed_activity.class));
         } else if (id == R.id.nav_recently_viewd) {
             startActivity(new Intent(navigational_drawer.this, booking_tabbed_activity.class));
