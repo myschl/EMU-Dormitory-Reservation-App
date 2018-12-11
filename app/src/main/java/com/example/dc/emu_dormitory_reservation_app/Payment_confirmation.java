@@ -52,6 +52,8 @@ public class Payment_confirmation extends AppCompatActivity {
     private ImageView muploadpaymentphoto;
     String pathToFile;
 
+    Integer REQUEST_CAMERA=0, SELECT_FILE=1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,7 +92,7 @@ public class Payment_confirmation extends AppCompatActivity {
         muploadpaymentphoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                dispatchpictureTakerAction();
+                SelectImage();
             }
         });
 
@@ -119,15 +121,53 @@ public class Payment_confirmation extends AppCompatActivity {
     }
 
 
+    private void SelectImage(){
+        final CharSequence[] items = {"Camera", "Gallery", "Cancel"};
+        AlertDialog.Builder builder = new AlertDialog.Builder(Payment_confirmation.this);
+        builder.setTitle("Add Image From");
+        builder.setItems(items, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                if (items[which].equals("Camera")){
+                    dispatchpictureTakerAction();
+
+                }else if (items[which].equals("Gallery")){
+                    Intent intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                    intent.setType("image/*");
+                    startActivityForResult(intent.createChooser(intent, "SelectFile"), SELECT_FILE);
+
+                }else if (items[which].equals("Cancel")){
+                    dialog.dismiss();
+
+                }
+            }
+        });
+        builder.show();
+    }
+
+
+
+
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK){
-            Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
-            muploadpaymentphoto.setImageBitmap(bitmap);
+            if (requestCode == REQUEST_CAMERA){
+                Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
+                muploadpaymentphoto.setImageBitmap(bitmap);
+            }
+            else if (requestCode == SELECT_FILE){
+                Uri selectedImage = data.getData();
+                muploadpaymentphoto.setImageURI(selectedImage);
+            }
+
         }
     }
+
+
+
+
 
     private void dispatchpictureTakerAction() {
         Intent takePict = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
@@ -139,7 +179,7 @@ public class Payment_confirmation extends AppCompatActivity {
                 pathToFile = photoFile.getAbsolutePath();
                 Uri photoURI = FileProvider.getUriForFile(Payment_confirmation.this, "com.examples.android.fileprovider", photoFile);
                 takePict.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
-                startActivityForResult(takePict, 1);
+                startActivityForResult(takePict, REQUEST_CAMERA);
             }
         }
     }
