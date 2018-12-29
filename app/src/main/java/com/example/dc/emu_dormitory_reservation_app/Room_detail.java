@@ -1,8 +1,10 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -16,24 +18,33 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivityDataModel;
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
+import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Room_detail extends AppCompatActivity {
+    //private static Rate_your_stay.PostCommentResponseListener mPostCommentResponse;
     private RequestQueue mQueue;
     private ArrayList fimage = new ArrayList();
     private ArrayList fname = new ArrayList();
@@ -44,13 +55,29 @@ public class Room_detail extends AppCompatActivity {
     private TextView mqota, mprice;
    // int images[] = {R.drawable.akdeniz_1, R.drawable.akdeniz_2, R.drawable.akdeniz_3, R.drawable.akdeniz_2};
     private ArrayList<RoomDetailImageModel> images = new ArrayList<>();
+
+    public static ArrayList<RoomQandPModel> roomQandP = new ArrayList<>();
+    public static ArrayList<RoomDetailImageModel> imagess = new ArrayList<>();
+    public static ArrayList<RoomDetailModel1> facilitiess = new ArrayList<>();
+
+    private String bookingId, currentDate, currentTime, UserName, UserId, dormitoryId, RoomId;
+
     MyCustomPagerAdapter myCustomPagerAdapter;
+    public String roomId, dormId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_room_detail);
-        mbookroom = findViewById(R.id.ibookroom);
+
+
+
+
+        Bundle bundle = getIntent().getExtras();
+        roomId = bundle .getString("Roomid");
+        dormId = bundle.getString("DormId");
+
+
         Toolbar toolbar = (Toolbar)findViewById(R.id.room_detail);
         toolbar.setTitle("Room");
         //toolbar.setSubtitle("welcome");
@@ -71,36 +98,172 @@ public class Room_detail extends AppCompatActivity {
 
         mqota = findViewById(R.id.iqota);
         mprice = findViewById(R.id.iprice);
+        mbookroom = findViewById(R.id.ibookroom);
+
+
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat format = new SimpleDateFormat("HH:mm:ss");
+        currentTime = format.format(calendar.getTime());
+        currentDate = DateFormat.getInstance().format(calendar.getTime());
+
+        bookingId ="1";
+        UserId = "11";
+        UserName = "Abdul";
+        dormitoryId = dormId;
+        RoomId = roomId;
+
+
+
 
         // booking dialog
         mbookroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(Room_detail.this);
-                builder.setMessage("Are you sure you want to book this room")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setMessage("Are you sure you want to book this room");
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         // handle the user after clicking on yes button
+
+
+                        postNewBooking();
+
+
                         Toast.makeText(Room_detail.this, "Your booking is successful", Toast.LENGTH_SHORT).show();
-                        startActivity(new Intent(Room_detail.this, booking_tabbed_activity.class));
+                        startActivity(new Intent(Room_detail.this, HomeActivity.class));
                     }
-                }).setNegativeButton("No", null);
+                });
+                builder.setNegativeButton("No", null);
                 AlertDialog alertDialog = builder.create();
                 alertDialog.show();
 
             }
         });
 
+
+
+
+
+        // getting room detail from choose room activity Adapter
+/*
+        Bundle bundleobje=getIntent().getExtras();
+        roomQandP=(ArrayList<RoomQandPModel>) bundleobje.getSerializable("roomQandP");
+        imagess =(ArrayList<RoomDetailImageModel>) bundleobje.getSerializable("images");
+        facilitiess =(ArrayList<RoomDetailModel1>) bundleobje.getSerializable("facilities");
+
+        mqota.setText();
+        mprice.setText(roomQandP.get(0).getRoomprice());
+        String RoomId = roomQandP.get(0).getRoomId();*/
+
+
+
+
         RoomDetailsAPI();
-        Myfun();
+        //Myfun();
         fRecycler();
+
 
     }
 
+
+
+    /*public void postNewBooking( ){
+       // mPostCommentResponse.requestStarted();
+        RequestQueue queue = Volley.newRequestQueue(Room_detail.this);
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://35.204.232.129/api/CreateBooking", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //mPostCommentResponse.requestCompleted();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mPostCommentResponse.requestEndedWithError(error);
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("bookingId", *//*bookingId.toString()*//* "hehdh");
+                params.put("currentDate", *//*currentDate.toString()*//* "hdcdan");
+                params.put("currentTime", *//*CurrentTime.toString()*//* "jddncnc");
+                params.put("userName", *//*UserName.toString()*//* "jdjdcnjcn");
+                params.put("userId", *//*userId.toString()*//* "hjdajdn");
+                params.put("dormitoryId", *//*dormitoryId.toString()*//* "jsnxnc");
+                params.put("roomId", *//*roomId.toString()*//* "jdmnczm ");
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        queue.add(sr);
+    }*/
+
+    public interface PostCommentResponseListener {
+        public void requestStarted();
+        public void requestCompleted();
+        public void requestEndedWithError(VolleyError error);
+    }
+
+
+
+
+    public void postNewBooking( ){
+
+        // mPostCommentResponse.requestStarted();
+        RequestQueue queue = Volley.newRequestQueue(Room_detail.this);
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://35.204.232.129/api/CreateBooking", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //mPostCommentResponse.requestCompleted();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mPostCommentResponse.requestEndedWithError(error);
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+
+                Map<String,String> params = new HashMap<String, String>();
+
+                params.put("bookingId", bookingId /*"hehdh"*/);
+                params.put("currentDate", currentDate /*"hdcdan"*/);
+                params.put("currentTime", currentTime /*"jddncnc"*/);
+                params.put("userName", UserName /*"jdjdcnjcn"*/);
+                params.put("userId", UserId /*"hjdajdn"*/);
+                params.put("dormitoryId", dormId /*"jsnxnc"*/);
+                params.put("roomId", RoomId /*"jdmnczm "*/);
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
+
+
+
     private void RoomDetailsAPI() {
 
-        String url = "http://35.204.232.129/api/GetRoomById/5";
+        //String url = "https://api.myjson.com/bins/19pu48";
+        String url = "http://35.204.232.129/api/GetRoomById/"+roomId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -109,7 +272,7 @@ public class Room_detail extends AppCompatActivity {
 
                         //Room id, qota and price
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
 
                             String RoomId = JO.getString("roomId");
@@ -127,8 +290,6 @@ public class Room_detail extends AppCompatActivity {
                                 String image = JAI.getString(i);
                                 images.add(new RoomDetailImageModel(image));
 
-                                //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
-
                             }
 
 
@@ -143,9 +304,6 @@ public class Room_detail extends AppCompatActivity {
 
 
                                 facilities.add(new RoomDetailModel1(picture, name, facilityId));
-
-                                //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
-
 
                             }
 
@@ -163,6 +321,7 @@ public class Room_detail extends AppCompatActivity {
         mQueue = Volley.newRequestQueue(Room_detail.this);
         mQueue.add(request);
     }
+
 
     private void fRecycler() {
 
@@ -186,13 +345,13 @@ public class Room_detail extends AppCompatActivity {
         fname.add("TV");*/
 
         RecyclerView recyclerView = findViewById(R.id.room_detail_recycleview);
-        Room_detail_facilities_Adapter adapter = new Room_detail_facilities_Adapter(this, facilities);
+        Room_detail_facilities_Adapter adapter = new Room_detail_facilities_Adapter(this, facilitiess);
         recyclerView.setAdapter(adapter);
         LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(Room_detail.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManagaer);
 
         RecyclerView recyclerView1 = findViewById(R.id.iroomdetailimagerecycler);
-        RoomDetailImagesAdapter adapter1 = new RoomDetailImagesAdapter(this, images );
+        RoomDetailImagesAdapter adapter1 = new RoomDetailImagesAdapter(this, imagess );
         recyclerView1.setAdapter(adapter1);
         LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(Room_detail.this, LinearLayoutManager.HORIZONTAL, false);
         recyclerView1.setLayoutManager(horizontalLayoutManagaer1);
@@ -200,11 +359,11 @@ public class Room_detail extends AppCompatActivity {
 
     }
 
-    private void Myfun() {
+  /*  private void Myfun() {
 
-        /*viewPager = (ViewPager)findViewById(R.id.viewPager);
+        *//*viewPager = (ViewPager)findViewById(R.id.viewPager);
 
         //myCustomPagerAdapter = new MyCustomPagerAdapter(Room_detail.this, images);
-        viewPager.setAdapter(myCustomPagerAdapter);*/
-    }
+        viewPager.setAdapter(myCustomPagerAdapter);*//*
+    }*/
 }

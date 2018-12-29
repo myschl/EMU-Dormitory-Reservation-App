@@ -12,6 +12,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.dc.emu_dormitory_reservation_app.Filter_by_activity.Filter_by;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
 
@@ -53,6 +54,7 @@ public class search_result_activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Toast.makeText(search_result_activity.this, "I have been summoned Filter", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(search_result_activity.this,Filter_by.class));
             }
         });
 

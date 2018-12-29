@@ -57,6 +57,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/ipricemin"
                             android:text="$ 0 "
                             android:textColor="@color/blue"
                             android:textSize="17dp" />
@@ -70,6 +71,7 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/ipricemax"
                             android:text="$ 5000"
                             android:textColor="@color/blue"
                             android:textSize="17dp" />
@@ -85,8 +87,8 @@
                         android:id="@+id/rangeSeekbar"
                         android:layout_width="fill_parent"
                         android:layout_height="wrap_content"
-                        app:absoluteMaxValue="5000"
-                        app:absoluteMinValue="0" />
+                        app:absoluteMaxValue="0"
+                        app:absoluteMinValue="5000" />
 
 
                 </LinearLayout>

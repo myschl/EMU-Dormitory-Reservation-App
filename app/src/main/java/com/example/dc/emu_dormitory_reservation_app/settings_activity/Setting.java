@@ -87,13 +87,13 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
                             // for currency
 
-                            String CurrencyName = JO.getString("CurrencyName");
-                            String CurrencyId = JO.getString("CurrencyId");
-                            String CurrencyRate = JO.getString("CurrencyRate");
+                            String CurrencyName = JO.getString("currencyName");
+                            String CurrencyId = JO.getString("currencyId");
+                            String CurrencyRate = JO.getString("currencyRate");
 
 
 

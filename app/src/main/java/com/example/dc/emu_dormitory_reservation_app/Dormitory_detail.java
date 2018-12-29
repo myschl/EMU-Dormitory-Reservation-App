@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,13 +32,14 @@ public class Dormitory_detail extends AppCompatActivity {
     private RequestQueue mQueue;
     private ArrayList<String>mImageUrl = new ArrayList<>();
     private Button mchooseroom;
+    private WebView mmapview;
     private TextView mdormitorypolicies,mexpandableTextView, mfacilities, mdormpoliciestext, mdormnane, mdormshortdescription;
     //private ExpandableTextView mexpandableTextView;
     private ExpandableLayout mdormfacilitie, mdormpolicies;
     private String FullDescription;
     private ArrayList<DormitoryDetailFacilitiesModel> dormfacilities = new ArrayList<>();
     private ArrayList<Choose_room_class> DormitoryRooms = new ArrayList<>();
-    //private String DormId = "null";
+    private String DormMapId = "b63";
 
 
     @Override
@@ -59,6 +61,7 @@ public class Dormitory_detail extends AppCompatActivity {
         mexpandableTextView = findViewById(R.id.expandable_text);
         mdormnane = findViewById(R.id.idormname);
         mdormshortdescription = findViewById(R.id.idormshortdescription);
+        mmapview = findViewById(R.id.imapview);
 
         ExpandableText();
 
@@ -74,11 +77,16 @@ public class Dormitory_detail extends AppCompatActivity {
 
         );
 
-        String DormId=null;
+       /* String DormId=null;
 
         Bundle bundle = getIntent().getExtras();
-        DormId = bundle .getString("DormId");
+        DormId = bundle .getString("DormId");*/
 
+
+        mmapview.loadUrl("https://www.emu.edu.tr/campusmap?design=empty#b63");
+
+
+        //final String finalDormId = DormId;
 
 
         mchooseroom.setOnClickListener(new View.OnClickListener() {
@@ -91,7 +99,7 @@ public class Dormitory_detail extends AppCompatActivity {
                 startActivity(i);
 
                 /*Intent in = new Intent(Dormitory_detail.this,Choose_room.class);
-                in.putExtra("DormId", DormId);
+                in.putExtra("DormId", finalDormId);
                 startActivity(in);*/
 
             }
@@ -115,11 +123,13 @@ public class Dormitory_detail extends AppCompatActivity {
 
 
         //initImageBitmaps();
-        DormitoryDetailsApi(DormId);
-        DormitoryRoomss(DormId);
+        DormitoryDetailsApi();
+        DormitoryRoomss();
     }
 
-    private void DormitoryRoomss(String dormId) {
+    private void DormitoryRoomss() {
+        Bundle bundle = getIntent().getExtras();
+        String dormId = bundle .getString("DormId");
         String url = "http://35.204.232.129/api/GetRoomByDormitoryId/"+dormId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -127,11 +137,11 @@ public class Dormitory_detail extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
 
                             // for Rooms
-                            JSONArray JAI = JO.getJSONArray("Rooms");
+                            JSONArray JAI = JO.getJSONArray("rooms");
 
                             for (int i=0; i<JAI.length(); i++) {
                                 JSONObject rooms = JAI.getJSONObject(i);
@@ -140,11 +150,11 @@ public class Dormitory_detail extends AppCompatActivity {
                                 String bedtype = rooms.getString("bedType");
                                 String roomsize = rooms.getString("roomSize");
                                 String roomqota = rooms.getString("roomQuotaRemaining");
-                                String roomPrice = rooms.getString("RoomPrice");
-                                String roomid = rooms.getString("RoomId");
-                                String dormid = rooms.getString("DormitoryId");
+                                String roomPrice = rooms.getString("roomPrice");
+                                String roomid = rooms.getString("roomId");
+                                String dormid = rooms.getString("dormitoryId");
 
-                                    DormitoryRooms.add(new Choose_room_class(image, name, bedtype, roomsize, roomqota, roomPrice));
+                                    DormitoryRooms.add(new Choose_room_class(image, name, bedtype, roomsize, roomqota, roomPrice, roomid, dormid));
 
                             }
 
@@ -163,8 +173,10 @@ public class Dormitory_detail extends AppCompatActivity {
         mQueue.add(request);
     }
 
-    private void DormitoryDetailsApi(String dormId) {
+    private void DormitoryDetailsApi() {
 
+        Bundle bundle = getIntent().getExtras();
+        String dormId = bundle .getString("DormId");
         String url = "http://35.204.232.129/api/GetDormitoryDetailById/"+dormId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -172,13 +184,13 @@ public class Dormitory_detail extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
                             //Room id, qota and price
-                            String domname = JO.getString("Dormitoryname");
-                            String dormshortdescription = JO.getString("DormitoryShortDescription");
-                            String dormitotyfulldescription = JO.getString("DormitotyFullDescription");
-                            String dormpolicies = JO.getString("DormitoryPolicies");
+                            String domname = JO.getString("dormitoryname");
+                            String dormshortdescription = JO.getString("dormitoryShortDescription");
+                            String dormitotyfulldescription = JO.getString("dormitotyFullDescription");
+                            String dormpolicies = JO.getString("dormitoryPolicies");
 
                             //mexpandableTextView.setText(dormitotyfulldescription);
                             FullDescription = dormitotyfulldescription;
@@ -190,7 +202,7 @@ public class Dormitory_detail extends AppCompatActivity {
 
 
                             // for facilities
-                            JSONArray JAI = JO.getJSONArray("FacilitiesList");
+                            JSONArray JAI = JO.getJSONArray("facilitiesList");
 
                             for (int i=0; i<JAI.length(); i++) {
                                 JSONObject facility = JAI.getJSONObject(i);
@@ -202,7 +214,7 @@ public class Dormitory_detail extends AppCompatActivity {
 
 
                             // for images
-                            JSONArray JA = JO.getJSONArray("ImageUrls");
+                            JSONArray JA = JO.getJSONArray("imageUrls");
                             for (int i=0; i<JA.length(); i++){
                                 String picture = JA.getString(i);
                                 mImageUrl.add(picture);

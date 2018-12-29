@@ -15,6 +15,7 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -22,25 +23,32 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivityDataModel;
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import static android.os.Environment.getExternalStoragePublicDirectory;
 
@@ -51,6 +59,9 @@ public class Payment_confirmation extends AppCompatActivity {
     private Button muploadpayment;
     private ImageView muploadpaymentphoto;
     String pathToFile;
+    Bitmap bitmapp;
+    String bookingN0;
+    String bitmaptostring;
 
     Integer REQUEST_CAMERA=0, SELECT_FILE=1;
 
@@ -105,8 +116,10 @@ public class Payment_confirmation extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // handle the user after clicking on yes button
+                                String image = bitmaptostring /*"jsdfkfk"*/;
+                                postcomfirmpaymentAPI(image, bookingN0);
                                 Toast.makeText(Payment_confirmation.this, "Your booking receipt is successful send", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Payment_confirmation.this, booking_tabbed_activity.class));
+                                startActivity(new Intent(Payment_confirmation.this, HomeActivity.class));
                             }
                         }).setNegativeButton("Cancel", null);
                 AlertDialog alertDialog = builder.create();
@@ -119,6 +132,48 @@ public class Payment_confirmation extends AppCompatActivity {
 
 
     }
+
+    private void postcomfirmpaymentAPI(final String image, final String bookingN0) {
+        // mPostCommentResponse.requestStarted();
+            RequestQueue queue = Volley.newRequestQueue(Payment_confirmation.this);
+            StringRequest sr = new StringRequest(Request.Method.POST,"http://35.204.232.129/api/PaymentConfirmation", new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    //mPostCommentResponse.requestCompleted();
+                   /* try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        String res = jsonObject.getString("response");
+                        Toast.makeText(Payment_confirmation.this, res, Toast.LENGTH_SHORT).show();
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }*/
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //mPostCommentResponse.requestEndedWithError(error);
+                }
+            }){
+                @Override
+                protected Map<String,String> getParams(){
+                    Map<String,String> params = new HashMap<String, String>();
+                    params.put("pictureUrl", image /*"djjdjdj"*/);
+                    params.put("bookingNo", bookingN0 /*"hjdhd5"*/);
+
+
+                    return params;
+                }
+
+                @Override
+                public Map<String, String> getHeaders() throws AuthFailureError {
+                    Map<String,String> params = new HashMap<String, String>();
+                    params.put("Content-Type","application/x-www-form-urlencoded");
+                    return params;
+                }
+            };
+            queue.add(sr);
+        }
+
 
 
     private void SelectImage(){
@@ -156,10 +211,20 @@ public class Payment_confirmation extends AppCompatActivity {
             if (requestCode == REQUEST_CAMERA){
                 Bitmap bitmap = BitmapFactory.decodeFile(pathToFile);
                 muploadpaymentphoto.setImageBitmap(bitmap);
+                imageToString(bitmap);
+                bitmapp = bitmap;
             }
             else if (requestCode == SELECT_FILE){
                 Uri selectedImage = data.getData();
-                muploadpaymentphoto.setImageURI(selectedImage);
+                try {
+                    Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), selectedImage);
+                    muploadpaymentphoto.setImageBitmap(bitmap);
+                    imageToString(bitmap);
+                    bitmapp = bitmap;
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
             }
 
         }
@@ -197,6 +262,14 @@ public class Payment_confirmation extends AppCompatActivity {
     }
 
 
+    public String imageToString(Bitmap bitmap){
+        ByteArrayOutputStream baos=new  ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
+        byte [] b=baos.toByteArray();
+        String temp=Base64.encodeToString(b, Base64.DEFAULT);
+        bitmaptostring = temp;
+        return temp;
+    }
 
 
     private void MyBooking() {
@@ -207,15 +280,15 @@ public class Payment_confirmation extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject booking = response.getJSONObject("Body");
+                            JSONObject booking = response.getJSONObject("body");
 
                                 String PaymentComfirmationExpDate = booking.getString("paymentConfirmationExpiryDate");
-                                String BookingStatus = booking.getString("BookingStatus");
-                                String BookingDate = booking.getString("BookingDate");
-                                String DormitoryId = booking.getString("DormitoryId");
-                                String RomBooked = booking.getString("RoomBooked");
-                                String DormitoryName = booking.getString("DormitoryName");
-                                String BookingNumber = booking.getString("BookingNo");
+                                String BookingStatus = booking.getString("bookingStatus");
+                                String BookingDate = booking.getString("bookingDate");
+                                String DormitoryId = booking.getString("dormitoryId");
+                                String RomBooked = booking.getString("roomBooked");
+                                String DormitoryName = booking.getString("dormitoryName");
+                                String BookingNumber = booking.getString("bookingNo");
 
                                 mbookingDate.setText(BookingDate);
                                 mconfexpdate.setText(PaymentComfirmationExpDate);
@@ -223,6 +296,9 @@ public class Payment_confirmation extends AppCompatActivity {
                                 mroombook.setText(RomBooked);
                                 mdormitoryname.setText(DormitoryName);
                                 mbookingStatus.setText(BookingStatus);
+
+                            bookingN0 = BookingNumber;
+
 
 
                         } catch (JSONException e) {

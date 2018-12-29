@@ -30,8 +30,12 @@ public class Choose_room extends AppCompatActivity {
     Choose_room_Adapter choose_room_adapter;
     ArrayList<Choose_room_class> recycle_items = new ArrayList<>();
     ArrayList<Choose_room_class> RoomDetailList = new ArrayList<>();
-    private Button mselectRoom;
-    private String DormId = "null";
+
+
+    public static ArrayList<RoomQandPModel> roomQandP = new ArrayList<>();
+    public static ArrayList<RoomDetailImageModel> images = new ArrayList<>();
+    public static ArrayList<RoomDetailModel1> facilities = new ArrayList<>();
+    public static String roomqota, roomprice;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,10 +72,17 @@ public class Choose_room extends AppCompatActivity {
 
 
         /*Bundle bundle = getIntent().getExtras();
-        DormId = bundle .getString("DormId");*/
+        DormId = bundle .getString("DormId");
+
+        finalDormId = DormId;*/
 
         Bundle bundleobje=getIntent().getExtras();
         recycle_items=(ArrayList<Choose_room_class>) bundleobje.getSerializable("DormId");
+
+
+
+       /* Choose_room_class croom = new Choose_room_class();
+        String RoomId = croom.getRoomid();*/
 
 
         //DormitoryRoomss();
@@ -82,7 +93,7 @@ public class Choose_room extends AppCompatActivity {
 
 
     /*private void DormitoryRoomss() {
-        String url = "http://35.204.232.129/api/GetRoomByDormitoryId/"+DormId;
+        String url = "http://35.204.232.129/api/GetRoomByDormitoryId/"+finalDormId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -125,7 +136,72 @@ public class Choose_room extends AppCompatActivity {
         mQueue.add(request);
     }*/
 
-   /* private void RoomDetailAPI() {
+    /*private void RoomDetailAPI() {
+
+        String url = "https://api.myjson.com/bins/19pu48";
+        //String url = "http://35.204.232.129/api/GetRoomById/"+roomId;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        //Room id, qota and price
+                        try {
+                            JSONObject JO = response.getJSONObject("body");
+
+
+                            String RoomId = JO.getString("roomId");
+                            String RoomQota = JO.getString("roomQuota");
+                            String RoomPrice = JO.getString("roomPrice");
+
+                            roomqota = RoomQota;
+                            roomprice = RoomPrice;
+                            roomQandP.add(new RoomQandPModel(RoomQota, RoomPrice));
+
+
+                            // for images
+                            JSONArray JAI = JO.getJSONArray("pictureUrl");
+
+                            for (int i=0; i<JAI.length(); i++){
+                                String image = JAI.getString(i);
+                                images.add(new RoomDetailImageModel(image));
+
+                                //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
+
+                            }
+
+
+                            //for facilities images and names
+                            JSONArray JA = JO.getJSONArray("facilitiesList");
+
+                            for (int i=0; i<JA.length(); i++){
+                                JSONObject room = JA.getJSONObject(i);
+                                String picture = room.getString("pictureUrl");
+                                String name = room.getString("facilityname");
+                                String facilityId = room.getString("facilityId");
+
+
+                                facilities.add(new RoomDetailModel1(picture, name, facilityId));
+
+                                //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
+
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+        mQueue = Volley.newRequestQueue(Choose_room.this);
+        mQueue.add(request);
 
     }*/
 

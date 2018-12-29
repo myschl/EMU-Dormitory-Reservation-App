@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Choose_room_class;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
@@ -26,12 +28,15 @@ import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.Room_detail;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
 import com.example.dc.emu_dormitory_reservation_app.edit_booking_activity.Edit_booking;
+import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Manage_booking extends AppCompatActivity {
     private RequestQueue mQueue;
@@ -72,14 +77,14 @@ public class Manage_booking extends AppCompatActivity {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
                             // for Rooms
 
-                                String Dateofbooking = JO.getString("DateOfBooking");
-                                String Timeofbooking = JO.getString("TimeOfBooking");
-                                String checkindate = JO.getString("CheckInDate");
-                                String checkinsemester = JO.getString("CheckInSemester");
+                                String Dateofbooking = JO.getString("dateOfBooking");
+                                String Timeofbooking = JO.getString("timeOfBooking");
+                                String checkindate = JO.getString("checkInDate");
+                                String checkinsemester = JO.getString("checkInSemester");
 
                                  mdateofbooking.setText(Dateofbooking);
                                  mtimeofbooking.setText(Timeofbooking);
@@ -137,8 +142,9 @@ public class Manage_booking extends AppCompatActivity {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 // handle the user after clicking on yes button
+                                postCancelBooking();
                                 Toast.makeText(Manage_booking.this, "Your booking is successful canceled", Toast.LENGTH_SHORT).show();
-                                startActivity(new Intent(Manage_booking.this, booking_tabbed_activity.class));
+                                //startActivity(new Intent(Manage_booking.this, booking_tabbed_activity.class));
                             }
                         }).setNegativeButton("No", null);
                 AlertDialog alertDialog = builder.create();
@@ -146,6 +152,40 @@ public class Manage_booking extends AppCompatActivity {
 
             }
         });
+    }
+
+    public void postCancelBooking( ){
+        // mPostCommentResponse.requestStarted();
+        RequestQueue queue = Volley.newRequestQueue(Manage_booking.this);
+        StringRequest sr = new StringRequest(Request.Method.POST,"http://35.204.232.129/api/CancelBooking", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //mPostCommentResponse.requestCompleted();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mPostCommentResponse.requestEndedWithError(error);
+            }
+        }){
+            @Override
+            protected Map<String,String> getParams(){
+
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("bookingNo", "4334543");
+                params.put("bookingStatus", "Cancelled");
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String,String> params = new HashMap<String, String>();
+                params.put("Content-Type","application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        queue.add(sr);
     }
 
 }

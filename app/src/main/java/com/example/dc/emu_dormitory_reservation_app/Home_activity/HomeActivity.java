@@ -145,28 +145,24 @@ public class HomeActivity  extends navigational_drawer {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-                        Log.d(TAG, "onResponse: Json resonse returned");
-                        Log.d(TAG, "onResponse: response is"+ response);
+
 
                         try {
                             Log.d(TAG, "onResponse: Entered try");
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
-                            Log.d(TAG, "onResponse: assigned response to JSonObject");
-                            JSONArray JA = JO.getJSONArray("Dormitories");
+                            JSONArray JA = JO.getJSONArray("dormitories");
 
-                            Log.d(TAG, "onResponse: JsonArray assignment");
 
                             for (int i=0; i<JA.length(); i++){
 
                                 JSONObject dormitories = JA.getJSONObject(i);
-                                Log.d(TAG, "onResponse: looping, after jsonOnject");
-                                String picture = dormitories.getString("PictureUrl");
-                                String DormitoryName = dormitories.getString("DormitoryName");
-                                String dormdescription = dormitories.getString("DormitoryDescription");
-                                String ratingnumber = dormitories.getString("RatingNumber");
-                                String ratingtext = dormitories.getString("RatingText");
-                                String DormitoryId = dormitories.getString("DormitoryId");
+                                String picture = dormitories.getString("pictureUrl");
+                                String DormitoryName = dormitories.getString("dormitoryName");
+                                String dormdescription = dormitories.getString("dormitoryDescription");
+                                String ratingnumber = dormitories.getString("ratingNumber");
+                                String ratingtext = dormitories.getString("ratingText");
+                                String DormitoryId = dormitories.getString("dormitoryId");
 
                                 SearchAllDorms.add(new SearchResultsListDataModel(DormitoryName, dormdescription, ratingnumber, ratingtext, picture,DormitoryId));
                                 Log.d(TAG, "onResponse: Add to the SearchAllDorm array");
@@ -214,16 +210,16 @@ public class HomeActivity  extends navigational_drawer {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
-                            JSONArray JA = JO.getJSONArray("Dormitories");
+                            JSONArray JA = JO.getJSONArray("dormitories");
 
                             for (int i=0; i<JA.length(); i++){
                                 JSONObject booking = JA.getJSONObject(i);
-                                String picture = booking.getString("PictureUrl");
-                                String DormitoryName = booking.getString("DormitoryName");
-                                String Deals = booking.getString("DealsText");
-                                String DormitoriTd = booking.getString("DormitoryId");
+                                String picture = booking.getString("pictureUrl");
+                                String DormitoryName = booking.getString("dormitoryName");
+                                String Deals = booking.getString("dealsText");
+                                String DormitoriTd = booking.getString("dormitoryId");
 
                                 mHomeActivityDataModelsHighestRatedDorms.add(new HomeActivityDataModel(DormitoryName, Deals, 3, "$", true, picture, DormitoriTd));
                                // mHomeActivityDataModelsHighestRatedDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
@@ -252,16 +248,16 @@ public class HomeActivity  extends navigational_drawer {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
-                            JSONArray JA = JO.getJSONArray("Dormitories");
+                            JSONArray JA = JO.getJSONArray("dormitories");
 
                             for (int i=0; i<JA.length(); i++){
                                 JSONObject booking = JA.getJSONObject(i);
-                                String picture = booking.getString("PictureUrl");
-                                String DormitoryName = booking.getString("DormitoryName");
-                                String Deals = booking.getString("DealsText");
-                                String DormitoriTd = booking.getString("DormitoryId");
+                                String picture = booking.getString("pictureUrl");
+                                String DormitoryName = booking.getString("dormitoryName");
+                                String Deals = booking.getString("dealsText");
+                                String DormitoriTd = booking.getString("dormitoryId");
 
                                 mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, 3, "$", true, picture, DormitoriTd));
 

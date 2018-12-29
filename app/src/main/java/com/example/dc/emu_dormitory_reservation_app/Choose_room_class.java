@@ -9,6 +9,10 @@ public class Choose_room_class implements Serializable {
     private String room_size;
     private String room_left;
     private String room_price;
+    private String roomid;
+    private String dormid;
+
+
 
     public Choose_room_class(String room_image, String room_name, String bedType, String room_size, String room_left, String room_price) {
         this.room_image = room_image;
@@ -17,6 +21,21 @@ public class Choose_room_class implements Serializable {
         this.room_size = room_size;
         this.room_left = room_left;
         this.room_price = room_price;
+    }
+
+    public Choose_room_class(String room_image, String room_name, String bedType, String room_size, String room_left, String room_price, String roomid, String dormid) {
+        this.room_image = room_image;
+        this.room_name = room_name;
+        this.bedType = bedType;
+        this.room_size = room_size;
+        this.room_left = room_left;
+        this.room_price = room_price;
+        this.roomid = roomid;
+        this.dormid = dormid;
+    }
+
+    public Choose_room_class() {
+
     }
 
     public String getRoom_image() {
@@ -65,5 +84,21 @@ public class Choose_room_class implements Serializable {
 
     public void setRoom_price(String room_price) {
         this.room_price = room_price;
+    }
+
+    public String getRoomid() {
+        return roomid;
+    }
+
+    public void setRoomid(String roomid) {
+        this.roomid = roomid;
+    }
+
+    public String getDormid() {
+        return dormid;
+    }
+
+    public void setDormid(String dormid) {
+        this.dormid = dormid;
     }
 }

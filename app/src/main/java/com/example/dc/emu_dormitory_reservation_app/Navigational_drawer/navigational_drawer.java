@@ -99,24 +99,25 @@ textView_nav_username = findViewById(R.id.nav_username);
                     public void onResponse(JSONObject response) {
 
                         try {
-                            JSONObject JO = response.getJSONObject("Body");
+                            JSONObject JO = response.getJSONObject("body");
 
-                            JSONArray JA = JO.getJSONArray("Bookings");
+                            JSONArray JA = JO.getJSONArray("bookings");
 
                             for (int i=0; i<JA.length(); i++){
 
                                 JSONObject booking = JA.getJSONObject(i);
-                                String DormitoryDescription = booking.getString("DormitoryDescription");
-                                String DormitoryId = booking.getString("DormitoryId");
-                                String Dormitoryname = booking.getString("Dormitoryname");
-                                String PictureUrl = booking.getString("PictureUrl");
-                                String RatingNumber = booking.getString("RatingNumber");
-                                String RatingText = booking.getString("RatingText");
-                                String BookingDate = booking.getString("BookingDate");
-                                String CheckInDate = booking.getString("CheckInDate");
-                                String BookingStatus = booking.getString("BookingStatus");
+                                String DormitoryDescription = booking.getString("dormitoryDescription");
+                                String DormitoryId = booking.getString("dormitoryId");
+                                String BookingNo = booking.getString("bookingNumber");
+                                String Dormitoryname = booking.getString("dormitoryname");
+                                String PictureUrl = booking.getString("pictureUrl");
+                                String RatingNumber = booking.getString("ratingNumber");
+                                String RatingText = booking.getString("ratingText");
+                                String BookingDate = booking.getString("bookingDate");
+                                String CheckInDate = booking.getString("checkInDate");
+                                String BookingStatus = booking.getString("bookingStatus");
 
-                                alldorms.add(new BookingbyCustomerId(Dormitoryname, DormitoryDescription, BookingDate, CheckInDate, BookingStatus,PictureUrl,RatingNumber,RatingText, DormitoryId));
+                                alldorms.add(new BookingbyCustomerId(Dormitoryname, DormitoryDescription, BookingDate, CheckInDate, BookingStatus,PictureUrl,RatingNumber,RatingText, DormitoryId, BookingNo));
                             }
 
                         } catch (JSONException e) {
