@@ -21,31 +21,47 @@ import android.widget.Toast;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.UserDataModel;
 import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
 import com.example.dc.emu_dormitory_reservation_app.sign_in_with_email_activity.Sign_in_with_Email;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
+import java.util.HashMap;
+import java.util.Map;
 
 import static com.example.dc.emu_dormitory_reservation_app.R.id.create_account;
 
 public class Create_Account extends AppCompatActivity implements View.OnClickListener {
-    private EditText memail, mpassword;
+    private EditText memail, mpassword, musername;
     private TextView mcreate_acount;
+    private String Email, Name;
 
     private FirebaseAuth firebaseAuth;
+    private DatabaseReference DR;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create__account);
 
+
         firebaseAuth = FirebaseAuth.getInstance();
+        DR = FirebaseDatabase.getInstance().getReference().child("Users");
+
 
         memail = (EditText)findViewById(R.id.iemail);
         mpassword = (EditText)findViewById(R.id.ipassword);
-        mcreate_acount = (TextView)findViewById(R.id.icreate_account) ;
+        mcreate_acount = (TextView)findViewById(R.id.icreate_account);
+        musername = findViewById(R.id.iusername);
+
+        Email = memail.getText().toString();
+        Name = musername.getText().toString();
+
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.create_account);
         toolbar.setTitle("");
@@ -95,6 +111,14 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()){
                             // on successful registration
+
+
+                           String UserId = firebaseAuth.getCurrentUser().getUid();
+                           DatabaseReference currentuser = DR.child(UserId);
+
+                           currentuser.child("name").setValue(musername.getText().toString());
+                           currentuser.child("email").setValue(memail.getText().toString());
+
                             Toast.makeText(Create_Account.this, " Registration successful", Toast.LENGTH_SHORT).show();
                             finish();
                             startActivity(new Intent(Create_Account.this, HomeActivity.class));

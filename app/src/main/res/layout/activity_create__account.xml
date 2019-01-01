@@ -35,6 +35,12 @@
                    android:layout_height="wrap_content"
                    android:text="E-mail/Student Number"
                    android:textColor="@color/blue"/>-->
+
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/iusername"
+                    android:hint="User Name"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

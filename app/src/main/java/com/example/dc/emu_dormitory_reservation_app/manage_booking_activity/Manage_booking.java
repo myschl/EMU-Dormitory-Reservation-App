@@ -43,6 +43,7 @@ public class Manage_booking extends AppCompatActivity {
     Button Save,EditBooking,CancelBooking;
     private TextView mdateofbooking, mtimeofbooking, mcheckindate, mcheckinsemester;
     private ArrayList<ManageBookingModel> bookinginfor = new ArrayList<>();
+    private String bookingNum,roomid,dormitoryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +66,13 @@ public class Manage_booking extends AppCompatActivity {
 
         );
 
+
+        Intent intent = getIntent();
+        roomid = intent.getStringExtra("Rid");
+        bookingNum = intent.getStringExtra("bookingNo");
+        dormitoryId = intent.getStringExtra("DormId");
+
+
         MyFun();
         BookingInformationAPI();
     }
@@ -85,6 +93,9 @@ public class Manage_booking extends AppCompatActivity {
                                 String Timeofbooking = JO.getString("timeOfBooking");
                                 String checkindate = JO.getString("checkInDate");
                                 String checkinsemester = JO.getString("checkInSemester");
+
+                                String bookingnumber = JO.getString("bookingId");
+                                bookingNum = bookingnumber;
 
                                  mdateofbooking.setText(Dateofbooking);
                                  mtimeofbooking.setText(Timeofbooking);
@@ -121,12 +132,13 @@ public class Manage_booking extends AppCompatActivity {
         EditBooking.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // Edit booking here
+                /*// Edit booking here
                 Intent i=new Intent(Manage_booking.this,Edit_booking.class);
                 Bundle bundle=new Bundle();
                 bundle.putSerializable("bookinginfo", bookinginfor);
                 i.putExtras(bundle);
-                startActivity(i);
+                startActivity(i);*/
+                Toast.makeText(Manage_booking.this, "Up comming feature ", Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -143,7 +155,7 @@ public class Manage_booking extends AppCompatActivity {
                             public void onClick(DialogInterface dialog, int which) {
                                 // handle the user after clicking on yes button
                                 postCancelBooking();
-                                Toast.makeText(Manage_booking.this, "Your booking is successful canceled", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Manage_booking.this, "Your booking is successful canceled", Toast.LENGTH_LONG).show();
                                 //startActivity(new Intent(Manage_booking.this, booking_tabbed_activity.class));
                             }
                         }).setNegativeButton("No", null);
@@ -172,7 +184,7 @@ public class Manage_booking extends AppCompatActivity {
             protected Map<String,String> getParams(){
 
                 Map<String,String> params = new HashMap<String, String>();
-                params.put("bookingNo", "4334543");
+                params.put("bookingNo",/* "4334543"*/ bookingNum);
                 params.put("bookingStatus", "Cancelled");
 
                 return params;

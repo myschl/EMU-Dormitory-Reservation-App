@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
@@ -28,9 +29,19 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivityDataModel;
+import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
+import com.example.dc.emu_dormitory_reservation_app.manage_booking_activity.Manage_booking;
 import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -50,20 +61,27 @@ public class Room_detail extends AppCompatActivity {
     private ArrayList fname = new ArrayList();
     private ArrayList<RoomDetailModel1> facilities = new ArrayList<>();
     //private ArrayList<String> images = new ArrayList<>();
-    private Button mbookroom;
+    private Button mbookroom, mrateyourstay, mmanagebooking, mbookroom2;
     ImageView viewPager;
+    String name;
     private TextView mqota, mprice;
    // int images[] = {R.drawable.akdeniz_1, R.drawable.akdeniz_2, R.drawable.akdeniz_3, R.drawable.akdeniz_2};
     private ArrayList<RoomDetailImageModel> images = new ArrayList<>();
+
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference DR;
+    private FirebaseUser user;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+    String userid;
 
     public static ArrayList<RoomQandPModel> roomQandP = new ArrayList<>();
     public static ArrayList<RoomDetailImageModel> imagess = new ArrayList<>();
     public static ArrayList<RoomDetailModel1> facilitiess = new ArrayList<>();
 
-    private String bookingId, currentDate, currentTime, UserName, UserId, dormitoryId, RoomId;
+    private String bookingId, currentDate, currentTime, UserName, UserId, dormitoryId, RoomId, userstatus, bookingst;
 
     MyCustomPagerAdapter myCustomPagerAdapter;
-    public String roomId, dormId;
+    public String roomId, dormId, Rid, bookingNo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,6 +94,8 @@ public class Room_detail extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
         roomId = bundle .getString("Roomid");
         dormId = bundle.getString("DormId");
+        bookingNo = bundle.getString("bookingNo");
+        bookingst = bundle.getString("bookingst");
 
 
         Toolbar toolbar = (Toolbar)findViewById(R.id.room_detail);
@@ -99,7 +119,40 @@ public class Room_detail extends AppCompatActivity {
         mqota = findViewById(R.id.iqota);
         mprice = findViewById(R.id.iprice);
         mbookroom = findViewById(R.id.ibookroom);
+        mbookroom2 = findViewById(R.id.ibookroom2);
+        mrateyourstay = findViewById(R.id.irateyourstay);
+        mmanagebooking = findViewById(R.id.imanagebooking);
 
+
+        mbookroom2.setVisibility(View.GONE);
+
+
+        /*firebaseAuth = FirebaseAuth.getInstance();
+
+        mAuthListener = new FirebaseAuth.AuthStateListener(){
+            @Override
+            public  void  onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth){
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if(user != null){
+
+                    mbookroom2.setVisibility(View.GONE);
+                    mbookroom.setVisibility(View.VISIBLE);
+
+                }
+            }
+
+        };*/
+
+        /*mAuthListener = new FirebaseAuth.AuthStateListener() {
+
+            @Override
+            public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
+            if(firebaseAuth.getCurrentUser()!= null) {
+                mbookroom2.setVisibility(View.GONE);
+                mbookroom.setVisibility(View.VISIBLE);
+            }
+            }
+        };*/
 
 
         Calendar calendar = Calendar.getInstance();
@@ -107,19 +160,111 @@ public class Room_detail extends AppCompatActivity {
         currentTime = format.format(calendar.getTime());
         currentDate = DateFormat.getInstance().format(calendar.getTime());
 
-        bookingId ="1";
-        UserId = "11";
-        UserName = "Abdul";
+        /*FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
+        String userid = "" + currentFirebaseUser.getUid();*/
+
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+        //String uid, name, email;
+        if (user != null) {
+            for (UserInfo profile : user.getProviderData()) {
+                // Id of the provider (ex: google.com)
+                //String providerId = profile.getProviderId();
+
+                // UID specific to the provider
+                 String uid = profile.getUid();
+
+                // Name, email address, and profile photo Url
+                 String namee = profile.getDisplayName();
+                 //String email = profile.getEmail();
+                //Uri photoUrl = profile.getPhotoUrl();
+
+                UserId = uid /*"11"*/;
+                UserName = namee /*"abdul"*/;
+            }
+        }
+
+
+        /*FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            userid = user.getUid();
+
+            DR = FirebaseDatabase.getInstance().getReference().child("Users");
+            DR.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    name = dataSnapshot.child(userid).child("name").getValue(String.class);
+
+                    mbookroom2.setVisibility(View.GONE);
+                    mbookroom.setVisibility(View.VISIBLE);
+
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(Room_detail.this, "Network Error", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }*/
+
+
+        bookingId =bookingNo;
         dormitoryId = dormId;
         RoomId = roomId;
 
 
+        if (bookingst == null){
+            mrateyourstay.setVisibility(View.GONE);
+            mmanagebooking.setVisibility(View.GONE);
+        }
 
+        if (bookingst != null){
+            mbookroom.setVisibility(View.GONE);
+            mbookroom2.setVisibility(View.GONE); 
+        }
+
+        mrateyourstay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                    Intent intent = new Intent(Room_detail.this, Rate_your_stay.class);
+                    intent.putExtra("Rid", Rid);
+                    intent.putExtra("bookingNo", bookingNo);
+                    intent.putExtra("DormId", dormId);
+                    startActivity(intent);
+
+
+            }
+        });
+
+        mmanagebooking.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                Intent intent = new Intent(Room_detail.this, Manage_booking.class);
+                intent.putExtra("Rid", Rid);
+                intent.putExtra("bookingNo", bookingNo);
+                intent.putExtra("DormId", dormId);
+                startActivity(intent);
+
+            }
+        });
+
+        mbookroom2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Room_detail.this, "Sign in to book", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Room_detail.this, Sign_in.class));
+            }
+        });
 
         // booking dialog
         mbookroom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 AlertDialog.Builder builder = new AlertDialog.Builder(Room_detail.this);
                 builder.setMessage("Are you sure you want to book this room");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
@@ -236,13 +381,13 @@ public class Room_detail extends AppCompatActivity {
 
                 Map<String,String> params = new HashMap<String, String>();
 
-                params.put("bookingId", bookingId /*"hehdh"*/);
-                params.put("currentDate", currentDate /*"hdcdan"*/);
-                params.put("currentTime", currentTime /*"jddncnc"*/);
-                params.put("userName", UserName /*"jdjdcnjcn"*/);
-                params.put("userId", UserId /*"hjdajdn"*/);
+                params.put("bookingId", bookingNo /*"hehdh"*/);
+                params.put("currentDate", currentDate);
+                params.put("currentTime", currentTime);
+                params.put("userName", UserName);
+                params.put("userId", UserId);
                 params.put("dormitoryId", dormId /*"jsnxnc"*/);
-                params.put("roomId", RoomId /*"jdmnczm "*/);
+                params.put("roomId", roomId /*"jdmnczm"*/);
 
                 return params;
             }
@@ -281,6 +426,7 @@ public class Room_detail extends AppCompatActivity {
 
                             mqota.setText(RoomQota);
                             mprice.setText(RoomPrice);
+                            Rid = RoomId;
 
 
                             // for images

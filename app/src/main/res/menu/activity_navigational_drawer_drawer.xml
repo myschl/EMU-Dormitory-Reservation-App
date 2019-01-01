@@ -10,16 +10,16 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_bookings"
-            android:icon="@drawable/ic_menu_camera"
+            android:icon="@drawable/ic_bookings"
             android:title="Bookings" />
         <item
             android:id="@+id/nav_notifications"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@drawable/ic_notification"
             android:title="Notifications" />
-       <item
+       <!--<item
             android:id="@+id/nav_sign_in"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Sign in" />
+            android:icon="@drawable/ic_menu_share"
+            android:title="Sign in" />-->
         <!-- <item
             android:id="@+id/nav_deals"
             android:icon="@drawable/ic_menu_manage"
@@ -33,6 +33,11 @@
             android:icon="@drawable/ic_menu_manage"
             android:title="Recently viewed" />-->
         <item
+            android:id="@+id/nav_settings"
+            android:icon="@drawable/ic_menu_manage"
+
+            android:title="Settings" />
+        <item
             android:id="@+id/nav_debug"
             android:icon="@drawable/ic_menu_manage"
             android:title="Debug" />
@@ -40,10 +45,7 @@
 
     <item android:title="">
         <menu>
-            <item
-                android:id="@+id/nav_settings"
 
-                android:title="Settings" />
             <item
                 android:id="@+id/nav_help_center"
 
@@ -56,9 +58,9 @@
                 android:id="@+id/nav_RateApp"
                 android:title="Rate App"/>
             <item
-                android:id="@+id/nav_Appfeedback"
+                android:id="@+id/nav_sign_in"
 
-                android:title="Give app feedback" />
+                android:title="Sign in" />
         </menu>
     </item>
 

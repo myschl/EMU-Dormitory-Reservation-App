@@ -15,6 +15,7 @@ import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Crea
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.UserDataModel;
 import com.example.dc.emu_dormitory_reservation_app.sign_in_with_email_activity.Sign_in_with_Email;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -36,6 +37,10 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
+import com.google.firebase.auth.UserInfo;
+import com.google.firebase.auth.UserProfileChangeRequest;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
@@ -51,12 +56,18 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
     CallbackManager mCallbackManager;
     private static final String EMAIL = "email";
 
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference DR;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
 
         mAuth = FirebaseAuth.getInstance();
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        DR = FirebaseDatabase.getInstance().getReference().child("Users");
 
         FacebookSdk.sdkInitialize(getApplicationContext());
 
@@ -179,7 +190,7 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
     private void firebaseAuthWithGoogle(GoogleSignInAccount acct) {
         Log.d(TAG, "firebaseAuthWithGoogle:" + acct.getId());
 
-        AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
+        final AuthCredential credential = GoogleAuthProvider.getCredential(acct.getIdToken(), null);
         mAuth.signInWithCredential(credential)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
                     @Override
@@ -187,7 +198,36 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             //Log.d(TAG, "signInWithCredential:success");
-                           // FirebaseUser user = mAuth.getCurrentUser();
+
+
+                            String UserId = firebaseAuth.getCurrentUser().getUid();
+                            DatabaseReference currentuser = DR.child(UserId);
+
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                            if (user != null) {
+
+                                for (UserInfo profile : user.getProviderData()) {
+                                    // Id of the provider (ex: google.com)
+                                    //String providerId = profile.getProviderId();
+
+                                    // UID specific to the provider
+                                    //String uid = profile.getUid();
+
+                                    // Name, email address, and profile photo Url
+                                    String name = profile.getDisplayName();
+                                    String emaill = profile.getEmail();
+                                    //Uri photoUrl = profile.getPhotoUrl();
+
+                                    currentuser.child("email").setValue(emaill);
+                                    currentuser.child("name").setValue(name);
+                                }
+
+                            }
+
+
+
+
                             Toast.makeText(Sign_in.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Sign_in.this, HomeActivity.class));
                             finish();

@@ -13,6 +13,21 @@ public class BookingbyCustomerId implements Serializable {
     private String RatingText;
     private String DormitoryId;
     private String bookingNumber;
+    private String RoomId;
+
+    public BookingbyCustomerId(String dormitoryName, String dormitoryDescription, String dateOfBooking, String checkInDate, String bookingStatus, String dormitoryImageUrl, String ratingNumber, String ratingText, String dormitoryId, String bookingNumber, String roomId) {
+        DormitoryName = dormitoryName;
+        DormitoryDescription = dormitoryDescription;
+        DateOfBooking = dateOfBooking;
+        CheckInDate = checkInDate;
+        BookingStatus = bookingStatus;
+        DormitoryImageUrl = dormitoryImageUrl;
+        RatingNumber = ratingNumber;
+        RatingText = ratingText;
+        DormitoryId = dormitoryId;
+        this.bookingNumber = bookingNumber;
+        RoomId = roomId;
+    }
 
     public BookingbyCustomerId(String dormitoryName, String dormitoryDescription, String dateOfBooking, String checkInDate, String bookingStatus, String dormitoryImageUrl, String ratingNumber, String ratingText, String dormitoryId, String bookingNumber) {
         DormitoryName = dormitoryName;
@@ -129,4 +144,13 @@ public class BookingbyCustomerId implements Serializable {
     public void setBookingNumber(String bookingNumber) {
         this.bookingNumber = bookingNumber;
     }
+
+    public String getRoomId() {
+        return RoomId;
+    }
+
+    public void setRoomId(String roomId) {
+        RoomId = roomId;
+    }
 }
+

@@ -4,6 +4,7 @@ import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.util.Log;
@@ -41,6 +42,11 @@ import com.example.dc.emu_dormitory_reservation_app.search_results_activity.sear
 import com.example.dc.emu_dormitory_reservation_app.settings_activity.Setting;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -55,27 +61,61 @@ public class navigational_drawer extends AppCompatActivity
     private RequestQueue mQueue;
    private ImageView nav_image;
    private TextView textView_nav_username;
-    private FirebaseAuth firebaseAuth;
     private ArrayList<BookingbyCustomerId> alldorms = new ArrayList<>();
+    private String name, uid;
+
+
+    private FirebaseAuth firebaseAuth;
+    private DatabaseReference DR;
+    private FirebaseUser user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_navigational_drawer);
-textView_nav_username = findViewById(R.id.nav_username);
+        //textView_nav_username = findViewById(R.id.nav_username);
         mToolbar = (Toolbar) findViewById(R.id.toolbar);
         mToolbar.setTitle("Home");
         setSupportActionBar(mToolbar);
 
         nav_image = findViewById(R.id.nav_image);
-        firebaseAuth = FirebaseAuth.getInstance();
+       /* firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
 
-            FirebaseUser user = firebaseAuth.getCurrentUser();
-           /* Glide.with(this).asBitmap().load(firebaseAuth.getCurrentUser().getPhotoUrl()).into(nav_image);
+            String user = firebaseAuth.getCurrentUser().getDisplayName();
+            //Glide.with(this).asBitmap().load(firebaseAuth.getCurrentUser().getPhotoUrl()).into(nav_image);
 
-            textView_nav_username.setText(firebaseAuth.getCurrentUser().getDisplayName());*/
+            textView_nav_username.setText(firebaseAuth.getCurrentUser().getDisplayName());
 
+        }*/
+
+
+      // user = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        NavigationView nView = (NavigationView) findViewById(R.id.nav_view);
+        View headerView = nView.getHeaderView(0);
+        final TextView navUsername = (TextView) headerView.findViewById(R.id.nav_username);
+        //navUsername.setText("Your Text Here");
+
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
+
+            DR = FirebaseDatabase.getInstance().getReference().child("Users");
+            DR.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    String name = dataSnapshot.child(uid).child("name").getValue(String.class);
+                    navUsername.setText(name);
+                }
+
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    Toast.makeText(navigational_drawer.this, "Network Error", Toast.LENGTH_SHORT).show();
+
+                }
+            });
         }
 
         DormitoriesAPI();
@@ -116,8 +156,9 @@ textView_nav_username = findViewById(R.id.nav_username);
                                 String BookingDate = booking.getString("bookingDate");
                                 String CheckInDate = booking.getString("checkInDate");
                                 String BookingStatus = booking.getString("bookingStatus");
+                                String RoomId = booking.getString("roomId");
 
-                                alldorms.add(new BookingbyCustomerId(Dormitoryname, DormitoryDescription, BookingDate, CheckInDate, BookingStatus,PictureUrl,RatingNumber,RatingText, DormitoryId, BookingNo));
+                                alldorms.add(new BookingbyCustomerId(Dormitoryname, DormitoryDescription, BookingDate, CheckInDate, BookingStatus,PictureUrl,RatingNumber,RatingText, DormitoryId, BookingNo, RoomId));
                             }
 
                         } catch (JSONException e) {
@@ -210,9 +251,9 @@ textView_nav_username = findViewById(R.id.nav_username);
         }else if (id == R.id.nav_share){
             //startActivity(new Intent(navigational_drawer.this, Setting.class));
             Toast.makeText(navigational_drawer.this, "Up comming feature", Toast.LENGTH_SHORT).show();
-        }else if(id == R.id.nav_Appfeedback){
+        }/*else if(id == R.id.nav_Appfeedback){
             startActivity(new Intent(navigational_drawer.this, Main2Activity.class));
-        }
+        }*/
 
 
         mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);

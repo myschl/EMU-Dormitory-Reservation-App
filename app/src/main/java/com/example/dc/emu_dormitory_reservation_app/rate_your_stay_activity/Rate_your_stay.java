@@ -46,12 +46,18 @@ public class Rate_your_stay extends AppCompatActivity {
     private ArrayList<String> Services = new ArrayList<>();
     private ArrayList<String> Compound = new ArrayList<>();
 
-    private String mFeedbackType,mAddcomment, mFacilities, mServices, mCompound;
+    private String mFeedbackType,mAddcomment, mFacilities, mServices, mCompound, roomid, bookingNo,dormitoryId;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_rate_your_stay);
+
+
+        Intent intent = getIntent();
+        roomid = intent.getStringExtra("Rid");
+        bookingNo = intent.getStringExtra("bookingNo");
+        dormitoryId = intent.getStringExtra("DormId");
 
         mcommentt = findViewById(R.id.iaddcomment);
         mrfacility = findViewById(R.id.ifacility);
@@ -217,6 +223,7 @@ public class Rate_your_stay extends AppCompatActivity {
                 params.put("facilities", mFacilities);
                 params.put("services", mServices);
                 params.put("compound", mCompound);
+                params.put("dormitoryId", dormitoryId);
 
                 return params;
             }

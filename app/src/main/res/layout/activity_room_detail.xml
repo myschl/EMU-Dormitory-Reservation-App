@@ -81,6 +81,33 @@
         android:layout_height="wrap_content"
         android:id="@+id/room_detail_recycleview"/>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/irateyourstay"
+            android:text="Rate your stay"
+            android:textAllCaps="false"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:textColor="@color/blue"/>
+        <Button
+            android:id="@+id/imanagebooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="110dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginBottom="15dp"
+            android:layout_toRightOf="@id/irateyourstay"
+            android:text="Manage Booking"
+            android:textAllCaps="false"
+            android:textColor="@color/blue" />
+
+    </RelativeLayout>
+
+
     <Button
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -90,6 +117,15 @@
         android:text="Book room"
         android:textColor="@android:color/white"
         android:textAllCaps="false"/>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/ibookroom2"
+        android:background="@color/blue"
+        android:text="Book room"
+        android:textColor="@android:color/white"
+        android:textAllCaps="false"/>
+
 
 </LinearLayout>
     </ScrollView>
