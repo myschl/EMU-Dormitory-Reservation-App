@@ -1,7 +1,11 @@
 package com.example.dc.emu_dormitory_reservation_app.Navigational_drawer;
 
 import android.content.ActivityNotFoundException;
+import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.media.Image;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -42,11 +46,13 @@ import com.example.dc.emu_dormitory_reservation_app.search_results_activity.sear
 import com.example.dc.emu_dormitory_reservation_app.settings_activity.Setting;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserInfo;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -96,7 +102,33 @@ public class navigational_drawer extends AppCompatActivity
         NavigationView nView = (NavigationView) findViewById(R.id.nav_view);
         View headerView = nView.getHeaderView(0);
         final TextView navUsername = (TextView) headerView.findViewById(R.id.nav_username);
+        final ImageView imageView = headerView.findViewById(R.id.nav_image);
         //navUsername.setText("Your Text Here");
+
+
+        FirebaseUser user1 = FirebaseAuth.getInstance().getCurrentUser();
+
+        if (user1 != null) {
+
+            for (UserInfo profile : user1.getProviderData()) {
+                // Id of the provider (ex: google.com)
+                //String providerId = profile.getProviderId();
+
+                // UID specific to the provider
+                //String uid = profile.getUid();
+
+                // Name, email address, and profile photo Url
+                String name = profile.getDisplayName();
+                String emaill = profile.getEmail();
+                Uri photoUrl = profile.getPhotoUrl();
+
+
+                if (photoUrl != null)
+                    Picasso.get().load(photoUrl).into(imageView);
+
+            }
+
+        }
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         if (user != null) {
