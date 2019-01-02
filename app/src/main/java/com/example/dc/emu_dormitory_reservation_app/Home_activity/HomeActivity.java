@@ -186,9 +186,13 @@ public class HomeActivity  extends navigational_drawer {
                 String email = profile.getEmail();
                 //Uri photoUrl = profile.getPhotoUrl();
 
-                mwelcom.setText("Hi "+ email);
+                if (namee != null)
+                    mwelcom.setText("Hi " + namee);
+                else
+                    mwelcom.setText("Hi "+ email);
             }
         }
+
 
 
           /*  if (DormitoryType == "0") {

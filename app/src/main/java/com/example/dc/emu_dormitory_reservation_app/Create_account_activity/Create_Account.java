@@ -25,9 +25,11 @@ import com.example.dc.emu_dormitory_reservation_app.UserDataModel;
 import com.example.dc.emu_dormitory_reservation_app.rate_your_stay_activity.Rate_your_stay;
 import com.example.dc.emu_dormitory_reservation_app.sign_in_with_email_activity.Sign_in_with_Email;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -113,6 +115,24 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
                             // on successful registration
 
 
+                            FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                                @Override
+                                public void onComplete(@NonNull Task<Void> task) {
+                                    if (task.isSuccessful()){
+                                        Toast.makeText(Create_Account.this, "Check your email for validation", Toast.LENGTH_LONG).show();
+                                        //FirebaseAuth.getInstance().signOut();
+                                    }
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(Create_Account.this, "Fail to send email for validation", Toast.LENGTH_LONG).show();
+
+                                }
+                            });
+
+
                            String UserId = firebaseAuth.getCurrentUser().getUid();
                            DatabaseReference currentuser = DR.child(UserId);
 
@@ -130,6 +150,21 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
                 });
 
     }
+
+   /* private void sendEmailVerification() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null){
+            user.sendEmailVerification().addOnCompleteListener(new OnCompleteListener<Void>() {
+                @Override
+                public void onComplete(@NonNull Task<Void> task) {
+                    if (task.isSuccessful()){
+                        Toast.makeText(Create_Account.this, "Check your email for validation", Toast.LENGTH_LONG).show();
+                        FirebaseAuth.getInstance().signOut();
+                    }
+                }
+            });
+        }
+    }*/
 
     @Override
     public void onClick(View v) {
