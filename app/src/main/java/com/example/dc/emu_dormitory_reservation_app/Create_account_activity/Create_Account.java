@@ -1,6 +1,7 @@
 package com.example.dc.emu_dormitory_reservation_app.Create_account_activity;
 
 import android.annotation.SuppressLint;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +47,8 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
     private FirebaseAuth firebaseAuth;
     private DatabaseReference DR;
 
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,6 +58,8 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
         firebaseAuth = FirebaseAuth.getInstance();
         DR = FirebaseDatabase.getInstance().getReference().child("Users");
 
+
+        dialog = new ProgressDialog(Create_Account.this);
 
         memail = (EditText)findViewById(R.id.iemail);
         mpassword = (EditText)findViewById(R.id.ipassword);
@@ -92,7 +97,7 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
         String password = mpassword.getText().toString().trim();
 
         // validation check
-        if (TextUtils.isEmpty(email)){
+       /* if (TextUtils.isEmpty(email)){
             // give a toes message that user must enter mail
             Toast.makeText(Create_Account.this, "please Enter  email", Toast.LENGTH_SHORT).show();
         }
@@ -103,7 +108,7 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
         if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
             // give a toes message that user must enter email and password
             Toast.makeText(Create_Account.this, "please Enter  email and password", Toast.LENGTH_SHORT).show();
-        }
+        }*/
 
         // if validated
 
@@ -120,6 +125,7 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
                                 @Override
                                 public void onComplete(@NonNull Task<Void> task) {
                                     if (task.isSuccessful()){
+
                                         Toast.makeText(Create_Account.this, "Check your email for validation", Toast.LENGTH_LONG).show();
                                         //FirebaseAuth.getInstance().signOut();
                                     }
@@ -127,6 +133,7 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
+
                                     Toast.makeText(Create_Account.this, "Fail to send email for validation", Toast.LENGTH_LONG).show();
 
                                 }
@@ -141,10 +148,20 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
 
                             Toast.makeText(Create_Account.this, " Registration successful", Toast.LENGTH_SHORT).show();
                             finish();
-                            startActivity(new Intent(Create_Account.this, HomeActivity.class));
+                            String email = String.valueOf(memail.getText());
+                            String password = String.valueOf(mpassword.getText());
+
+                            dialog.dismiss();
+                            Intent intent = new Intent(Create_Account.this, Sign_in_with_Email.class);
+                            intent.putExtra("email", email);
+                            intent.putExtra("password", password);
+                            startActivity(intent);
+
+                            //startActivity(new Intent(Create_Account.this, HomeActivity.class));
                         }else {
                             // when registration fails
-                            Toast.makeText(Create_Account.this, "Registration fail", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(Create_Account.this, "Registration fail check your connection", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
                         }
                     }
                 });
@@ -170,7 +187,29 @@ public class Create_Account extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         if (v == mcreate_acount){
             // Register the User
-            RegisterUser();
+            dialog.setMessage("Registering...");
+            dialog.setCancelable(false);
+            dialog.show();
+
+            // validation check
+            if (TextUtils.isEmpty(Email)){
+                // give a toes message that user must enter mail
+                Toast.makeText(Create_Account.this, "please Enter  email", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+            else if (TextUtils.isEmpty(Name)){
+                // give a toes message that user must enter password
+                Toast.makeText(Create_Account.this, "please Enter  password", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+            else if (TextUtils.isEmpty(Email) && TextUtils.isEmpty(Name)){
+                // give a toes message that user must enter email and password
+                Toast.makeText(Create_Account.this, "please Enter  email and password", Toast.LENGTH_SHORT).show();
+                dialog.dismiss();
+            }
+            else {
+                RegisterUser();
+            }
         }
     }
 }

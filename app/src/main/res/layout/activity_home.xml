@@ -96,31 +96,60 @@
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorAlert"
                 android:text="Highest rated dormitories"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/iprogressbar1"
+                        android:layout_gravity="center_vertical|center_horizontal" />
+
+
             <android.support.v7.widget.RecyclerView
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryBackground"
-                android:id="@+id/recycleViewPopularDormitories"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/recycleViewPopularDormitories">
+
+            </android.support.v7.widget.RecyclerView>
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/colorAlert"
                 android:text="most popular dormitories"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                    <ProgressBar
+                        style="?android:attr/progressBarStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/iprogressbar2"
+                        android:layout_gravity="center_vertical|center_horizontal" />
+
             <android.support.v7.widget.RecyclerView
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@color/colorPrimaryBackground"
-                android:id="@+id/recycleViewHigestRatedDormitories"></android.support.v7.widget.RecyclerView>
+                android:id="@+id/recycleViewHigestRatedDormitories">
+            </android.support.v7.widget.RecyclerView>
 
+            </LinearLayout>
 
         </LinearLayout>
 
     </ScrollView>
-
-
 
 
 </LinearLayout>

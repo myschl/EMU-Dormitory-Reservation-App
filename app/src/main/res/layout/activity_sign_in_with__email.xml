@@ -28,11 +28,12 @@
                 android:layout_height="match_parent"
                 android:padding="15dp"
                 android:orientation="vertical">
-              <!--  <TextView
+                <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Email Address"
-                    android:textColor="@color/blue"/>-->
+                    android:id="@+id/ialert"
+                    android:text="Verify yor Email to sign in"
+                    android:textColor="@color/colorAlert"/>
                 <EditText
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

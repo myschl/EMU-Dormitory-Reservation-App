@@ -66,7 +66,7 @@ public class Rate_your_stay extends AppCompatActivity {
 
 
         mFeedbackType = "comment";
-        mAddcomment = mcommentt.getText()+"";
+
         /*mFacilities = "4";
         mServices = "5";
         mCompound = "3";*/
@@ -202,6 +202,9 @@ public class Rate_your_stay extends AppCompatActivity {
 
     public void postRateBooking( ){
         // mPostCommentResponse.requestStarted();
+
+        mAddcomment = mcommentt.getText().toString();
+
         RequestQueue queue = Volley.newRequestQueue(Rate_your_stay.this);
         StringRequest sr = new StringRequest(Request.Method.POST,"http://35.204.232.129/api/RateYourStay", new Response.Listener<String>() {
             @Override

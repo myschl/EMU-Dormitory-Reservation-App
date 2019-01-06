@@ -1,14 +1,17 @@
 package com.example.dc.emu_dormitory_reservation_app.Sign_in_activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
+import android.support.v4.widget.CircularProgressDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Create_Account;
@@ -59,10 +62,14 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
     private FirebaseAuth firebaseAuth;
     private DatabaseReference DR;
 
+    private ProgressDialog dialog;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
+
+        dialog = new ProgressDialog(Sign_in.this);
 
         mAuth = FirebaseAuth.getInstance();
 
@@ -225,9 +232,7 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
 
                             }
 
-
-
-
+                            dialog.dismiss();
                             Toast.makeText(Sign_in.this, "Sign in successful", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(Sign_in.this, HomeActivity.class));
                             finish();
@@ -236,6 +241,7 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
                             // If sign in fails, display a message to the user.
                             //Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Toast.makeText(Sign_in.this, "Sign in fail", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
 
                         }
 
@@ -284,6 +290,9 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
         }
         if (v == mstudent_no){
             // studentno sign in
+            dialog.setMessage("Signing in...");
+            dialog.setCancelable(false);
+            dialog.show();
             signIn();
             /*Intent signInIntent = mGoogleSignInClient.getSignInIntent();
             startActivityForResult(signInIntent, 101);*/

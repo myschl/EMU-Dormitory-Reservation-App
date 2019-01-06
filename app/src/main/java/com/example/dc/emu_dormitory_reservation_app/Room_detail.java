@@ -90,10 +90,12 @@ public class Room_detail extends AppCompatActivity {
 
 
 
+        Bundle bundle1 = getIntent().getExtras();
+        roomId = bundle1 .getString("Roomid");
+        dormId = bundle1.getString("DormId");
+
 
         Bundle bundle = getIntent().getExtras();
-        roomId = bundle .getString("Roomid");
-        dormId = bundle.getString("DormId");
         bookingNo = bundle.getString("bookingNo");
         bookingst = bundle.getString("bookingst");
 
@@ -381,7 +383,7 @@ public class Room_detail extends AppCompatActivity {
 
                 Map<String,String> params = new HashMap<String, String>();
 
-                params.put("bookingId", bookingNo /*"hehdh"*/);
+                params.put("bookingId", /*bookingNo*/ "0");
                 params.put("currentDate", currentDate);
                 params.put("currentTime", currentTime);
                 params.put("userName", UserName);

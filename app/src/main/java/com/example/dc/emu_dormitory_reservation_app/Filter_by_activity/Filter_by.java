@@ -8,6 +8,8 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +40,7 @@ import java.util.Map;
 public class Filter_by extends AppCompatActivity {
     TextView facilities, mpricemin, mpricemax;
     Button showResult;
+    private CheckBox msone, mstwo, msthree, msfour, msfive, mprivatedorms, memudorms,mspring, mfall, msummer;
     private ExpandableLayout mfacilitie;
     private RequestQueue mQueue;
     private ArrayList<FilterByFacilitiesModel> facilitiesList = new ArrayList<>();
@@ -48,7 +51,7 @@ public class Filter_by extends AppCompatActivity {
     private ArrayList<String> profertytype = new ArrayList<>();
     private ArrayList<String> facilityId = new ArrayList<>();
     private ArrayList<String> checkInsemester = new ArrayList<>();
-    private String priceMin, priceMMax;
+    private String priceMin="0", priceMMax="5000";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,7 +63,7 @@ public class Filter_by extends AppCompatActivity {
 
 
 
-        star.add("1");
+        /*star.add("1");
         star.add("3");
         star.add("4");
         profertytype.add("1");
@@ -73,7 +76,12 @@ public class Filter_by extends AppCompatActivity {
         checkInsemester.add("1");
         checkInsemester.add("3");
         priceMin = "100";
-        priceMMax = "400";
+        priceMMax = "400";*/
+
+        facilityId.add("1");
+        facilityId.add("3");
+        facilityId.add("4");
+        facilityId.add("5");
 
 
         setSupportActionBar(toolbar);
@@ -89,6 +97,169 @@ public class Filter_by extends AppCompatActivity {
                 }
 
         );
+
+
+
+        //msone mstwo, msthree, msfour, msfive, mprivatedorms, memudorms,mspring, mfall, msummer
+
+       /* msone = findViewById(R.id.isone);
+        msone.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "1";
+                }
+                else{
+                    value = null;
+                }
+
+                star.add(value);
+            }
+        });
+        mstwo = findViewById(R.id.istwo);
+        mstwo.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "2";
+                }
+                else{
+                    value = null;
+                }
+
+                star.add(value);
+            }
+        });
+
+        msthree = findViewById(R.id.isthree);
+        msthree.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "3";
+                }
+                else{
+                    value = null;
+                }
+
+                star.add(value);
+            }
+        });
+
+        msfour = findViewById(R.id.isfour);
+        msfour.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "4";
+                }
+                else{
+                    value = null;
+                }
+
+                star.add(value);
+            }
+        });
+
+        msfive = findViewById(R.id.isfive);
+        msfive.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "5";
+                }
+                else{
+                    value = null;
+                }
+
+                star.add(value);
+            }
+        });
+
+        mprivatedorms = findViewById(R.id.iprivatedorms);
+        mprivatedorms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "1";
+                }
+                else{
+                    value = null;
+                }
+
+                profertytype.add(value);
+            }
+        });
+
+        memudorms = findViewById(R.id.iemudorms);
+        memudorms.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "2";
+                }
+                else{
+                    value = null;
+                }
+
+                profertytype.add(value);
+            }
+        });
+
+        mspring = findViewById(R.id.ispring);
+        mspring.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "0";
+                }
+                else{
+                    value = null;
+                }
+
+                profertytype.add(value);
+            }
+        });
+        mfall = findViewById(R.id.ifall);
+        mfall.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "1";
+                }
+                else{
+                    value = null;
+                }
+
+                profertytype.add(value);
+            }
+        });
+        msummer = findViewById(R.id.isummer);
+        msummer.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                String value;
+                if (isChecked){
+                    value = "1";
+                }
+                else{
+                    value = null;
+                }
+
+                profertytype.add(value);
+            }
+        });*/
+
+
         MyFun();
         FilterFacilitiesAPI();
 
@@ -181,6 +352,7 @@ public class Filter_by extends AppCompatActivity {
 
                 priceMin =  minValue.toString();
                 priceMMax = maxValue.toString();
+
                 mpricemin.setText("$"+ minValue.toString());
                 mpricemax.setText("$"+maxValue.toString());
 
@@ -285,5 +457,114 @@ public class Filter_by extends AppCompatActivity {
             }
         };
         queue.add(sr);
+    }
+
+    public void selectitem(View view) {
+
+        boolean checked = ((CheckBox) view).isChecked();
+        switch (view.getId()){
+            case R.id.isone:
+                if (checked){
+                    star.add("1");
+                }
+                else
+                {
+                    star.remove("1");
+                }
+                break;
+
+            case R.id.istwo:
+                if (checked){
+                    star.add("2");
+                }
+                else
+                {
+                    star.remove("2");
+                }
+                break;
+
+            case R.id.isthree:
+                if (checked){
+                    star.add("3");
+                }
+                else
+                {
+                    star.remove("3");
+                }
+                break;
+
+            case R.id.isfour:
+                if (checked){
+                    star.add("4");
+                }
+                else
+                {
+                    star.remove("4");
+                }
+                break;
+
+            case R.id.isfive:
+                if (checked){
+                    star.add("5");
+                }
+                else
+                {
+                    star.remove("5");
+                }
+                break;
+
+            case R.id.iprivatedorms:
+                if (checked){
+                    profertytype.add("1");
+                }
+                else
+                {
+                    profertytype.remove("1");
+                }
+                break;
+
+            case R.id.iemudorms:
+                if (checked){
+                    profertytype.add("2");
+                }
+                else
+                {
+                    profertytype.remove("2");
+                }
+                break;
+
+            case R.id.ispring:
+                if (checked){
+                    checkInsemester.add("1");
+                }
+                else
+                {
+                    checkInsemester.remove("1");
+                }
+                break;
+
+            case R.id.ifall:
+                if (checked){
+                    checkInsemester.add("2");
+                }
+                else
+                {
+                    checkInsemester.remove("2");
+                }
+                break;
+
+            case R.id.isummer:
+                if (checked){
+                    checkInsemester.add("3");
+                }
+                else
+                {
+                    checkInsemester.remove("3");
+                }
+                break;
+
+        }
+
+
     }
 }

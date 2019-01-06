@@ -1,5 +1,6 @@
 package com.example.dc.emu_dormitory_reservation_app.Home_activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
@@ -13,6 +14,8 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.SpinnerAdapter;
 import android.widget.TextView;
@@ -78,6 +81,10 @@ public class HomeActivity  extends navigational_drawer {
 
     ArrayAdapter<String> adapter;
     private String DormitoryType = "0";
+
+   // private ProgressDialog dialog = new ProgressDialog(HomeActivity.this);
+
+    private ProgressBar mprogressbar1, mprogressbar2;
 
 
     private ArrayList<HomeActivityDataModel> mHomeActivityDataModelsPopularDorms = new ArrayList<>();
@@ -160,12 +167,21 @@ public class HomeActivity  extends navigational_drawer {
         /*msdormname = contentView.findViewById(R.id.isdormname);*/
         msdormtype = contentView.findViewById(R.id.isdormtype);
 
+
+        mprogressbar1 = contentView.findViewById(R.id.iprogressbar1);
+        mprogressbar2 = contentView.findViewById(R.id.iprogressbar2);
+
+        /*mprogressbar1.setVisibility(View.VISIBLE);
+        mprogressbar2.setVisibility(View.VISIBLE);*/
+
+
+
         /*Adapter1=new ArrayAdapter(this,android.R.layout.simple_spinner_item,dormitoriesName);
         Adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         msdormname.setAdapter(Adapter1);*/
 
 
-        AutoCompleteTextView msdormitoryname = contentView.findViewById(R.id.isdormname);
+        final AutoCompleteTextView msdormitoryname = contentView.findViewById(R.id.isdormname);
 
 
 
@@ -189,7 +205,7 @@ public class HomeActivity  extends navigational_drawer {
                 if (namee != null)
                     mwelcom.setText("Hi " + namee);
                 else
-                    mwelcom.setText("Hi "+ email);
+                    mwelcom.setText("Hi \n"+ email);
             }
         }
 
@@ -223,8 +239,8 @@ public class HomeActivity  extends navigational_drawer {
         }*/
 
 
-        adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dormitoriesName);
-        msdormitoryname.setAdapter(adapter);
+        /*adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dormitoriesName);
+        msdormitoryname.setAdapter(adapter);*/
 
         msdormitoryname.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -244,7 +260,7 @@ public class HomeActivity  extends navigational_drawer {
                         dormid = null;
                         break;
                     case 1:
-                        dormid ="5";
+                        dormid = "5";
                         break;
                     case 2:
                         dormid = "5";
@@ -298,14 +314,20 @@ public class HomeActivity  extends navigational_drawer {
 
                 switch (position){
                     case 0:
-                        DormitoryType = "0";
+                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, dormitoriesName);
+                        msdormitoryname.setAdapter(adapter);;
                         break;
                     case 1:
-                        DormitoryType = "1";
+                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, EMUdormitoriesName);
+                        msdormitoryname.setAdapter(adapter);
                         break;
                     case 2:
-                        DormitoryType = "2";
+                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, privatedormitoriesName);
+                        msdormitoryname.setAdapter(adapter);
                         break;
+                        default:
+                            adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, dormitoriesName);
+                            msdormitoryname.setAdapter(adapter);
                 }
 
             }
@@ -455,6 +477,8 @@ public class HomeActivity  extends navigational_drawer {
                                // mHomeActivityDataModelsHighestRatedDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
                             }
 
+                            mprogressbar1.setVisibility(View.GONE);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -468,6 +492,9 @@ public class HomeActivity  extends navigational_drawer {
         });
         mQueue = Volley.newRequestQueue(HomeActivity.this);
         mQueue.add(request);
+
+
+
     }
 
     private void PopulaDorms() {
@@ -496,6 +523,8 @@ public class HomeActivity  extends navigational_drawer {
 
                             }
 
+                            mprogressbar2.setVisibility(View.GONE);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -509,6 +538,8 @@ public class HomeActivity  extends navigational_drawer {
         });
         mQueue = Volley.newRequestQueue(HomeActivity.this);
         mQueue.add(request);
+
+
     }
 
 
@@ -587,6 +618,9 @@ mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(
         RecyclerView recyclerView = view.findViewById(R.id.recycleViewPopularDormitories);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new HomeActivityRecycleViewAdapter(this, mHomeActivityDataModelsPopularDorms));
+
+        //mprogressbar1 = findViewById(R.id.iprogressbar1);
+       // mprogressbar1.setVisibility(View.GONE);
     }
 
     private void initRecycleViewHigestRatedDorms(View view){
@@ -595,5 +629,8 @@ mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(
         RecyclerView recyclerView = view.findViewById(R.id.recycleViewHigestRatedDormitories);
         recyclerView.setLayoutManager(layoutManager);
         recyclerView.setAdapter(new HomeActivityRecycleViewAdapter(this, mHomeActivityDataModelsHighestRatedDorms));
+
+        //mprogressbar2 = findViewById(R.id.iprogressbar2);
+        //mprogressbar2.setVisibility(View.GONE);
     }
 }

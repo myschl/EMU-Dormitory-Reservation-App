@@ -103,7 +103,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
-                    android:padding="15dp">
+                    android:padding="10dp">
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -121,26 +121,40 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginRight="15dp"
+                            android:id="@+id/isone"
+                            android:layout_marginLeft="0dp"
+                            android:layout_marginRight="0dp"
+                            android:onClick="selectitem"
                             android:text="1 star" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
+                            android:id="@+id/istwo"
+                            android:layout_marginRight="0dp"
+                            android:onClick="selectitem"
                             android:text="2 star" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginRight="15dp"
+                            android:id="@+id/isthree"
+                            android:layout_marginRight="0dp"
+                            android:onClick="selectitem"
                             android:text="3 star" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/isfour"
+                            android:onClick="selectitem"
                             android:text="4 star" />
+                        <CheckBox
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/isfive"
+                            android:onClick="selectitem"
+                            android:text="5 star" />
                     </LinearLayout>
                 </LinearLayout>
             </android.support.v7.widget.CardView>
@@ -172,12 +186,16 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/iprivatedorms"
+                            android:onClick="selectitem"
                             android:text="private Domitorie (B.O.T)" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/iemudorms"
                             android:layout_marginLeft="5dp"
+                            android:onClick="selectitem"
                             android:text="EMU Domtories" />
                     </LinearLayout>
                 </LinearLayout>
@@ -257,19 +275,25 @@
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/ispring"
                             android:layout_marginLeft="10dp"
                             android:layout_marginRight="45dp"
+                            android:onClick="selectitem"
                             android:text="Sprin" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/ifall"
                             android:layout_marginRight="45dp"
+                            android:onClick="selectitem"
                             android:text="Fall" />
 
                         <CheckBox
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:id="@+id/isummer"
+                            android:onClick="selectitem"
                             android:text="Summer" />
                     </LinearLayout>
                 </LinearLayout>
