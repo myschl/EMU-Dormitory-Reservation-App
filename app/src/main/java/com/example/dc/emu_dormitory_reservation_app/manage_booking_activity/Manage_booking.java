@@ -24,6 +24,7 @@ import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Dormitory_detail;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.ManageBookingModel;
+import com.example.dc.emu_dormitory_reservation_app.Payment_confirmation;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.Room_detail;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
@@ -40,7 +41,7 @@ import java.util.Map;
 
 public class Manage_booking extends AppCompatActivity {
     private RequestQueue mQueue;
-    Button Save,EditBooking,CancelBooking;
+    Button Save,ConfirmPaymeny,CancelBooking;
     private TextView mdateofbooking, mtimeofbooking, mcheckindate, mcheckinsemester;
     private ArrayList<ManageBookingModel> bookinginfor = new ArrayList<>();
     private String bookingNum,roomid,dormitoryId;
@@ -58,7 +59,7 @@ public class Manage_booking extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(Manage_booking.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Manage_booking.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
                        // startActivity(new Intent(Manage_booking.this,DebugActivity.class));
                         finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
@@ -122,22 +123,19 @@ public class Manage_booking extends AppCompatActivity {
 
     private void MyFun() {
         //Save=(Button)findViewById(R.id.isave);
-        EditBooking=(Button)findViewById(R.id.ieditbooking);
+        ConfirmPaymeny=(Button)findViewById(R.id.ieditbooking);
         CancelBooking=(Button)findViewById(R.id.icancelbooking);
         mdateofbooking = findViewById(R.id.idateofbooking);
         mtimeofbooking = findViewById(R.id.itimeofbooking);
         mcheckindate = findViewById(R.id.icheckindate);
         mcheckinsemester = findViewById(R.id.icheckinsemester);
 
-        EditBooking.setOnClickListener(new View.OnClickListener() {
+        ConfirmPaymeny.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*// Edit booking here
-                Intent i=new Intent(Manage_booking.this,Edit_booking.class);
-                Bundle bundle=new Bundle();
-                bundle.putSerializable("bookinginfo", bookinginfor);
-                i.putExtras(bundle);
-                startActivity(i);*/
+                Intent intent = new Intent(Manage_booking.this, Payment_confirmation.class);
+                intent.putExtra("bookingNo", bookingNum);
+                startActivity(intent);
                 Toast.makeText(Manage_booking.this, "Up comming feature ", Toast.LENGTH_SHORT).show();
             }
         });

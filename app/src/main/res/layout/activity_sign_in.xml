@@ -35,7 +35,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/istudrnt_no"
             android:layout_marginTop="50dp"
-            android:text="Sign in with student No."
+            android:text="Continue with Google Acc."
             android:background="@android:color/white"
             android:textAllCaps="false"
             android:paddingLeft="10dp"

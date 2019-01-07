@@ -1,6 +1,7 @@
 package com.example.dc.emu_dormitory_reservation_app;
 
 import android.Manifest;
+import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -8,7 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Environment;
-import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AlertDialog;
@@ -32,16 +32,10 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
-import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivityDataModel;
-import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
-import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
-import com.google.gson.JsonObject;
 
-import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
@@ -60,8 +54,10 @@ public class Payment_confirmation extends AppCompatActivity {
     private ImageView muploadpaymentphoto;
     String pathToFile;
     Bitmap bitmapp;
-    String bookingN0;
+    String bookingN0, bookingId = "5";
     String bitmaptostring;
+
+    private ProgressDialog dialog;
 
     Integer REQUEST_CAMERA=0, SELECT_FILE=1;
 
@@ -78,13 +74,19 @@ public class Payment_confirmation extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(Payment_confirmation.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Payment_confirmation.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
                         // startActivity(new Intent(Terms_and_conditions.this,DebugActivity.class));
                         finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
                 }
 
         );
+
+
+        Bundle bundle = getIntent().getExtras();
+        bookingId = bundle.getString("bookingNo");
+
+        dialog = new ProgressDialog(Payment_confirmation.this);
 
         muploadpaymentphoto = findViewById(R.id.iuploadpaymentphoto);
         mbookingDate = findViewById(R.id.ibookingdate);
@@ -240,11 +242,13 @@ public class Payment_confirmation extends AppCompatActivity {
             File photoFile =null;
             photoFile = createPhotoFile();
 
+
             if (photoFile != null){
                 pathToFile = photoFile.getAbsolutePath();
                 Uri photoURI = FileProvider.getUriForFile(Payment_confirmation.this, "com.examples.android.fileprovider", photoFile);
                 takePict.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePict, REQUEST_CAMERA);
+
             }
         }
     }
@@ -262,18 +266,18 @@ public class Payment_confirmation extends AppCompatActivity {
     }
 
 
-    public String imageToString(Bitmap bitmap){
+    public void imageToString(Bitmap bitmap){
         ByteArrayOutputStream baos=new  ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG,100, baos);
         byte [] b=baos.toByteArray();
         String temp=Base64.encodeToString(b, Base64.DEFAULT);
         bitmaptostring = temp;
-        return temp;
+        //return temp;
     }
 
 
     private void MyBooking() {
-        String url = "http://35.204.232.129/api/BookingByBookingId/5";
+        String url = "http://35.204.232.129/api/BookingByBookingId/"+bookingId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override

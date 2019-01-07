@@ -109,7 +109,7 @@ public class Room_detail extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(Room_detail.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Room_detail.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
                         // startActivity(new Intent(Terms_and_conditions.this,DebugActivity.class));
                         finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
@@ -166,7 +166,7 @@ public class Room_detail extends AppCompatActivity {
         String userid = "" + currentFirebaseUser.getUid();*/
 
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        final FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         //String uid, name, email;
         if (user != null) {
@@ -267,7 +267,19 @@ public class Room_detail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(Room_detail.this);
+                if (user != null){
+                    BookRoom();
+                }
+                else
+                {
+                    startActivity(new Intent(Room_detail.this, Sign_in.class));
+                    Toast.makeText(Room_detail.this, "Sign in to book", Toast.LENGTH_SHORT).show();
+                }
+
+
+
+
+                /*AlertDialog.Builder builder = new AlertDialog.Builder(Room_detail.this);
                 builder.setMessage("Are you sure you want to book this room");
                 builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
@@ -284,7 +296,7 @@ public class Room_detail extends AppCompatActivity {
                 });
                 builder.setNegativeButton("No", null);
                 AlertDialog alertDialog = builder.create();
-                alertDialog.show();
+                alertDialog.show();*/
 
             }
         });
@@ -312,6 +324,27 @@ public class Room_detail extends AppCompatActivity {
         fRecycler();
 
 
+    }
+
+    private void BookRoom() {
+        AlertDialog.Builder builder = new AlertDialog.Builder(Room_detail.this);
+        builder.setMessage("Are you sure you want to book this room");
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                // handle the user after clicking on yes button
+
+
+                postNewBooking();
+
+
+                Toast.makeText(Room_detail.this, "Your booking is successful", Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(Room_detail.this, HomeActivity.class));
+            }
+        });
+        builder.setNegativeButton("No", null);
+        AlertDialog alertDialog = builder.create();
+        alertDialog.show();
     }
 
 

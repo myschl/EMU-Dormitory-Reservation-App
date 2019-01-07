@@ -83,7 +83,7 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
             public void onAuthStateChanged(@NonNull FirebaseAuth firebaseAuth) {
                 if(firebaseAuth.getCurrentUser()!= null){
                     startActivity( new Intent(Sign_in.this, HomeActivity.class));
-                    Toast.makeText(Sign_in.this, "User already logged in", Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(Sign_in.this, "User already logged in", Toast.LENGTH_SHORT).show();
                 }
             }
         };
@@ -104,7 +104,7 @@ public class Sign_in extends AppCompatActivity implements View.OnClickListener {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(Sign_in.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Sign_in.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
                       startActivity(new Intent(Sign_in.this,HomeActivity.class));
                         finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }

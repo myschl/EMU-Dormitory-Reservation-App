@@ -69,7 +69,7 @@ public class Dormitory_detail extends AppCompatActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Toast.makeText(Dormitory_detail.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
+                        //Toast.makeText(Dormitory_detail.this, "Back Arrow Toolbar Image Icon Clicked", Toast.LENGTH_LONG).show();
                         // startActivity(new Intent(Terms_and_conditions.this,DebugActivity.class));
                         finish(); //this destroys current activity since startActivity starts an activity finish finishes an activity
                     }
@@ -83,7 +83,7 @@ public class Dormitory_detail extends AppCompatActivity {
         DormId = bundle .getString("DormId");*/
 
 
-        mmapview.loadUrl("https://www.emu.edu.tr/campusmap?design=empty#b63");
+        mmapview.loadUrl("https://www.google.com/maps");
 
 
         //final String finalDormId = DormId;
