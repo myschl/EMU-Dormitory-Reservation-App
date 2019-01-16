@@ -74,13 +74,14 @@ public class HomeActivity  extends navigational_drawer {
     private Spinner msdormtype;
     ArrayAdapter<String> Adapter1, Adapter2;
     private String dormid;
-    String[] dormitoriesName = {"Search all Dormitories","Akdeniz dormitory","Alfam  dormitory","Ozuk dormitory","pop Art dormitory","Long son dormitory","EMU1 dormitory","EMU2  dormitory","EMU3 dormitory"," EMU4 dormitory"," Sabanci dormitory"};
-    String[] dormitorytype = {"all Dormitory type ", "EMU dormitory", "Private own dormitory"};
-    String[] privatedormitoriesName = {"Search all Dormitories","Akdeniz dormitory","Alfam  dormitory","Ozuk dormitory","pop Art dormitory","Long son dormitory"};
-    String[] EMUdormitoriesName = {"Search all Dormitories","EMU1 dormitory","EMU2  dormitory","EMU3 dormitory"," EMU4 dormitory"," Sabanci dormitory"};
 
+   private String[] dormitorytype;
+
+    private ArrayList<String> alldormitoriesname = new ArrayList<>();
+    private ArrayList<String> alldormitoriesId = new ArrayList<>();
     ArrayAdapter<String> adapter;
     private String DormitoryType = "0";
+    private String dormitoryid;
 
    // private ProgressDialog dialog = new ProgressDialog(HomeActivity.this);
 
@@ -112,6 +113,7 @@ public class HomeActivity  extends navigational_drawer {
 
 
 
+        dormitorytype = new String[]{"all Dormitory type ", "EMU dormitory", "Private own dormitory"};
 
 
 
@@ -175,18 +177,41 @@ public class HomeActivity  extends navigational_drawer {
         mprogressbar2.setVisibility(View.VISIBLE);*/
 
 
+        //dormitoryid = "0";
+
+
 
         /*Adapter1=new ArrayAdapter(this,android.R.layout.simple_spinner_item,dormitoriesName);
         Adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         msdormname.setAdapter(Adapter1);*/
 
 
+        //AllDormitories();
         final AutoCompleteTextView msdormitoryname = contentView.findViewById(R.id.isdormname);
 
 
+        final String[] username = new String[1];
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            uid = user.getUid();
 
+            DR = FirebaseDatabase.getInstance().getReference().child("Users");
+            DR.addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                    username[0] = dataSnapshot.child(uid).child("name").getValue(String.class);
+                   // mwelcom.setText("Welcome\t"+name);
+                }
 
-          FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                @Override
+                public void onCancelled(@NonNull DatabaseError databaseError) {
+                    //Toast.makeText(HomeActivity.this, "Network Error", Toast.LENGTH_SHORT).show();
+
+                }
+            });
+        }
+
+          //FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
 
         //String uid, name, email;
         if (user != null) {
@@ -195,17 +220,17 @@ public class HomeActivity  extends navigational_drawer {
                 //String providerId = profile.getProviderId();
 
                 // UID specific to the provider
-                String uid = profile.getUid();
+                //String uid = profile.getUid();
 
                 // Name, email address, and profile photo Url
                 String namee = profile.getDisplayName();
-                String email = profile.getEmail();
+                //String email = profile.getEmail();
                 //Uri photoUrl = profile.getPhotoUrl();
 
                 if (namee != null)
-                    mwelcom.setText("Hi " + namee);
+                    mwelcom.setText("Welcome\t" + namee);
                 else
-                    mwelcom.setText("Hi \n"+ email);
+                    mwelcom.setText("Welcome \t"+ username[0].toString());
             }
         }
 
@@ -239,8 +264,7 @@ public class HomeActivity  extends navigational_drawer {
         }*/
 
 
-        /*adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dormitoriesName);
-        msdormitoryname.setAdapter(adapter);*/
+
 
         msdormitoryname.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
@@ -249,21 +273,30 @@ public class HomeActivity  extends navigational_drawer {
                 String selection = (String) parent.getItemAtPosition(position);
                 int pos = -1;
 
-                for (int i = 0; i < dormitoriesName.length; i++) {
-                    if (dormitoriesName[i].equals(selection)) {
+                for (int i = 0; i < alldormitoriesname.size(); i++) {
+                    if (alldormitoriesname.get(i).equals(selection)) {
                         pos = i;
+                        //dormid = alldormitoriesId.get(i);
                         break;
                     }
+                   /* else
+                    {
+                        dormid = null;
+                        //break;
+                    }
+                    break;*/
                 }
+
+
                 switch (pos){
                     case 0:
-                        dormid = null;
+                        dormid = alldormitoriesId.get(0);
                         break;
                     case 1:
-                        dormid = "5";
+                        dormid = alldormitoriesId.get(1);
                         break;
                     case 2:
-                        dormid = "5";
+                        dormid = alldormitoriesId.get(2);
                         break;
                         default:
                             dormid = null;
@@ -314,20 +347,56 @@ public class HomeActivity  extends navigational_drawer {
 
                 switch (position){
                     case 0:
-                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, dormitoriesName);
-                        msdormitoryname.setAdapter(adapter);;
-                        break;
-                    case 1:
-                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, EMUdormitoriesName);
+                        //all dorms
+
+                        alldormitoriesname.clear();
+                        alldormitoriesId.clear();
+
+                        AllDormitories("0");
+                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, alldormitoriesname);
                         msdormitoryname.setAdapter(adapter);
+
+                       /* adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, dormitoriesName);
+                        msdormitoryname.setAdapter(adapter);*/
+                        break;
+
+                    case 1:
+                        // school dorms
+                        alldormitoriesname.clear();
+                        alldormitoriesId.clear();
+
+                        AllDormitories("1");
+                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, alldormitoriesname);
+                        msdormitoryname.setAdapter(adapter);
+
+                        /*adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, EMUdormitoriesName);
+                        msdormitoryname.setAdapter(adapter);*/
+
                         break;
                     case 2:
-                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, privatedormitoriesName);
+                        //private dorm
+                        alldormitoriesname.clear();
+                        alldormitoriesId.clear();
+
+                        AllDormitories("2");
+                        adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, alldormitoriesname);
                         msdormitoryname.setAdapter(adapter);
+
+                        /*adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, privatedormitoriesName);
+                        msdormitoryname.setAdapter(adapter);*/
                         break;
+
                         default:
-                            adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, dormitoriesName);
+                            alldormitoriesname.clear();
+                            alldormitoriesId.clear();
+
+                            AllDormitories("0");
+
+                            adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, alldormitoriesname);
                             msdormitoryname.setAdapter(adapter);
+
+                            /*adapter = new ArrayAdapter<String>(HomeActivity.this, android.R.layout.simple_list_item_1, dormitoriesName);
+                            msdormitoryname.setAdapter(adapter);*/
                 }
 
             }
@@ -416,8 +485,68 @@ public class HomeActivity  extends navigational_drawer {
                                 String ratingtext = dormitories.getString("ratingText");
                                 String DormitoryId = dormitories.getString("dormitoryId");
 
+                                String typeId = dormitories.getString("dormitoryTypeId");
+
+                                /*alldormitoriesname.add(DormitoryName);
+                                alldormitoriesId.add(DormitoryId);*/
+
                                 SearchAllDorms.add(new SearchResultsListDataModel(DormitoryName, dormdescription, ratingnumber, ratingtext, picture,DormitoryId));
                                 Log.d(TAG, "onResponse: Add to the SearchAllDorm array");
+                            }
+
+                        } catch (JSONException e) {
+                            Log.d(TAG, "onResponse: Throwed JSON Exception error");
+                            e.printStackTrace();
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                error.printStackTrace();
+            }
+        });
+
+        Log.d(TAG, "SearchAllDorms: About to assign to mQueue");
+        mQueue = Volley.newRequestQueue(HomeActivity.this);
+
+        Log.d(TAG, "SearchAllDorms: mQueue assignment successfull");
+        mQueue.add(request);
+
+        Log.d(TAG, "SearchAllDorms: Adding requuest to the queue");
+    }
+
+    private void AllDormitories(String dormi) {
+
+        String url = "http://35.204.232.129/api/GetDormitoriesByTypeId/"+dormi;
+        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+
+                        try {
+                            Log.d(TAG, "onResponse: Entered try");
+                            JSONObject JO = response.getJSONObject("body");
+
+                            JSONArray JA = JO.getJSONArray("dormitories");
+
+
+                            for (int i=0; i<JA.length(); i++){
+
+                                JSONObject dormitories = JA.getJSONObject(i);
+                                String picture = dormitories.getString("pictureUrl");
+                                String DormitoryName = dormitories.getString("dormitoryName");
+                                String dormdescription = dormitories.getString("dormitoryDescription");
+                                String ratingnumber = dormitories.getString("ratingNumber");
+                                String ratingtext = dormitories.getString("ratingText");
+                                String DormitoryId = dormitories.getString("dormitoryId");
+
+                                String typeId = dormitories.getString("dormitoryTypeId");
+
+                                alldormitoriesname.add(DormitoryName);
+                                alldormitoriesId.add(DormitoryId);
+
                             }
 
                         } catch (JSONException e) {

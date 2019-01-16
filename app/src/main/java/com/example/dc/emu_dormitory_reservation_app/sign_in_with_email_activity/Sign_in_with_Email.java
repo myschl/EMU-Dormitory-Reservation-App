@@ -12,10 +12,18 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Create_account_activity.Create_Account;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.R;
+import com.example.dc.emu_dormitory_reservation_app.Room_detail;
 import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -23,7 +31,14 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Sign_in_with_Email extends AppCompatActivity implements View.OnClickListener {
+
     private EditText memail, mpassword;
     private TextView msign_in, malert;
     private String email, password;
@@ -81,22 +96,21 @@ public class Sign_in_with_Email extends AppCompatActivity implements View.OnClic
         String password = mpassword.getText().toString().trim();
 
         // check for validation
-/*
         if (TextUtils.isEmpty(email)){
             // give a toes message that user must enter mail
             Toast.makeText(Sign_in_with_Email.this, "please Enter  email", Toast.LENGTH_SHORT).show();
-            recreate();
+            //recreate();
         }
         if (TextUtils.isEmpty(password)){
             // give a toes message that user must enter password
             Toast.makeText(Sign_in_with_Email.this, "Please Enter password", Toast.LENGTH_SHORT).show();
-            recreate();
+            //recreate();
         }
         if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
             // give a toes message that user must enter email and password
             Toast.makeText(Sign_in_with_Email.this, "please Enter  email and password", Toast.LENGTH_SHORT).show();
-            recreate();
-        }*/
+            //recreate();
+        }
 
 
 
@@ -112,6 +126,8 @@ public class Sign_in_with_Email extends AppCompatActivity implements View.OnClic
 
                                 // display an error message
                                 Toast.makeText(Sign_in_with_Email.this, "Sign in fail Check your connection", Toast.LENGTH_SHORT).show();
+
+                                postExternalSignin(String.valueOf(memail) , String.valueOf(mpassword));
 
                                 dialog.dismiss();
 
@@ -133,6 +149,64 @@ public class Sign_in_with_Email extends AppCompatActivity implements View.OnClic
 
     }
 
+    private void postExternalSignin(final String memail, final String mpassword) {
+
+        // mPostCommentResponse.requestStarted();
+        RequestQueue queue = Volley.newRequestQueue(Sign_in_with_Email.this);
+        StringRequest sr = new StringRequest(Request.Method.POST, "http://35.204.232.129/api/Authentication", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                //mPostCommentResponse.requestCompleted();
+
+                try {
+
+                    JSONObject responces = new JSONObject(response.toString());
+                    JSONObject JO = responces.getJSONObject("body");
+
+
+                    String userId = JO.getString("userId");
+                    String userName = JO.getString("userName");
+                    String userFirstName = JO.getString("userFirstName");
+                    String userLastName = JO.getString("userLastName");
+                    String userImageUrl = JO.getString("userImageUrl");
+                    String userGender = JO.getString("userGender");
+
+
+
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //mPostCommentResponse.requestEndedWithError(error);
+            }
+        }) {
+            @Override
+            protected Map<String, String> getParams() {
+
+                Map<String, String> params = new HashMap<String, String>();
+
+                params.put("email", memail);
+                params.put("password", mpassword);
+
+
+                return params;
+            }
+
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
+                return params;
+            }
+        };
+        queue.add(sr);
+    }
+
     private void emailverification() {
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -141,6 +215,8 @@ public class Sign_in_with_Email extends AppCompatActivity implements View.OnClic
         if (user.isEmailVerified()){
 
             //log in the user
+
+
             Toast.makeText(Sign_in_with_Email.this, "Sign in successful", Toast.LENGTH_SHORT).show();
             finish();
             startActivity(new Intent(Sign_in_with_Email.this, HomeActivity.class));
@@ -150,13 +226,15 @@ public class Sign_in_with_Email extends AppCompatActivity implements View.OnClic
         else {
 
             //recreate();
+            FirebaseAuth.getInstance().signOut();
             malert.setVisibility(View.VISIBLE);
             Toast.makeText(Sign_in_with_Email.this, " verify your Email and then Sign in ", Toast.LENGTH_SHORT).show();
-            FirebaseAuth.getInstance().signOut();
+
 
 
         }
     }
+
 
     @Override
     public void onClick(View v) {
@@ -167,28 +245,28 @@ public class Sign_in_with_Email extends AppCompatActivity implements View.OnClic
             dialog.show();
 
 
-            if (TextUtils.isEmpty(email)){
+           /* if (TextUtils.isEmpty(email)){
                 // give a toes message that user must enter mail
                 Toast.makeText(Sign_in_with_Email.this, "please Enter  email", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
 
             }
-            else if (TextUtils.isEmpty(password)){
+             if (TextUtils.isEmpty(password)){
                 // give a toes message that user must enter password
                 Toast.makeText(Sign_in_with_Email.this, "Please Enter password", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
 
             }
-            else if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
+             if (TextUtils.isEmpty(email) && TextUtils.isEmpty(password)){
                 // give a toes message that user must enter email and password
                 Toast.makeText(Sign_in_with_Email.this, "please Enter  email and password", Toast.LENGTH_SHORT).show();
                 dialog.dismiss();
 
-            }
-            else {
+            }*/
 
-                SignUser();
-            }
+
+            SignUser();
+
         }
     }
 }

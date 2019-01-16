@@ -12,10 +12,10 @@
             android:id="@+id/nav_bookings"
             android:icon="@drawable/ic_bookings"
             android:title="Bookings" />
-        <item
+        <!--<item
             android:id="@+id/nav_notifications"
             android:icon="@drawable/ic_notification"
-            android:title="Notifications" />
+            android:title="Notifications" />-->
        <!--<item
             android:id="@+id/nav_sign_in"
             android:icon="@drawable/ic_menu_share"
@@ -50,10 +50,10 @@
                 android:id="@+id/nav_help_center"
 
                 android:title="Help center" />
-            <item
+           <!-- <item
                 android:id="@+id/nav_share"
 
-                android:title="Share" />
+                android:title="Share" />-->
             <item
                 android:id="@+id/nav_RateApp"
                 android:title="Rate App"/>

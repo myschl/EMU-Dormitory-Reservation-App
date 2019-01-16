@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.v4.view.ViewPager;
@@ -16,6 +17,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -29,6 +31,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivity;
 import com.example.dc.emu_dormitory_reservation_app.Home_activity.HomeActivityDataModel;
+import com.example.dc.emu_dormitory_reservation_app.Navigational_drawer.navigational_drawer;
 import com.example.dc.emu_dormitory_reservation_app.Sign_in_activity.Sign_in;
 import com.example.dc.emu_dormitory_reservation_app.Terms_and_conditions_activity.Terms_and_conditions;
 import com.example.dc.emu_dormitory_reservation_app.booking_activity.booking_tabbed_activity;
@@ -60,19 +63,19 @@ public class Room_detail extends AppCompatActivity {
     private ArrayList fimage = new ArrayList();
     private ArrayList fname = new ArrayList();
     private ArrayList<RoomDetailModel1> facilities = new ArrayList<>();
-    //private ArrayList<String> images = new ArrayList<>();
+    //private ArrayList<RoomDetailImageModel> images = new ArrayList<>();
     private Button mbookroom, mrateyourstay, mmanagebooking, mbookroom2;
     ImageView viewPager;
     String name;
-    private TextView mqota, mprice;
-   // int images[] = {R.drawable.akdeniz_1, R.drawable.akdeniz_2, R.drawable.akdeniz_3, R.drawable.akdeniz_2};
+    private TextView mqota, mprice, mdormname, mroomname;
+    // int images[] = {R.drawable.akdeniz_1, R.drawable.akdeniz_2, R.drawable.akdeniz_3, R.drawable.akdeniz_2};
     private ArrayList<RoomDetailImageModel> images = new ArrayList<>();
 
     private FirebaseAuth firebaseAuth;
     private DatabaseReference DR;
     private FirebaseUser user;
     private FirebaseAuth.AuthStateListener mAuthListener;
-    String userid;
+    String userid, ExternalUserId;
 
     public static ArrayList<RoomQandPModel> roomQandP = new ArrayList<>();
     public static ArrayList<RoomDetailImageModel> imagess = new ArrayList<>();
@@ -89,18 +92,25 @@ public class Room_detail extends AppCompatActivity {
         setContentView(R.layout.activity_room_detail);
 
 
-
+        // from Domitory_detail Activity
         Bundle bundle1 = getIntent().getExtras();
-        roomId = bundle1 .getString("Roomid");
+        roomId = bundle1.getString("Roomid");
         dormId = bundle1.getString("DormId");
 
 
+        // from booking Activity
         Bundle bundle = getIntent().getExtras();
         bookingNo = bundle.getString("bookingNo");
+        dormId = bundle1.getString("DormId");
+        roomId = bundle1.getString("Roomid");
         bookingst = bundle.getString("bookingst");
 
 
-        Toolbar toolbar = (Toolbar)findViewById(R.id.room_detail);
+        SharedPreferences sharedPref = getSharedPreferences("userid", Context.MODE_PRIVATE);
+        ExternalUserId = sharedPref.getString("ExternalUserId", "");
+
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.room_detail);
         toolbar.setTitle("Room");
         //toolbar.setSubtitle("welcome");
         setSupportActionBar(toolbar);
@@ -120,6 +130,8 @@ public class Room_detail extends AppCompatActivity {
 
         mqota = findViewById(R.id.iqota);
         mprice = findViewById(R.id.iprice);
+        mdormname = findViewById(R.id.idormname);
+        mroomname = findViewById(R.id.iroomname);
         mbookroom = findViewById(R.id.ibookroom);
         mbookroom2 = findViewById(R.id.ibookroom2);
         mrateyourstay = findViewById(R.id.irateyourstay);
@@ -175,11 +187,11 @@ public class Room_detail extends AppCompatActivity {
                 //String providerId = profile.getProviderId();
 
                 // UID specific to the provider
-                 String uid = profile.getUid();
+                String uid = profile.getUid();
 
                 // Name, email address, and profile photo Url
-                 String namee = profile.getDisplayName();
-                 //String email = profile.getEmail();
+                String namee = profile.getDisplayName();
+                //String email = profile.getEmail();
                 //Uri photoUrl = profile.getPhotoUrl();
 
                 UserId = uid /*"11"*/;
@@ -212,30 +224,30 @@ public class Room_detail extends AppCompatActivity {
         }*/
 
 
-        bookingId =bookingNo;
+        bookingId = bookingNo;
         dormitoryId = dormId;
         RoomId = roomId;
 
 
-        if (bookingst == null){
+        if (bookingst == null) {
             mrateyourstay.setVisibility(View.GONE);
             mmanagebooking.setVisibility(View.GONE);
         }
 
-        if (bookingst != null){
+        if (bookingst != null) {
             mbookroom.setVisibility(View.GONE);
-            mbookroom2.setVisibility(View.GONE); 
+            mbookroom2.setVisibility(View.GONE);
         }
 
         mrateyourstay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                    Intent intent = new Intent(Room_detail.this, Rate_your_stay.class);
-                    intent.putExtra("Rid", Rid);
-                    intent.putExtra("bookingNo", bookingNo);
-                    intent.putExtra("DormId", dormId);
-                    startActivity(intent);
+                Intent intent = new Intent(Room_detail.this, Rate_your_stay.class);
+                intent.putExtra("Rid", Rid);
+                intent.putExtra("bookingNo", bookingNo);
+                intent.putExtra("DormId", dormId);
+                startActivity(intent);
 
 
             }
@@ -267,11 +279,9 @@ public class Room_detail extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                if (user != null){
+                if (user != null) {
                     BookRoom();
-                }
-                else
-                {
+                } else {
                     startActivity(new Intent(Room_detail.this, Sign_in.class));
                     Toast.makeText(Room_detail.this, "Sign in to book", Toast.LENGTH_SHORT).show();
                 }
@@ -302,9 +312,6 @@ public class Room_detail extends AppCompatActivity {
         });
 
 
-
-
-
         // getting room detail from choose room activity Adapter
 /*
         Bundle bundleobje=getIntent().getExtras();
@@ -317,11 +324,9 @@ public class Room_detail extends AppCompatActivity {
         String RoomId = roomQandP.get(0).getRoomId();*/
 
 
-
-
         RoomDetailsAPI();
-        //Myfun();
-        fRecycler();
+        /*Myfun();
+        fRecycler();*/
 
 
     }
@@ -339,7 +344,9 @@ public class Room_detail extends AppCompatActivity {
 
 
                 Toast.makeText(Room_detail.this, "Your booking is successful", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(Room_detail.this, HomeActivity.class));
+                Intent intent = new Intent(Room_detail.this, Sbooking.class);
+                intent.putExtra("userid", UserId);
+                startActivity(intent);
             }
         });
         builder.setNegativeButton("No", null);
@@ -389,18 +396,18 @@ public class Room_detail extends AppCompatActivity {
 
     public interface PostCommentResponseListener {
         public void requestStarted();
+
         public void requestCompleted();
+
         public void requestEndedWithError(VolleyError error);
     }
 
 
-
-
-    public void postNewBooking( ){
+    public void postNewBooking() {
 
         // mPostCommentResponse.requestStarted();
         RequestQueue queue = Volley.newRequestQueue(Room_detail.this);
-        StringRequest sr = new StringRequest(Request.Method.POST,"http://35.204.232.129/api/CreateBooking", new Response.Listener<String>() {
+        StringRequest sr = new StringRequest(Request.Method.POST, "http://35.204.232.129/api/CreateBooking", new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
                 //mPostCommentResponse.requestCompleted();
@@ -410,17 +417,17 @@ public class Room_detail extends AppCompatActivity {
             public void onErrorResponse(VolleyError error) {
                 //mPostCommentResponse.requestEndedWithError(error);
             }
-        }){
+        }) {
             @Override
-            protected Map<String,String> getParams(){
+            protected Map<String, String> getParams() {
 
-                Map<String,String> params = new HashMap<String, String>();
+                Map<String, String> params = new HashMap<String, String>();
 
                 params.put("bookingId", /*bookingNo*/ "0");
                 params.put("currentDate", currentDate);
                 params.put("currentTime", currentTime);
                 params.put("userName", UserName);
-                params.put("userId", UserId);
+                params.put("userId", /*ExternalUserId*/ UserId);
                 params.put("dormitoryId", dormId /*"jsnxnc"*/);
                 params.put("roomId", roomId /*"jdmnczm"*/);
 
@@ -429,8 +436,8 @@ public class Room_detail extends AppCompatActivity {
 
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type","application/x-www-form-urlencoded");
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("Content-Type", "application/x-www-form-urlencoded");
                 return params;
             }
         };
@@ -438,12 +445,10 @@ public class Room_detail extends AppCompatActivity {
     }
 
 
-
-
     private void RoomDetailsAPI() {
 
         //String url = "https://api.myjson.com/bins/19pu48";
-        String url = "http://35.204.232.129/api/GetRoomById/"+roomId;
+        String url = "http://35.204.232.129/api/GetRoomById/" + roomId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -454,39 +459,65 @@ public class Room_detail extends AppCompatActivity {
                         try {
                             JSONObject JO = response.getJSONObject("body");
 
-
                             String RoomId = JO.getString("roomId");
                             String RoomQota = JO.getString("roomQuota");
                             String RoomPrice = JO.getString("roomPrice");
+
+                            String DormName = JO.getString("dormitoryName");
+                            String RoomName = JO.getString("roomName");
+
+                            mdormname.setText(DormName);
+                            mroomname.setText(RoomName);
 
                             mqota.setText(RoomQota);
                             mprice.setText(RoomPrice);
                             Rid = RoomId;
 
 
-                            // for images
-                            JSONArray JAI = JO.getJSONArray("pictureUrl");
-
-                            for (int i=0; i<JAI.length(); i++){
-                                String image = JAI.getString(i);
-                                images.add(new RoomDetailImageModel(image));
-
-                            }
-
-
-                            //for facilities images and names
+                            /*//for facilities images and names
                             JSONArray JA = JO.getJSONArray("facilitiesList");
 
-                            for (int i=0; i<JA.length(); i++){
+                            for (int i = 0; i < JA.length(); i++) {
                                 JSONObject room = JA.getJSONObject(i);
                                 String picture = room.getString("pictureUrl");
                                 String name = room.getString("facilityname");
                                 String facilityId = room.getString("facilityId");
 
-
                                 facilities.add(new RoomDetailModel1(picture, name, facilityId));
 
+                            }*/
+
+
+                            // for facilities
+                            JSONArray JAI = JO.getJSONArray("facilitiesList");
+
+                            for (int i=0; i<JAI.length(); i++) {
+                                JSONObject facility = JAI.getJSONObject(i);
+                                String image = facility.getString("pictureUrl");
+                                String name = facility.getString("facilityname");
+                                String facilityId = facility.getString("facilityId");
+                                facilities.add(new RoomDetailModel1(image, name, facilityId));
+                                fRecycler();
                             }
+
+
+                            // for images
+                            /*JSONArray JAI = JO.getJSONArray("pictureUrl");
+
+                            for (int i = 0; i < JAI.length(); i++) {
+                                String image = JAI.getString(i);
+                                images.add(new RoomDetailImageModel(image));
+
+                            }*/
+
+                            // for images
+                            JSONArray JA = JO.getJSONArray("pictureUrl");
+                            for (int i=0; i<JA.length(); i++){
+                                String picture = JA.getString(i);
+                                images.add(new RoomDetailImageModel(picture));
+                                Myfun();
+                            }
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -507,7 +538,7 @@ public class Room_detail extends AppCompatActivity {
     private void fRecycler() {
 
 
-        /*facilities.add(new RoomDetailModel1("ww1.emu.edu.tr/emu_v1/media/posts_media/media_1706_en_1200.jpg", "wif" ));
+        /*facilities.add(new RoomDetailModel1("ww1.emu.edu.tr/emu_v1/media/posts_media/media_1706_en_1200.jpg", "wif" , "1"));
         fimage.add("http://ww1.emu.edu.tr/emu_v1/media/posts_media/media_1706_en_1200.jpg");
         fname.add("wif");
         fimage.add("http://en.alfamcyprus.com/thumbnail.php?file=images/2.jpg&pwidth=1903&pheight=850&pw=475.7500&ph=212.5000&px=0.0000&py=0.0000&pscale=0.2500&pangle=0.0000&force=y");
@@ -525,26 +556,21 @@ public class Room_detail extends AppCompatActivity {
         fimage.add("https://tr.alfamcyprus.com/thumbnail.php?file=pics/pics_blog/HBR_81349/edaa2aba35021ef3f1d9aa9f478443a0.jpg&pwidth=370&pheight=235");
         fname.add("TV");*/
 
-        RecyclerView recyclerView = findViewById(R.id.room_detail_recycleview);
-        Room_detail_facilities_Adapter adapter = new Room_detail_facilities_Adapter(this, facilitiess);
+        RecyclerView recyclerView = findViewById(R.id.iroom_detail_recycleview);
+        Room_detail_facilities_Adapter adapter = new Room_detail_facilities_Adapter(Room_detail.this, facilities);
         recyclerView.setAdapter(adapter);
-        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(Room_detail.this, LinearLayoutManager.HORIZONTAL, false);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(Room_detail.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(horizontalLayoutManagaer);
-
-        RecyclerView recyclerView1 = findViewById(R.id.iroomdetailimagerecycler);
-        RoomDetailImagesAdapter adapter1 = new RoomDetailImagesAdapter(this, imagess );
-        recyclerView1.setAdapter(adapter1);
-        LinearLayoutManager horizontalLayoutManagaer1 = new LinearLayoutManager(Room_detail.this, LinearLayoutManager.HORIZONTAL, false);
-        recyclerView1.setLayoutManager(horizontalLayoutManagaer1);
 
 
     }
 
-  /*  private void Myfun() {
+    private void Myfun() {
 
-        *//*viewPager = (ViewPager)findViewById(R.id.viewPager);
-
-        //myCustomPagerAdapter = new MyCustomPagerAdapter(Room_detail.this, images);
-        viewPager.setAdapter(myCustomPagerAdapter);*//*
-    }*/
+        RecyclerView recyclerView = findViewById(R.id.iroomdetailimagerecycler);
+        RoomDetailImagesAdapter adapter = new RoomDetailImagesAdapter(Room_detail.this, images);
+        recyclerView.setAdapter(adapter);
+        LinearLayoutManager horizontalLayoutManagaer = new LinearLayoutManager(Room_detail.this, LinearLayoutManager.HORIZONTAL, false);
+        recyclerView.setLayoutManager(horizontalLayoutManagaer);
+    }
 }

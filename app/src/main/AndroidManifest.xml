@@ -5,20 +5,17 @@
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.CAMERA"/>
-
-
-
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:hardwareAccelerated="false"
-        android:largeHeap="true"
         android:theme="@style/AppTheme">
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -33,15 +30,11 @@
         <activity android:name=".Terms_and_conditions_activity.Terms_and_conditions" />
         <activity android:name=".edit_booking_activity.Edit_booking" />
         <activity android:name=".manage_booking_activity.Manage_booking" />
-        <activity android:name=".DebugActivity.DebugActivity"/>
-        <activity android:name=".Payment_confirmation"/>
-
-
-
-        <activity android:name=".Splash_screen"
-          android:theme="@style/Theme.AppCompat.NoActionBar"
-            >
-
+        <activity android:name=".DebugActivity.DebugActivity" />
+        <activity android:name=".Payment_confirmation" />
+        <activity
+            android:name=".Splash_screen"
+            android:theme="@style/Theme.AppCompat.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -61,35 +54,34 @@
         <activity android:name=".Home_activity.HomeActivity" />
         <activity android:name=".Facilities_filters" />
         <activity android:name=".Get_help" />
-
         <activity android:name=".Room_detail" />
         <activity android:name=".Dormitory_detail" />
-        <activity android:name=".Choose_room"/>
-
+        <activity android:name=".Choose_room" />
         <activity
             android:name=".Navigational_drawer.navigational_drawer"
             android:label="@string/title_activity_navigational_drawer"
-            android:theme="@style/AppTheme"></activity>
+            android:theme="@style/AppTheme" />
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
 
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
-
 
         <provider
             android:name="android.support.v4.content.FileProvider"
@@ -98,9 +90,11 @@
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths"></meta-data>
+                android:resource="@xml/file_paths" />
         </provider>
 
+        <activity android:name=".DormitoryImages" />
+        <activity android:name=".Sbooking"></activity>
     </application>
 
 </manifest>

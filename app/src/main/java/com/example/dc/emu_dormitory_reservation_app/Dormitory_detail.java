@@ -26,12 +26,15 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Dormitory_detail extends AppCompatActivity {
+
     private RequestQueue mQueue;
-    private ArrayList<String>mImageUrl = new ArrayList<>();
+    private ArrayList<DormitoryImagesModel>mImageUrl = new ArrayList<>();
     private Button mchooseroom;
+    private RecyclerView mrecyclerView;
     private WebView mmapview;
     private TextView mdormitorypolicies,mexpandableTextView, mfacilities, mdormpoliciestext, mdormnane, mdormshortdescription;
     //private ExpandableTextView mexpandableTextView;
@@ -39,7 +42,9 @@ public class Dormitory_detail extends AppCompatActivity {
     private String FullDescription;
     private ArrayList<DormitoryDetailFacilitiesModel> dormfacilities = new ArrayList<>();
     private ArrayList<Choose_room_class> DormitoryRooms = new ArrayList<>();
-    private String DormMapId = "b63";
+    private String dormId ;
+
+
 
 
     @Override
@@ -61,7 +66,14 @@ public class Dormitory_detail extends AppCompatActivity {
         mexpandableTextView = findViewById(R.id.expandable_text);
         mdormnane = findViewById(R.id.idormname);
         mdormshortdescription = findViewById(R.id.idormshortdescription);
-        mmapview = findViewById(R.id.imapview);
+        mrecyclerView = findViewById(R.id.recycler_view);
+       // mmapview = findViewById(R.id.imapview);
+
+
+        Bundle bundle = getIntent().getExtras();
+        dormId = bundle .getString("DormId");
+
+
 
         ExpandableText();
 
@@ -83,11 +95,22 @@ public class Dormitory_detail extends AppCompatActivity {
         DormId = bundle .getString("DormId");*/
 
 
-        mmapview.loadUrl("https://www.google.com/maps");
+       // mmapview.loadUrl("https://www.google.com/maps");
 
 
         //final String finalDormId = DormId;
 
+
+       /* mrecyclerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i=new Intent(Dormitory_detail.this,DormitoryImages.class);
+                Bundle bundle=new Bundle();
+                bundle.putSerializable("DormImages", mImageUrl);
+                i.putExtras(bundle);
+                startActivity(i);
+            }
+        });*/
 
         mchooseroom.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -128,8 +151,9 @@ public class Dormitory_detail extends AppCompatActivity {
     }
 
     private void DormitoryRoomss() {
-        Bundle bundle = getIntent().getExtras();
-        String dormId = bundle .getString("DormId");
+        /*Bundle bundle = getIntent().getExtras();
+        String dormId = bundle .getString("DormId");*/
+
         String url = "http://35.204.232.129/api/GetRoomByDormitoryId/"+dormId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -176,7 +200,7 @@ public class Dormitory_detail extends AppCompatActivity {
     private void DormitoryDetailsApi() {
 
         Bundle bundle = getIntent().getExtras();
-        String dormId = bundle .getString("DormId");
+        final String dormId = bundle .getString("DormId");
         String url = "http://35.204.232.129/api/GetDormitoryDetailById/"+dormId;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
@@ -210,14 +234,16 @@ public class Dormitory_detail extends AppCompatActivity {
                                 String name = facility.getString("facilityname");
                                 String facilityId = facility.getString("facilityId");
                                 dormfacilities.add(new DormitoryDetailFacilitiesModel(image, name, facilityId));
+
                             }
+                            dormfacilties();
 
 
                             // for images
                             JSONArray JA = JO.getJSONArray("imageUrls");
                             for (int i=0; i<JA.length(); i++){
                                 String picture = JA.getString(i);
-                                mImageUrl.add(picture);
+                                mImageUrl.add(new DormitoryImagesModel(picture, dormId));
                                 initRecyclerview();
                             }
 
@@ -309,8 +335,7 @@ public class Dormitory_detail extends AppCompatActivity {
 
     }
 
-    public void DormitoryFacilities(View view) {
-
+    public void dormfacilties(){
 
        /* dormfacilities.add(new DormitoryDetailFacilitiesModel("https://en.kibrisyurtlar.com/thumbnail.php?file=images/odalar/oda1.jpg", "Wifi"));
         dormfacilities.add(new DormitoryDetailFacilitiesModel("https://en.kibrisyurtlar.com/thumbnail.php?file=images/odalar/oda1.jpg", "Wifi"));
@@ -330,6 +355,11 @@ public class Dormitory_detail extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         LinearLayoutManager verticalLayoutManagaer = new LinearLayoutManager(Dormitory_detail.this, LinearLayoutManager.VERTICAL, false);
         recyclerView.setLayoutManager(verticalLayoutManagaer);
+
+    }
+
+    public void DormitoryFacilities(View view) {
+
 
         mdormfacilitie = findViewById(R.id.idormfacilities);
         mdormfacilitie.toggle();

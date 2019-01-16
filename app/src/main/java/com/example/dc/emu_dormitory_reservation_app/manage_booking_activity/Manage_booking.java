@@ -42,7 +42,7 @@ import java.util.Map;
 public class Manage_booking extends AppCompatActivity {
     private RequestQueue mQueue;
     Button Save,ConfirmPaymeny,CancelBooking;
-    private TextView mdateofbooking, mtimeofbooking, mcheckindate, mcheckinsemester;
+    private TextView mdateofbooking, mtimeofbooking, mcheckindate, mcheckinsemester, mbookingexpirydate;
     private ArrayList<ManageBookingModel> bookinginfor = new ArrayList<>();
     private String bookingNum,roomid,dormitoryId;
 
@@ -68,18 +68,19 @@ public class Manage_booking extends AppCompatActivity {
         );
 
 
+        // for booking infor from roomdetail activity
         Intent intent = getIntent();
         roomid = intent.getStringExtra("Rid");
         bookingNum = intent.getStringExtra("bookingNo");
         dormitoryId = intent.getStringExtra("DormId");
 
-
+    
         MyFun();
         BookingInformationAPI();
     }
 
     private void BookingInformationAPI() {
-        String url = "http://35.204.232.129/api/GetBooking/34";
+        String url = "http://35.204.232.129/api/GetBooking/"+bookingNum;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -94,10 +95,11 @@ public class Manage_booking extends AppCompatActivity {
                                 String Timeofbooking = JO.getString("timeOfBooking");
                                 String checkindate = JO.getString("checkInDate");
                                 String checkinsemester = JO.getString("checkInSemester");
-
+                                String expdate = JO.getString("expiryDate");
                                 String bookingnumber = JO.getString("bookingId");
-                                bookingNum = bookingnumber;
+                               // bookingNum = bookingnumber;
 
+                                 mbookingexpirydate.setText(expdate);
                                  mdateofbooking.setText(Dateofbooking);
                                  mtimeofbooking.setText(Timeofbooking);
                                  mcheckindate.setText(checkindate);
@@ -129,6 +131,7 @@ public class Manage_booking extends AppCompatActivity {
         mtimeofbooking = findViewById(R.id.itimeofbooking);
         mcheckindate = findViewById(R.id.icheckindate);
         mcheckinsemester = findViewById(R.id.icheckinsemester);
+        mbookingexpirydate = findViewById(R.id.iexpirydate);
 
         ConfirmPaymeny.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -136,7 +139,7 @@ public class Manage_booking extends AppCompatActivity {
                 Intent intent = new Intent(Manage_booking.this, Payment_confirmation.class);
                 intent.putExtra("bookingNo", bookingNum);
                 startActivity(intent);
-                Toast.makeText(Manage_booking.this, "Up comming feature ", Toast.LENGTH_SHORT).show();
+                //Toast.makeText(Manage_booking.this, "Up comming feature ", Toast.LENGTH_SHORT).show();
             }
         });
 

@@ -3,6 +3,7 @@ package com.example.dc.emu_dormitory_reservation_app.Navigational_drawer;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
@@ -66,9 +67,9 @@ public class navigational_drawer extends AppCompatActivity
    protected Toolbar mToolbar;
     private RequestQueue mQueue;
    private ImageView nav_image;
-   private TextView textView_nav_username;
+   private TextView textView_nav_username,nav_sign_in;
     private ArrayList<BookingbyCustomerId> alldorms = new ArrayList<>();
-    private String name, uid;
+    private String name, uid, ExternalUserId;
 
 
     private FirebaseAuth firebaseAuth;
@@ -85,6 +86,7 @@ public class navigational_drawer extends AppCompatActivity
         setSupportActionBar(mToolbar);
 
         nav_image = findViewById(R.id.nav_image);
+        //nav_sign_in = findViewById(R.id.nav_sign_in);
        /* firebaseAuth = FirebaseAuth.getInstance();
         if (firebaseAuth.getCurrentUser() != null) {
 
@@ -95,6 +97,9 @@ public class navigational_drawer extends AppCompatActivity
 
         }*/
 
+
+        SharedPreferences sharedPref = getSharedPreferences("userid", Context.MODE_PRIVATE);
+        ExternalUserId = sharedPref.getString("ExternalUserId", "");
 
       // user = FirebaseAuth.getInstance().getCurrentUser();
 
@@ -128,6 +133,7 @@ public class navigational_drawer extends AppCompatActivity
 
             }
 
+            //nav_sign_in.setVisibility(View.GONE);
         }
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
@@ -164,7 +170,7 @@ public class navigational_drawer extends AppCompatActivity
     }
 
     private void DormitoriesAPI() {
-        String url = "http://35.204.232.129/api/GetBookingsByCustomerId/5";
+        String url = "http://35.204.232.129/api/GetBookingsByCustomerId/18e9df11-8b9a-4253-8f02-69387bb68422" /*+ ExternalUserId*/;
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -254,10 +260,10 @@ public class navigational_drawer extends AppCompatActivity
             bundle.putSerializable("alldorms",alldorms);
             i.putExtras(bundle);
             startActivity(i);
-        } else if (id == R.id.nav_notifications) {
+        } /*else if (id == R.id.nav_notifications) {
             //startActivity(new Intent(navigational_drawer.this, booking_tabbed_activity.class));
             Toast.makeText(navigational_drawer.this, "Up comming feature", Toast.LENGTH_SHORT).show();
-        } else if (id == R.id.nav_RateApp) {
+        }*/ else if (id == R.id.nav_RateApp) {
             try {
                 Uri uri = Uri.parse("market://details?id="+getPackageName());
                 Intent gotoAppstore = new Intent(Intent.ACTION_VIEW, uri);
@@ -280,10 +286,10 @@ public class navigational_drawer extends AppCompatActivity
             startActivity(new Intent(navigational_drawer.this, Setting.class));
         }else if(id == R.id.nav_help_center){
             startActivity(new Intent(navigational_drawer.this, Get_help.class));
-        }else if (id == R.id.nav_share){
+        }/*else if (id == R.id.nav_share){
             //startActivity(new Intent(navigational_drawer.this, Setting.class));
             Toast.makeText(navigational_drawer.this, "Up comming feature", Toast.LENGTH_SHORT).show();
-        }/*else if(id == R.id.nav_Appfeedback){
+        }*//*else if(id == R.id.nav_Appfeedback){
             startActivity(new Intent(navigational_drawer.this, Main2Activity.class));
         }*/
 

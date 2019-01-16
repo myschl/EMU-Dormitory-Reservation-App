@@ -40,7 +40,6 @@
             android:id="@+id/idormshortdescription"
             android:text="Home of over 800 student "
             android:textColor="@android:color/white"
-            android:textStyle="bold"
             android:textAlignment="center"/>
 
     </LinearLayout>
@@ -66,10 +65,10 @@
 
             </android.support.v7.widget.RecyclerView>
 
-            <WebView
+            <!--<WebView
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:id="@+id/imapview"/>
+                android:id="@+id/imapview"/>-->
 
 
             <com.ms.square.android.expandabletextview.ExpandableTextView

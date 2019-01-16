@@ -30,17 +30,17 @@
         <android.support.design.widget.TabLayout
             android:id="@+id/tabs"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:background="@color/colorWhite"
             app:tabTextColor="@color/Black"
             app:tabSelectedTextColor="@color/Black"
-            app:tabIndicatorColor="@color/blue">
+            app:tabIndicatorColor="@color/colorWhite">
 
-            <android.support.design.widget.TabItem
+            <!--<android.support.design.widget.TabItem
                 android:id="@+id/tabItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Past" />
+                android:text="Past" />-->
 
             <android.support.design.widget.TabItem
                 android:id="@+id/tabItem2"
@@ -48,11 +48,11 @@
                 android:layout_height="wrap_content"
                 android:text="Current" />
 
-            <android.support.design.widget.TabItem
+            <!--<android.support.design.widget.TabItem
                 android:id="@+id/tabItem3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Upcoming" />
+                android:text="Upcoming" />-->
 
         </android.support.design.widget.TabLayout>
     </android.support.design.widget.AppBarLayout>

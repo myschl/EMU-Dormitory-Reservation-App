@@ -36,7 +36,7 @@ public class search_result_activity extends AppCompatActivity {
          textViewList = findViewById(R.id.textViewList);
          imageViewListIcon = findViewById(R.id.imageViewListIcon);
         RelativeLayout relativeLayoutSortSearchResult,relativeLayoutFilterSearchResult,relativeLayoutListSearchResult;
-        relativeLayoutSortSearchResult = findViewById(R.id.relativeLayoutSortSearchResult);
+        //relativeLayoutSortSearchResult = findViewById(R.id.relativeLayoutSortSearchResult);
         relativeLayoutFilterSearchResult = findViewById(R.id.relativeLayoutFilterSearchResult);
         relativeLayoutListSearchResult = findViewById(R.id.relativeLayoutListSearchResult);
 
@@ -79,12 +79,12 @@ public class search_result_activity extends AppCompatActivity {
 
         });
 
-        relativeLayoutSortSearchResult.setOnClickListener(new View.OnClickListener() {
+       /* relativeLayoutSortSearchResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(search_result_activity.this, "I have been summoned Sort", Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
 
 

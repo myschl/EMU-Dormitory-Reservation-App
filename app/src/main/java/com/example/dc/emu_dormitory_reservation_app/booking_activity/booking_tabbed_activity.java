@@ -120,14 +120,20 @@ public class booking_tabbed_activity extends AppCompatActivity {
         public Fragment getItem(int position) {
             switch(position){
                 case 0:
-                    past_tab mPast_tab = new past_tab();
-                    return mPast_tab;
-                case 1:
+
                     current_tab mCurrent_tab = new current_tab();
                     return mCurrent_tab;
+                    /*past_tab mPast_tab = new past_tab();
+                    return mPast_tab;*/
+
+                case 1:
+                    /*current_tab mCurrent_tab = new current_tab();
+                    return mCurrent_tab;*/
+                    return null;
                 case 2:
-                    upcoming_tab mUpcoming_tab = new upcoming_tab();
-                    return mUpcoming_tab;
+                   /* upcoming_tab mUpcoming_tab = new upcoming_tab();
+                    return mUpcoming_tab;*/
+                   return null;
                 default:
                     return null;
 
@@ -137,7 +143,7 @@ public class booking_tabbed_activity extends AppCompatActivity {
         @Override
         public int getCount() {
             // Show 3 total pages.
-            return 3;
+            return 1;
         }
     }
 

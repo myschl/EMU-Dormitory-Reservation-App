@@ -47,6 +47,8 @@ public class Filter_by extends AppCompatActivity {
     private ArrayList<SearchResultsListDataModel> SearchfilteredDorms = new ArrayList<>();
 
 
+    private FacilitiesFilterAdapter facilityadapter = new FacilitiesFilterAdapter();
+
     private ArrayList<String> star = new ArrayList<>();
     private ArrayList<String> profertytype = new ArrayList<>();
     private ArrayList<String> facilityId = new ArrayList<>();
@@ -60,6 +62,7 @@ public class Filter_by extends AppCompatActivity {
         Toolbar toolbar = (Toolbar)findViewById(R.id.filter_by);
         toolbar.setTitle("Filter by");
         //toolbar.setSubtitle("welcome");
+
 
 
 
@@ -82,6 +85,8 @@ public class Filter_by extends AppCompatActivity {
         facilityId.add("3");
         facilityId.add("4");
         facilityId.add("5");
+
+        facilityId.addAll(facilityadapter.getRfacilityId());
 
 
         setSupportActionBar(toolbar);
@@ -302,7 +307,7 @@ public class Filter_by extends AppCompatActivity {
                                 String facilityId = room.getString("facilityId");
 
 
-                                facilitiesList.add(new FilterByFacilitiesModel(name));
+                                facilitiesList.add(new FilterByFacilitiesModel(name, facilityId));
 
                                 //mHomeActivityDataModelsPopularDorms.add(new HomeActivityDataModel(DormitoryName, Deals, picture));
 

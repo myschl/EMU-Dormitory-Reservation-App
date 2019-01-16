@@ -1,6 +1,8 @@
 package com.example.dc.emu_dormitory_reservation_app.settings_activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -21,6 +23,7 @@ import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.About_us_activity.MainActivity;
 import com.example.dc.emu_dormitory_reservation_app.DebugActivity.DebugActivity;
+import com.example.dc.emu_dormitory_reservation_app.Get_help;
 import com.example.dc.emu_dormitory_reservation_app.Give_app_feedback_activity.Main2Activity;
 import com.example.dc.emu_dormitory_reservation_app.ManageBookingModel;
 import com.example.dc.emu_dormitory_reservation_app.R;
@@ -34,12 +37,14 @@ import org.json.JSONObject;
 
 public class Setting extends AppCompatActivity implements View.OnClickListener {
     private RequestQueue mQueue;
-    String[] language ={"English","Turkish"};
+
+    String[] language ={"English"};
     Spinner lspinner;
     ArrayAdapter gspinnerAdapter;
-    String[] currency ={"Dollas","TRY"};
+    String[] currency ={"Dallas"};
     Spinner cspinner;
-    String[] Informations = {"Terms and conditions","Send us your feedback","Rate us in the App store","About us"};
+
+    String[] Informations = {"Terms and conditions","Help Center","Rate us in the App store","About us"};
     ListView Linformation;
     ArrayAdapter spinnerAdapter,listadapter;
     private TextView msign_out;
@@ -71,14 +76,14 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
                 }
 
         );
-        CurrencyAPI();
+        //CurrencyAPI();
         Myfun();
 
         msign_out.setOnClickListener(this);
 
     }
 
-    private void CurrencyAPI() {
+    /*private void CurrencyAPI() {
 
         String url = "http://35.204.232.129/api/GetCurrency/5";
         JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
@@ -110,7 +115,7 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
         });
         mQueue = Volley.newRequestQueue(Setting.this);
         mQueue.add(request);
-    }
+    }*/
 
     private void Myfun() {
         lspinner=(Spinner)findViewById(R.id.language_spinner);
@@ -141,12 +146,6 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
         cspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                switch (position){
-                    case 0:
-                        break;
-                    case 1:
-
-                }
 
             }
 
@@ -168,11 +167,11 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
                         break;
                     case 1:
                         //send us your feedback
-                        startActivity(new Intent(Setting.this, Main2Activity.class));
+                        startActivity(new Intent(Setting.this, Get_help.class));
                         break;
                     case 2:
                         // rate us in the app store
-                        Toast.makeText(Setting.this, "up comming feature", Toast.LENGTH_SHORT).show();
+                        rateinappstore();
                         break;
 
                     case 3:
@@ -184,6 +183,19 @@ public class Setting extends AppCompatActivity implements View.OnClickListener {
         });
 
 
+    }
+
+    private void rateinappstore() {
+        try {
+            Uri uri = Uri.parse("market://details?id="+getPackageName());
+            Intent gotoAppstore = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(gotoAppstore);
+
+        }catch (ActivityNotFoundException e){
+            Uri uri = Uri.parse("http://play.google.com/store/apps/details?id="+getPackageName());
+            Intent gotoAppstore = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(gotoAppstore);
+        }
     }
 
     @Override

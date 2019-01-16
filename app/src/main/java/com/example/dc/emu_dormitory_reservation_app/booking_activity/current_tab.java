@@ -10,10 +10,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.dc.emu_dormitory_reservation_app.BookingbyCustomerId;
+import com.example.dc.emu_dormitory_reservation_app.Navigational_drawer.navigational_drawer;
 import com.example.dc.emu_dormitory_reservation_app.R;
 import com.example.dc.emu_dormitory_reservation_app.rate_bookings_activity_2.RateBookingsRecycleViewAdapter2;
 import com.example.dc.emu_dormitory_reservation_app.search_results_activity.SearchResultsListDataModel;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -24,6 +34,7 @@ public class current_tab extends Fragment {
 
     private ArrayList<bookingsDataModel> mBookingsDataModel = new ArrayList<>();
     private ArrayList<BookingbyCustomerId>Alldorms = new ArrayList<>();
+
 
 
     @Override
@@ -77,4 +88,5 @@ public class current_tab extends Fragment {
         recycleView.setAdapter(adapter);
         recycleView.setLayoutManager( new LinearLayoutManager(mContext));
     }
+
 }
